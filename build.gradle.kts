@@ -76,6 +76,11 @@ testing {
     }
 }
 
+configurations {
+    named("integrationTestImplementation") { extendsFrom(implementation.get()) }
+    named("integrationTestRuntimeOnly") { extendsFrom(runtimeOnly.get()) }
+}
+
 tasks.named("check") {
     dependsOn(testing.suites.named("integrationTest"))
 }
