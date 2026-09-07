@@ -8,6 +8,10 @@ spring:
       connect-timeout: 100ms
       read-timeout: 150ms
 
+cache:
+  cards:
+    time-to-live: 10m
+
 risk:
   scoring:
     base-url: http://localhost:8081
