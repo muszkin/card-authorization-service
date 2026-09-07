@@ -75,14 +75,41 @@ testing {
                 }
             }
         }
+
+        register<JvmTestSuite>("acceptanceTest") {
+            useJUnitJupiter()
+            dependencies {
+                implementation(project())
+                implementation(testFixtures(project()))
+                implementation("org.springframework.boot:spring-boot-starter-test")
+                implementation("org.springframework.boot:spring-boot-testcontainers")
+                implementation("org.testcontainers:testcontainers-postgresql")
+                implementation(platform("io.cucumber:cucumber-bom:7.34.8"))
+                implementation("io.cucumber:cucumber-java")
+                implementation("io.cucumber:cucumber-spring")
+                implementation("io.cucumber:cucumber-junit-platform-engine")
+                implementation("org.junit.platform:junit-platform-suite")
+                implementation("org.wiremock:wiremock-standalone:3.13.2")
+            }
+            targets {
+                all {
+                    testTask.configure {
+                        jvmArgs(testJvmArgs)
+                        shouldRunAfter(tasks.named("integrationTest"))
+                    }
+                }
+            }
+        }
     }
 }
 
 configurations {
     named("integrationTestImplementation") { extendsFrom(implementation.get()) }
     named("integrationTestRuntimeOnly") { extendsFrom(runtimeOnly.get()) }
+    named("acceptanceTestImplementation") { extendsFrom(implementation.get()) }
+    named("acceptanceTestRuntimeOnly") { extendsFrom(runtimeOnly.get()) }
 }
 
 tasks.named("check") {
-    dependsOn(testing.suites.named("integrationTest"))
+    dependsOn(testing.suites.named("integrationTest"), testing.suites.named("acceptanceTest"))
 }
