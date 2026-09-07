@@ -15,6 +15,7 @@ import pl.fairydeck.authorization.application.port.out.InMemoryAuthorizationRepo
 import pl.fairydeck.authorization.application.port.out.InMemoryCardCache;
 import pl.fairydeck.authorization.application.port.out.InMemoryCardRepository;
 import pl.fairydeck.authorization.application.port.out.InMemoryLedgerRepository;
+import pl.fairydeck.authorization.application.port.out.InMemoryOutbox;
 import pl.fairydeck.authorization.application.port.out.StubRiskScorer;
 import pl.fairydeck.authorization.domain.authorization.Authorization;
 import pl.fairydeck.authorization.domain.authorization.AuthorizationPolicy;
@@ -37,10 +38,11 @@ class AuthorizePurchaseTest {
     private final InMemoryCardRepository cards = new InMemoryCardRepository();
     private final InMemoryLedgerRepository ledger = new InMemoryLedgerRepository();
     private final InMemoryAuthorizationRepository authorizations = new InMemoryAuthorizationRepository();
+    private final InMemoryOutbox outbox = new InMemoryOutbox();
     private final StubRiskScorer riskScorer = new StubRiskScorer();
     private final AuthorizationPolicy policy = new AuthorizationPolicy(70, Duration.ofDays(7));
     private final AuthorizationBooking booking =
-            new AuthorizationBooking(ledger, authorizations, policy, Clock.fixed(NOW, ZoneOffset.UTC));
+            new AuthorizationBooking(ledger, authorizations, outbox, policy, Clock.fixed(NOW, ZoneOffset.UTC));
     private final AuthorizePurchase authorizePurchase =
             new AuthorizePurchase(new CardLookup(new InMemoryCardCache(), cards), riskScorer, booking, authorizations);
 
@@ -97,6 +99,22 @@ class AuthorizePurchaseTest {
                 .isInstanceOf(CardNotFoundException.class)
                 .hasMessageContaining(card.id().toString());
         assertThat(riskScorer.asked()).isEmpty();
+    }
+
+    @Test
+    void leavesEveryDecisionInTheOutboxForAsynchronousPublication() {
+        cards.save(card);
+        riskScorer.willAnswer(new RiskAssessment.Unavailable());
+
+        Authorization declined = authorizePurchase.authorize(purchase("30.00"));
+
+        assertThat(outbox.recorded()).singleElement().satisfies(event -> {
+            assertThat(event.authorizationId()).isEqualTo(declined.id());
+            assertThat(event.cardId()).isEqualTo(card.id());
+            assertThat(event.status()).isEqualTo(AuthorizationStatus.DECLINED);
+            assertThat(event.amount()).isEqualTo(gbp("30.00"));
+            assertThat(event.occurredAt()).isEqualTo(NOW);
+        });
     }
 
     @Test
