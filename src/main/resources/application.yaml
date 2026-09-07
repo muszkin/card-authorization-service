@@ -19,6 +19,10 @@ cache:
   cards:
     time-to-live: 10m
 
+outbox:
+  relay-interval: PT1S
+  batch-size: 100
+
 risk:
   scoring:
     base-url: http://localhost:8081
