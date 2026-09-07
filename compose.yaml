@@ -11,3 +11,9 @@ services:
     image: redis:7-alpine
     ports:
       - "6379"
+  risk-engine:
+    image: wiremock/wiremock:3.13.2
+    volumes:
+      - ./local/risk-engine:/home/wiremock
+    ports:
+      - "8081:8080"
