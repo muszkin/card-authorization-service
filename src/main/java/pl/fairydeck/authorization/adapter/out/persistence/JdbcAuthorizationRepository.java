@@ -5,9 +5,11 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Optional;
 import java.util.UUID;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 import pl.fairydeck.authorization.application.port.out.AuthorizationRepository;
+import pl.fairydeck.authorization.application.port.out.DuplicateIdempotencyKeyException;
 import pl.fairydeck.authorization.domain.authorization.Authorization;
 import pl.fairydeck.authorization.domain.authorization.AuthorizationStatus;
 import pl.fairydeck.authorization.domain.authorization.DeclineReason;
@@ -26,6 +28,14 @@ class JdbcAuthorizationRepository implements AuthorizationRepository {
 
     @Override
     public void save(Authorization authorization) {
+        try {
+            upsert(authorization);
+        } catch (DuplicateKeyException e) {
+            throw new DuplicateIdempotencyKeyException(authorization.idempotencyKey());
+        }
+    }
+
+    private void upsert(Authorization authorization) {
         jdbc.sql("INSERT INTO authorizations (" + COLUMNS + ") VALUES (:id, :cardId, :amountMinor, :currency, "
                         + ":merchant, :status, :declineReason, :idempotencyKey, :createdAt, :expiresAt) "
                         + "ON CONFLICT (id) DO UPDATE SET status = EXCLUDED.status")

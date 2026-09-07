@@ -52,6 +52,13 @@ public final class Authorization {
                 purchase.idempotencyKey(), AuthorizationStatus.DECLINED, reason, now, null);
     }
 
+    /** Whether this authorization was created for the given purchase, which is what makes a retry a retry. */
+    public boolean isFor(Purchase purchase) {
+        return cardId.equals(purchase.cardId())
+                && amount.equals(purchase.amount())
+                && merchant.equals(purchase.merchant());
+    }
+
     public boolean isApproved() {
         return status == AuthorizationStatus.APPROVED;
     }

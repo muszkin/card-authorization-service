@@ -5,6 +5,7 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import pl.fairydeck.authorization.application.CardNotFoundException;
+import pl.fairydeck.authorization.application.IdempotencyKeyReusedException;
 
 /**
  * Maps application and domain failures onto RFC 9457 problem details. Framework-level failures (validation,
@@ -16,6 +17,11 @@ class ApiExceptionHandler {
     @ExceptionHandler(CardNotFoundException.class)
     ProblemDetail cardNotFound(CardNotFoundException e) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+    }
+
+    @ExceptionHandler(IdempotencyKeyReusedException.class)
+    ProblemDetail idempotencyKeyReused(IdempotencyKeyReusedException e) {
+        return ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, e.getMessage());
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
