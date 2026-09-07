@@ -16,4 +16,7 @@ public interface AuthorizationRepository {
 
     /** Approved authorizations whose hold validity has passed, oldest first, in a bounded batch. */
     List<Authorization> findExpiredHolds(Instant now);
+
+    /** A card's authorizations matching the filter, newest first. */
+    List<Authorization> findByCard(UUID cardId, TransactionFilter filter);
 }

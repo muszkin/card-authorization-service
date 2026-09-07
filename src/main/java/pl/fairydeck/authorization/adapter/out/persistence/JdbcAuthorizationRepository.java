@@ -4,7 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.time.Instant;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.dao.DuplicateKeyException;
@@ -12,6 +14,7 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 import pl.fairydeck.authorization.application.port.out.AuthorizationRepository;
 import pl.fairydeck.authorization.application.port.out.DuplicateIdempotencyKeyException;
+import pl.fairydeck.authorization.application.port.out.TransactionFilter;
 import pl.fairydeck.authorization.domain.authorization.Authorization;
 import pl.fairydeck.authorization.domain.authorization.AuthorizationStatus;
 import pl.fairydeck.authorization.domain.authorization.DeclineReason;
@@ -81,6 +84,26 @@ class JdbcAuthorizationRepository implements AuthorizationRepository {
                 .param("limit", EXPIRY_SWEEP_BATCH)
                 .query(JdbcAuthorizationRepository::toAuthorization)
                 .list();
+    }
+
+    @Override
+    public List<Authorization> findByCard(UUID cardId, TransactionFilter filter) {
+        StringBuilder sql = new StringBuilder("SELECT " + COLUMNS + " FROM authorizations WHERE card_id = :cardId");
+        Map<String, Object> params = new HashMap<>(Map.of("cardId", cardId));
+        if (filter.from() != null) {
+            sql.append(" AND created_at >= :from");
+            params.put("from", Columns.timestamp(filter.from()));
+        }
+        if (filter.to() != null) {
+            sql.append(" AND created_at < :to");
+            params.put("to", Columns.timestamp(filter.to()));
+        }
+        if (filter.status() != null) {
+            sql.append(" AND status = :status");
+            params.put("status", filter.status().name());
+        }
+        sql.append(" ORDER BY created_at DESC");
+        return jdbc.sql(sql.toString()).params(params).query(JdbcAuthorizationRepository::toAuthorization).list();
     }
 
     private static Authorization toAuthorization(ResultSet row, int rowNumber) throws SQLException {

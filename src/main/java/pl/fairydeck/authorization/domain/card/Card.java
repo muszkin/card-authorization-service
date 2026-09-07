@@ -15,6 +15,10 @@ public record Card(UUID id, UUID cardholderId, CardStatus status, Money creditLi
         }
     }
 
+    public static Card issue(UUID cardholderId, Money creditLimit) {
+        return new Card(UUID.randomUUID(), cardholderId, CardStatus.ACTIVE, creditLimit);
+    }
+
     public boolean isActive() {
         return status == CardStatus.ACTIVE;
     }
