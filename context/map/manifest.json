@@ -1,0 +1,1228 @@
+{
+  "schema_version": 1,
+  "generator": "project-context-initializer",
+  "generator_version": "skill bundle sha256:a26f4ab1f8949c90",
+  "manifest_digest": {
+    "algorithm": "sha256-rfc8785-with-empty-digest",
+    "value": "ae4b0021ba624099db0c9032fc450959ad9679bc1e0ad3ba83c93ecb75fc2752"
+  },
+  "operation": "initialize",
+  "project_classification": "brownfield",
+  "scope_kind": "repository",
+  "phase": "complete",
+  "generated_at": "2026-09-07T14:57:44Z",
+  "repository_root": ".",
+  "scope": [
+    "."
+  ],
+  "source_snapshot": {
+    "basis": "HEAD+worktree",
+    "revision": "b4bef1631aa5cfb1efc1655b06e36f38c788f40a",
+    "branch": "main",
+    "worktree_status": [],
+    "untracked_nonignored_paths": [],
+    "comparability": "comparable",
+    "non_comparable_reasons": [],
+    "dirty_tracked_fingerprints": [],
+    "inventory_fingerprint": "71a66297627b16ccac87d938cfac1bfa76d6b5e36ff2de905610c43640b2e38e",
+    "fingerprint_method": "sha256 over sorted lines \"<git blob id>\\t<path>\\n\" of `git ls-files -s` (clean tree: blob ids equal worktree bytes); generated context files are excluded from the inventory fingerprint"
+  },
+  "git_history": {
+    "available": true,
+    "shallow": false,
+    "commit_window": "36 commits, authored 2026-09-07T11:21:08Z..2026-09-07T12:21:21Z, HEAD amended and force-pushed later the same day",
+    "pr_provider": "github via gh (read-only, authenticated)",
+    "pr_window": "gh pr list --state all --limit 20 -> 0 pull requests"
+  },
+  "exclusions": [
+    {
+      "path": ".git",
+      "reason": "version control metadata"
+    },
+    {
+      "path": ".gradle",
+      "reason": "ignored Gradle cache"
+    },
+    {
+      "path": "build",
+      "reason": "ignored build output"
+    }
+  ],
+  "unreadable_paths": [],
+  "directories": [
+    {
+      "path": ".",
+      "coverage": "own",
+      "context": ".agents/project-context.md",
+      "reason": "repository root: build, configuration, CI, local infrastructure, test suites, tooling"
+    },
+    {
+      "path": ".agents",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "generated context holder"
+    },
+    {
+      "path": ".claude",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "agent tooling and skill bundle"
+    },
+    {
+      "path": ".claude/skills/task-closeout",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "agent tooling and skill bundle"
+    },
+    {
+      "path": ".claude/skills/task-closeout/examples",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "agent tooling and skill bundle"
+    },
+    {
+      "path": ".claude/skills/task-closeout/references",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "agent tooling and skill bundle"
+    },
+    {
+      "path": ".github/workflows",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "CI workflow"
+    },
+    {
+      "path": "context",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "generated context map"
+    },
+    {
+      "path": "context/map",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "generated context map"
+    },
+    {
+      "path": "context/map/diagrams",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "generated context map"
+    },
+    {
+      "path": "gradle/wrapper",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "build wrapper"
+    },
+    {
+      "path": "local/risk-engine/mappings",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "local risk engine stub for docker compose"
+    },
+    {
+      "path": "src/acceptanceTest",
+      "coverage": "own",
+      "context": "src/acceptanceTest/.agents/project-context.md",
+      "reason": "real-surface E2E harness with its own runner and feature files"
+    },
+    {
+      "path": "src/acceptanceTest/.agents",
+      "coverage": "rolled-up",
+      "context": "src/acceptanceTest/.agents/project-context.md",
+      "reason": "part of the acceptance suite"
+    },
+    {
+      "path": "src/acceptanceTest/java/pl/fairydeck/authorization/acceptance",
+      "coverage": "rolled-up",
+      "context": "src/acceptanceTest/.agents/project-context.md",
+      "reason": "part of the acceptance suite"
+    },
+    {
+      "path": "src/acceptanceTest/resources/pl/fairydeck/authorization/acceptance",
+      "coverage": "rolled-up",
+      "context": "src/acceptanceTest/.agents/project-context.md",
+      "reason": "part of the acceptance suite"
+    },
+    {
+      "path": "src/integrationTest/java/pl/fairydeck/authorization",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "test infrastructure shared across layers"
+    },
+    {
+      "path": "src/integrationTest/java/pl/fairydeck/authorization/adapter/out/cache",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/adapter/.agents/project-context.md",
+      "reason": "integrationTest sources mirroring the adapter layer"
+    },
+    {
+      "path": "src/integrationTest/java/pl/fairydeck/authorization/adapter/out/events",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/adapter/.agents/project-context.md",
+      "reason": "integrationTest sources mirroring the adapter layer"
+    },
+    {
+      "path": "src/integrationTest/java/pl/fairydeck/authorization/adapter/out/persistence",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/adapter/.agents/project-context.md",
+      "reason": "integrationTest sources mirroring the adapter layer"
+    },
+    {
+      "path": "src/integrationTest/java/pl/fairydeck/authorization/application",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/application/.agents/project-context.md",
+      "reason": "integrationTest sources mirroring the application layer"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "application bootstrap class only"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/adapter",
+      "coverage": "own",
+      "context": "src/main/java/pl/fairydeck/authorization/adapter/.agents/project-context.md",
+      "reason": "inbound and outbound integration slices"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/adapter/.agents",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/adapter/.agents/project-context.md",
+      "reason": "generated context holder"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/adapter/in/rest",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/adapter/.agents/project-context.md",
+      "reason": "sub-package of the layer"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/adapter/out/cache",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/adapter/.agents/project-context.md",
+      "reason": "sub-package of the layer"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/adapter/out/events",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/adapter/.agents/project-context.md",
+      "reason": "sub-package of the layer"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/adapter/out/persistence",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/adapter/.agents/project-context.md",
+      "reason": "sub-package of the layer"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/adapter/out/risk",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/adapter/.agents/project-context.md",
+      "reason": "sub-package of the layer"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/application",
+      "coverage": "own",
+      "context": "src/main/java/pl/fairydeck/authorization/application/.agents/project-context.md",
+      "reason": "use cases, ports and transaction boundaries"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/application/.agents",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/application/.agents/project-context.md",
+      "reason": "generated context holder"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/application/port/out",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/application/.agents/project-context.md",
+      "reason": "sub-package of the layer"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/domain",
+      "coverage": "own",
+      "context": "src/main/java/pl/fairydeck/authorization/domain/.agents/project-context.md",
+      "reason": "domain boundary, framework-free rules"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/domain/.agents",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/domain/.agents/project-context.md",
+      "reason": "generated context holder"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/domain/authorization",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/domain/.agents/project-context.md",
+      "reason": "sub-package of the layer"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/domain/card",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/domain/.agents/project-context.md",
+      "reason": "sub-package of the layer"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/domain/ledger",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/domain/.agents/project-context.md",
+      "reason": "sub-package of the layer"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/domain/money",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/domain/.agents/project-context.md",
+      "reason": "sub-package of the layer"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/technical",
+      "coverage": "own",
+      "context": "src/main/java/pl/fairydeck/authorization/technical/.agents/project-context.md",
+      "reason": "cross-cutting plumbing"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/technical/.agents",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/technical/.agents/project-context.md",
+      "reason": "generated context holder"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/technical/httpclient",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/technical/.agents/project-context.md",
+      "reason": "sub-package of the layer"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/technical/logbook",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/technical/.agents/project-context.md",
+      "reason": "sub-package of the layer"
+    },
+    {
+      "path": "src/main/resources",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "runtime configuration surface"
+    },
+    {
+      "path": "src/main/resources/db/migration",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/adapter/.agents/project-context.md",
+      "reason": "schema owned by the persistence adapter"
+    },
+    {
+      "path": "src/test/java/pl/fairydeck/authorization/adapter/in/rest",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/adapter/.agents/project-context.md",
+      "reason": "test sources mirroring the adapter layer"
+    },
+    {
+      "path": "src/test/java/pl/fairydeck/authorization/adapter/out/cache",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/adapter/.agents/project-context.md",
+      "reason": "test sources mirroring the adapter layer"
+    },
+    {
+      "path": "src/test/java/pl/fairydeck/authorization/adapter/out/risk",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/adapter/.agents/project-context.md",
+      "reason": "test sources mirroring the adapter layer"
+    },
+    {
+      "path": "src/test/java/pl/fairydeck/authorization/application",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/application/.agents/project-context.md",
+      "reason": "test sources mirroring the application layer"
+    },
+    {
+      "path": "src/test/java/pl/fairydeck/authorization/architecture",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "test infrastructure shared across layers"
+    },
+    {
+      "path": "src/test/java/pl/fairydeck/authorization/domain/authorization",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/domain/.agents/project-context.md",
+      "reason": "test sources mirroring the domain layer"
+    },
+    {
+      "path": "src/test/java/pl/fairydeck/authorization/domain/card",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/domain/.agents/project-context.md",
+      "reason": "test sources mirroring the domain layer"
+    },
+    {
+      "path": "src/test/java/pl/fairydeck/authorization/domain/ledger",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/domain/.agents/project-context.md",
+      "reason": "test sources mirroring the domain layer"
+    },
+    {
+      "path": "src/test/java/pl/fairydeck/authorization/domain/money",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/domain/.agents/project-context.md",
+      "reason": "test sources mirroring the domain layer"
+    },
+    {
+      "path": "src/test/java/pl/fairydeck/authorization/technical/httpclient",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/technical/.agents/project-context.md",
+      "reason": "test sources mirroring the technical layer"
+    },
+    {
+      "path": "src/test/java/pl/fairydeck/authorization/technical/logbook",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/technical/.agents/project-context.md",
+      "reason": "test sources mirroring the technical layer"
+    },
+    {
+      "path": "src/testFixtures/java/pl/fairydeck/authorization",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "test infrastructure shared across layers"
+    },
+    {
+      "path": "src/testFixtures/java/pl/fairydeck/authorization/application/port/out",
+      "coverage": "rolled-up",
+      "context": "src/main/java/pl/fairydeck/authorization/application/.agents/project-context.md",
+      "reason": "testFixtures sources mirroring the application layer"
+    }
+  ],
+  "remote_sources": [
+    {
+      "provider": "github",
+      "query": "gh pr list --state all --limit 20 --json number",
+      "queried_at": "2026-09-07T14:57:44Z",
+      "result_fingerprint": "0 pull requests"
+    },
+    {
+      "provider": "github-actions",
+      "query": "gh run list --branch main --limit 8",
+      "queried_at": "2026-09-07T14:57:44Z",
+      "result_fingerprint": "5 runs, all success; latest for b4bef16"
+    }
+  ],
+  "related_artifacts": [
+    {
+      "path": "DECISIONS.md",
+      "generator_or_owner": "repository author",
+      "purpose": "decision records with rejected alternatives",
+      "scope": [
+        "."
+      ],
+      "artifact_type": "canonical-evidence",
+      "authority": "canonical",
+      "source_revision": "b4bef1631aa5cfb1efc1655b06e36f38c788f40a",
+      "generated_at": null,
+      "freshness": "current",
+      "content_sha256": "aed41383477bee05386eeeaf99c9458e0d60b40ef12fedbe129da87f345732a8",
+      "approval_status": "approved",
+      "conflicts": [],
+      "referenced_by": [
+        "context/map/INDEX.md",
+        "context/map/documentation-index.md"
+      ],
+      "consumers": [
+        "implementation-planning",
+        "review",
+        "implementation-orchestrator"
+      ]
+    },
+    {
+      "path": "AI_USAGE.md",
+      "generator_or_owner": "repository author",
+      "purpose": "AI usage disclosure and verification approach",
+      "scope": [
+        "."
+      ],
+      "artifact_type": "canonical-evidence",
+      "authority": "canonical",
+      "source_revision": "b4bef1631aa5cfb1efc1655b06e36f38c788f40a",
+      "generated_at": null,
+      "freshness": "current",
+      "content_sha256": "3bde7e6d725207ddefd28c7ebd0df2e2cb2498d6f08c8d8cb05a51b9e9ab4072",
+      "approval_status": "approved",
+      "conflicts": [],
+      "referenced_by": [
+        "context/map/INDEX.md",
+        "context/map/documentation-index.md"
+      ],
+      "consumers": [
+        "review"
+      ]
+    },
+    {
+      "path": "README.md",
+      "generator_or_owner": "repository author",
+      "purpose": "product description, run instructions, API, limitations",
+      "scope": [
+        "."
+      ],
+      "artifact_type": "canonical-evidence",
+      "authority": "canonical",
+      "source_revision": "b4bef1631aa5cfb1efc1655b06e36f38c788f40a",
+      "generated_at": null,
+      "freshness": "current",
+      "content_sha256": "f4f45712e388b45f24fe5dabf8f00e29cff31638274f96d81d07b056e189bb87",
+      "approval_status": "approved",
+      "conflicts": [],
+      "referenced_by": [
+        "context/map/INDEX.md",
+        "context/map/documentation-index.md"
+      ],
+      "consumers": [
+        "research",
+        "implementation-planning"
+      ]
+    },
+    {
+      "path": ".claude/skills/task-closeout/SKILL.md",
+      "generator_or_owner": "task-closeout skill bundle (repository author)",
+      "purpose": "close-out workflow definition",
+      "scope": [
+        "."
+      ],
+      "artifact_type": "generated-synthesis",
+      "authority": "advisory",
+      "source_revision": "b4bef1631aa5cfb1efc1655b06e36f38c788f40a",
+      "generated_at": null,
+      "freshness": "current",
+      "content_sha256": "ff48c05646a5e1cc0538ecf863cd3d879a9b9d253a93b198574fc6b931439b80",
+      "approval_status": "not-applicable",
+      "conflicts": [],
+      "referenced_by": [
+        "context/map/INDEX.md",
+        "context/map/documentation-index.md"
+      ],
+      "consumers": [
+        "task-closeout",
+        "review"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "context/map/project-overview.md",
+      "ownership": "managed-block",
+      "inputs": [
+        "AI_USAGE.md",
+        "DECISIONS.md",
+        "README.md",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/AuthorizationController.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/CardController.java"
+      ],
+      "input_fingerprint": "7644258d56fe927ff88fe31d58be4171ce858ec57e057c7657b48120127c4a84",
+      "output_sha256": "4e6da0b916ebd30ab77c0ac7b84c3c5f0ae06529173208a5a9476bf9ead12745",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "context/map/technology.md",
+      "ownership": "managed-block",
+      "inputs": [
+        ".github/workflows/build.yml",
+        "build.gradle.kts",
+        "compose.yaml",
+        "gradle/wrapper/gradle-wrapper.properties",
+        "src/main/resources/application.yaml"
+      ],
+      "input_fingerprint": "80c14e6bb7c59dd68b22629112942a5b745147150e41165c84993a13503ad0da",
+      "output_sha256": "81ab50a0a7cb0d89f69a1e7e66cc2e0ffd4c144e2d7711a6256fce70c9cde9b9",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "context/map/architecture-and-flows.md",
+      "ownership": "managed-block",
+      "inputs": [
+        "src/main/java/pl/fairydeck/authorization/CardAuthorizationApplication.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/ApiExceptionHandler.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/AuthorizationController.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/AuthorizationRequest.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/AuthorizationResponse.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/BalanceResponse.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/CardController.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/CardResponse.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/IssueCardRequest.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/cache/CardCacheConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/cache/CardCacheProperties.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/cache/RedisCardCache.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/EventPublisher.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/JdbcOutbox.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/LoggingEventPublisher.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/OutboxEvent.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/OutboxProperties.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/OutboxRelay.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/Columns.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/JdbcAuthorizationRepository.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/JdbcCardRepository.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/JdbcLedgerRepository.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/risk/HttpRiskScorer.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/risk/RiskScoringConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/risk/RiskScoringProperties.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationBooking.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationLifecycle.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationNotFoundException.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationProperties.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizePurchase.java",
+        "src/main/java/pl/fairydeck/authorization/application/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/application/CardLookup.java",
+        "src/main/java/pl/fairydeck/authorization/application/CardNotFoundException.java",
+        "src/main/java/pl/fairydeck/authorization/application/CardQueries.java",
+        "src/main/java/pl/fairydeck/authorization/application/IdempotencyKeyReusedException.java",
+        "src/main/java/pl/fairydeck/authorization/application/IssueCard.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/AuthorizationRepository.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/CardCache.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/CardRepository.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/DuplicateIdempotencyKeyException.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/LedgerRepository.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/Outbox.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/RiskScorer.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/TransactionFilter.java",
+        "src/main/java/pl/fairydeck/authorization/domain/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/Authorization.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/AuthorizationEvent.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/AuthorizationPolicy.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/AuthorizationStatus.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/DeclineReason.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/Purchase.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/RiskAssessment.java",
+        "src/main/java/pl/fairydeck/authorization/domain/card/Card.java",
+        "src/main/java/pl/fairydeck/authorization/domain/card/CardStatus.java",
+        "src/main/java/pl/fairydeck/authorization/domain/ledger/Balance.java",
+        "src/main/java/pl/fairydeck/authorization/domain/ledger/LedgerEntry.java",
+        "src/main/java/pl/fairydeck/authorization/domain/ledger/LedgerEntryType.java",
+        "src/main/java/pl/fairydeck/authorization/domain/money/CurrencyMismatchException.java",
+        "src/main/java/pl/fairydeck/authorization/domain/money/Money.java",
+        "src/main/java/pl/fairydeck/authorization/technical/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/technical/httpclient/CorrelationIdHeader.java",
+        "src/main/java/pl/fairydeck/authorization/technical/httpclient/OutboundHttp.java",
+        "src/main/java/pl/fairydeck/authorization/technical/httpclient/OutboundHttpConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/technical/logbook/CorrelationId.java",
+        "src/main/java/pl/fairydeck/authorization/technical/logbook/RequestLoggingFilter.java",
+        "src/main/resources/application.yaml",
+        "src/main/resources/db/migration/V1__cards_authorizations_ledger.sql",
+        "src/main/resources/db/migration/V2__outbox_events.sql"
+      ],
+      "input_fingerprint": "6ce4f02c79d7ec8a3f8d0044dae2a698d9cfaffe067e800607564f07893001d8",
+      "output_sha256": "ab4b42ac0097ac2d866d08eab7e9ea82bff0c822f2761540bdeec0d15b7b5d03",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "context/map/dependencies.md",
+      "ownership": "managed-block",
+      "inputs": [
+        "src/main/java/pl/fairydeck/authorization/CardAuthorizationApplication.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/ApiExceptionHandler.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/AuthorizationController.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/AuthorizationRequest.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/AuthorizationResponse.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/BalanceResponse.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/CardController.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/CardResponse.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/IssueCardRequest.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/cache/CardCacheConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/cache/CardCacheProperties.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/cache/RedisCardCache.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/EventPublisher.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/JdbcOutbox.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/LoggingEventPublisher.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/OutboxEvent.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/OutboxProperties.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/OutboxRelay.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/Columns.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/JdbcAuthorizationRepository.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/JdbcCardRepository.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/JdbcLedgerRepository.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/risk/HttpRiskScorer.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/risk/RiskScoringConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/risk/RiskScoringProperties.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationBooking.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationLifecycle.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationNotFoundException.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationProperties.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizePurchase.java",
+        "src/main/java/pl/fairydeck/authorization/application/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/application/CardLookup.java",
+        "src/main/java/pl/fairydeck/authorization/application/CardNotFoundException.java",
+        "src/main/java/pl/fairydeck/authorization/application/CardQueries.java",
+        "src/main/java/pl/fairydeck/authorization/application/IdempotencyKeyReusedException.java",
+        "src/main/java/pl/fairydeck/authorization/application/IssueCard.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/AuthorizationRepository.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/CardCache.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/CardRepository.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/DuplicateIdempotencyKeyException.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/LedgerRepository.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/Outbox.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/RiskScorer.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/TransactionFilter.java",
+        "src/main/java/pl/fairydeck/authorization/domain/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/Authorization.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/AuthorizationEvent.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/AuthorizationPolicy.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/AuthorizationStatus.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/DeclineReason.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/Purchase.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/RiskAssessment.java",
+        "src/main/java/pl/fairydeck/authorization/domain/card/Card.java",
+        "src/main/java/pl/fairydeck/authorization/domain/card/CardStatus.java",
+        "src/main/java/pl/fairydeck/authorization/domain/ledger/Balance.java",
+        "src/main/java/pl/fairydeck/authorization/domain/ledger/LedgerEntry.java",
+        "src/main/java/pl/fairydeck/authorization/domain/ledger/LedgerEntryType.java",
+        "src/main/java/pl/fairydeck/authorization/domain/money/CurrencyMismatchException.java",
+        "src/main/java/pl/fairydeck/authorization/domain/money/Money.java",
+        "src/main/java/pl/fairydeck/authorization/technical/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/technical/httpclient/CorrelationIdHeader.java",
+        "src/main/java/pl/fairydeck/authorization/technical/httpclient/OutboundHttp.java",
+        "src/main/java/pl/fairydeck/authorization/technical/httpclient/OutboundHttpConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/technical/logbook/CorrelationId.java",
+        "src/main/java/pl/fairydeck/authorization/technical/logbook/RequestLoggingFilter.java",
+        "src/test/java/pl/fairydeck/authorization/architecture/ArchitectureTest.java"
+      ],
+      "input_fingerprint": "5d7a2b847f54d38f8d90499765546e89d8704cb23cb7416d7fc77392f21d4d51",
+      "output_sha256": "41df2d7a3708e7a81bfe7839878adf66bd20cd4131ddcd66aa16be63004bbe02",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "context/map/documentation-index.md",
+      "ownership": "managed-block",
+      "inputs": [
+        ".claude/settings.json",
+        ".claude/skills/task-closeout/SKILL.md",
+        ".claude/skills/task-closeout/examples/worked-example.md",
+        ".claude/skills/task-closeout/references/knowledge-targets.md",
+        ".claude/skills/task-closeout/references/lesson-triage.md",
+        ".github/workflows/build.yml",
+        "AI_USAGE.md",
+        "CLAUDE.md",
+        "DECISIONS.md",
+        "README.md",
+        "compose.yaml",
+        "src/acceptanceTest/resources/pl/fairydeck/authorization/acceptance/card_authorization.feature",
+        "src/main/java/pl/fairydeck/authorization/adapter/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/application/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/domain/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/technical/CLAUDE.md",
+        "src/main/resources/application.yaml"
+      ],
+      "input_fingerprint": "c7c5840d26ebe289a84901f9df16a80a80e6393019282b612e7c5e54946c80fa",
+      "output_sha256": "6b430bee51a96df3fabcda3e5b794672e76fdebee6fbe3336f1ebe3b03cfcbfb",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "context/map/delivery-and-verification.md",
+      "ownership": "managed-block",
+      "inputs": [
+        ".github/workflows/build.yml",
+        "README.md",
+        "build.gradle.kts",
+        "compose.yaml"
+      ],
+      "input_fingerprint": "bb3b2587bd9ad28bcd15a280dabae03bf1c3bc467f8a43188e54a1f8da79db86",
+      "output_sha256": "5d6db890863e2386a5ff8473ea339c497240f67c035489ab0ea47bea001af753",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "context/map/git-and-pr-history.md",
+      "ownership": "managed-block",
+      "inputs": [
+        "DECISIONS.md"
+      ],
+      "input_fingerprint": "9bbcc68cbfb7df056f4cc83385240682628c7b7179d2767f3a25f3cd463a85ce",
+      "output_sha256": "5478b185bed23ec9bd60c2aab109c5141919f9936427c5df85f6f8d1b8569aed",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "context/map/risks-and-unknowns.md",
+      "ownership": "managed-block",
+      "inputs": [
+        "DECISIONS.md",
+        "README.md"
+      ],
+      "input_fingerprint": "facf8f57d344a6cef47e616767118ae6c9f94c606d19592f1b78feaa71a7e0ff",
+      "output_sha256": "dda9d801ea7e3bf8e3da0bae9073b2ee5c6cd182b76ec7fc82d0099b4bd20146",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "context/map/diagrams/module-dependencies.mmd",
+      "ownership": "managed-file",
+      "inputs": [
+        "src/main/java/pl/fairydeck/authorization/CardAuthorizationApplication.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/ApiExceptionHandler.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/AuthorizationController.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/AuthorizationRequest.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/AuthorizationResponse.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/BalanceResponse.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/CardController.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/CardResponse.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/IssueCardRequest.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/cache/CardCacheConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/cache/CardCacheProperties.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/cache/RedisCardCache.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/EventPublisher.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/JdbcOutbox.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/LoggingEventPublisher.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/OutboxEvent.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/OutboxProperties.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/OutboxRelay.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/Columns.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/JdbcAuthorizationRepository.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/JdbcCardRepository.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/JdbcLedgerRepository.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/risk/HttpRiskScorer.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/risk/RiskScoringConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/risk/RiskScoringProperties.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationBooking.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationLifecycle.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationNotFoundException.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationProperties.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizePurchase.java",
+        "src/main/java/pl/fairydeck/authorization/application/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/application/CardLookup.java",
+        "src/main/java/pl/fairydeck/authorization/application/CardNotFoundException.java",
+        "src/main/java/pl/fairydeck/authorization/application/CardQueries.java",
+        "src/main/java/pl/fairydeck/authorization/application/IdempotencyKeyReusedException.java",
+        "src/main/java/pl/fairydeck/authorization/application/IssueCard.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/AuthorizationRepository.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/CardCache.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/CardRepository.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/DuplicateIdempotencyKeyException.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/LedgerRepository.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/Outbox.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/RiskScorer.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/TransactionFilter.java",
+        "src/main/java/pl/fairydeck/authorization/domain/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/Authorization.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/AuthorizationEvent.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/AuthorizationPolicy.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/AuthorizationStatus.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/DeclineReason.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/Purchase.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/RiskAssessment.java",
+        "src/main/java/pl/fairydeck/authorization/domain/card/Card.java",
+        "src/main/java/pl/fairydeck/authorization/domain/card/CardStatus.java",
+        "src/main/java/pl/fairydeck/authorization/domain/ledger/Balance.java",
+        "src/main/java/pl/fairydeck/authorization/domain/ledger/LedgerEntry.java",
+        "src/main/java/pl/fairydeck/authorization/domain/ledger/LedgerEntryType.java",
+        "src/main/java/pl/fairydeck/authorization/domain/money/CurrencyMismatchException.java",
+        "src/main/java/pl/fairydeck/authorization/domain/money/Money.java",
+        "src/main/java/pl/fairydeck/authorization/technical/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/technical/httpclient/CorrelationIdHeader.java",
+        "src/main/java/pl/fairydeck/authorization/technical/httpclient/OutboundHttp.java",
+        "src/main/java/pl/fairydeck/authorization/technical/httpclient/OutboundHttpConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/technical/logbook/CorrelationId.java",
+        "src/main/java/pl/fairydeck/authorization/technical/logbook/RequestLoggingFilter.java"
+      ],
+      "input_fingerprint": "2ad500caa5fa5133f1e14d916a2515247f0799e4e60b3e0d31880813cafd04b2",
+      "output_sha256": "746f72dd5a32b18a8ff81463be015ec3e75f204a891f6000c036c88b6a053408",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "context/map/diagrams/primary-runtime-flow.mmd",
+      "ownership": "managed-file",
+      "inputs": [
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationBooking.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizePurchase.java"
+      ],
+      "input_fingerprint": "80434040e5cd1793f05dfff24188a506d0e79a3103e7df6e4bfa26bc9ed46da1",
+      "output_sha256": "cab92329c9a03cdf49249b6711f07746621cdec6f93e720f189d633892d75c18",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": ".agents/project-context.md",
+      "ownership": "managed-block",
+      "inputs": [
+        ".github/workflows/build.yml",
+        "CLAUDE.md",
+        "build.gradle.kts",
+        "compose.yaml",
+        "src/main/resources/application.yaml"
+      ],
+      "input_fingerprint": "e45955ff708e182044dc881cdfff709f2ecbbdaf8e76916b63c293efbc428a10",
+      "output_sha256": "47c4e8ad921515b8014f49d4a773b0325c1aa08033a759f1f88366d0a1da8b19",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/domain/.agents/project-context.md",
+      "ownership": "managed-block",
+      "inputs": [
+        "src/main/java/pl/fairydeck/authorization/domain/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/Authorization.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/AuthorizationEvent.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/AuthorizationPolicy.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/AuthorizationStatus.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/DeclineReason.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/Purchase.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/RiskAssessment.java",
+        "src/main/java/pl/fairydeck/authorization/domain/card/Card.java",
+        "src/main/java/pl/fairydeck/authorization/domain/card/CardStatus.java",
+        "src/main/java/pl/fairydeck/authorization/domain/ledger/Balance.java",
+        "src/main/java/pl/fairydeck/authorization/domain/ledger/LedgerEntry.java",
+        "src/main/java/pl/fairydeck/authorization/domain/ledger/LedgerEntryType.java",
+        "src/main/java/pl/fairydeck/authorization/domain/money/CurrencyMismatchException.java",
+        "src/main/java/pl/fairydeck/authorization/domain/money/Money.java"
+      ],
+      "input_fingerprint": "d1f13bf63d929ba5e60e34c4ffddbbbdca601d00cfa45ecfa124714edd888c51",
+      "output_sha256": "4601bc0acb11ef255def0e85097c64089a68a6ddd8ca38a6cc95cead4033a8b8",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/application/.agents/project-context.md",
+      "ownership": "managed-block",
+      "inputs": [
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationBooking.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationLifecycle.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationNotFoundException.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationProperties.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizePurchase.java",
+        "src/main/java/pl/fairydeck/authorization/application/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/application/CardLookup.java",
+        "src/main/java/pl/fairydeck/authorization/application/CardNotFoundException.java",
+        "src/main/java/pl/fairydeck/authorization/application/CardQueries.java",
+        "src/main/java/pl/fairydeck/authorization/application/IdempotencyKeyReusedException.java",
+        "src/main/java/pl/fairydeck/authorization/application/IssueCard.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/AuthorizationRepository.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/CardCache.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/CardRepository.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/DuplicateIdempotencyKeyException.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/LedgerRepository.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/Outbox.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/RiskScorer.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/TransactionFilter.java"
+      ],
+      "input_fingerprint": "5e7ef08a77b3a15dfc9129df463248f6286fb6e53f982b9344867004968a1b92",
+      "output_sha256": "0ec3bafae93d1c8c46576ae09d025d870487b8bc3e0f8a7141ce6285cc1d1e04",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/adapter/.agents/project-context.md",
+      "ownership": "managed-block",
+      "inputs": [
+        "src/main/java/pl/fairydeck/authorization/adapter/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/ApiExceptionHandler.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/AuthorizationController.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/AuthorizationRequest.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/AuthorizationResponse.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/BalanceResponse.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/CardController.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/CardResponse.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/IssueCardRequest.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/cache/CardCacheConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/cache/CardCacheProperties.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/cache/RedisCardCache.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/EventPublisher.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/JdbcOutbox.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/LoggingEventPublisher.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/OutboxEvent.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/OutboxProperties.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/OutboxRelay.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/Columns.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/JdbcAuthorizationRepository.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/JdbcCardRepository.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/JdbcLedgerRepository.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/risk/HttpRiskScorer.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/risk/RiskScoringConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/risk/RiskScoringProperties.java",
+        "src/main/resources/db/migration/V1__cards_authorizations_ledger.sql",
+        "src/main/resources/db/migration/V2__outbox_events.sql"
+      ],
+      "input_fingerprint": "a44236a7f2b77740e087d2b477d87f32908e9e44a40bf4f0e22e2420d2f78ad1",
+      "output_sha256": "562a0e9ac14ef7f2539865373cb1f518b5762ed05e110bf090fb5715a7a4b7f1",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/technical/.agents/project-context.md",
+      "ownership": "managed-block",
+      "inputs": [
+        "src/main/java/pl/fairydeck/authorization/technical/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/technical/httpclient/CorrelationIdHeader.java",
+        "src/main/java/pl/fairydeck/authorization/technical/httpclient/OutboundHttp.java",
+        "src/main/java/pl/fairydeck/authorization/technical/httpclient/OutboundHttpConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/technical/logbook/CorrelationId.java",
+        "src/main/java/pl/fairydeck/authorization/technical/logbook/RequestLoggingFilter.java"
+      ],
+      "input_fingerprint": "b4ac237ae8d5adb16d5b91ccc36b4b315906802e1560d0adebf679c743ca17bd",
+      "output_sha256": "3692c2f3b594583a15e4d998f74b3024f56b83e52fef0b5388c47f9b193c924a",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "src/acceptanceTest/.agents/project-context.md",
+      "ownership": "managed-block",
+      "inputs": [
+        "src/acceptanceTest/java/pl/fairydeck/authorization/acceptance/AcceptanceContext.java",
+        "src/acceptanceTest/java/pl/fairydeck/authorization/acceptance/AcceptanceScenarios.java",
+        "src/acceptanceTest/java/pl/fairydeck/authorization/acceptance/CardAuthorizationSteps.java",
+        "src/acceptanceTest/resources/pl/fairydeck/authorization/acceptance/card_authorization.feature"
+      ],
+      "input_fingerprint": "f482b4253e1f17452d3b00b88729839f4f6e5bbd070ff015e4c3a20c08afecab",
+      "output_sha256": "70b4309e8d6acbcf5e9ab71b97a4feaf22a36b5765e5e923f8d9c030e1e08bc3",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "context/map/INDEX.md",
+      "ownership": "managed-block",
+      "inputs": [
+        ".claude/settings.json",
+        ".claude/skills/task-closeout/SKILL.md",
+        ".claude/skills/task-closeout/examples/worked-example.md",
+        ".claude/skills/task-closeout/references/knowledge-targets.md",
+        ".claude/skills/task-closeout/references/lesson-triage.md",
+        ".gitattributes",
+        ".github/workflows/build.yml",
+        ".gitignore",
+        "AI_USAGE.md",
+        "CLAUDE.md",
+        "DECISIONS.md",
+        "README.md",
+        "build.gradle.kts",
+        "compose.yaml",
+        "gradle/wrapper/gradle-wrapper.jar",
+        "gradle/wrapper/gradle-wrapper.properties",
+        "gradlew",
+        "gradlew.bat",
+        "local/risk-engine/mappings/scores.json",
+        "settings.gradle.kts",
+        "src/acceptanceTest/java/pl/fairydeck/authorization/acceptance/AcceptanceContext.java",
+        "src/acceptanceTest/java/pl/fairydeck/authorization/acceptance/AcceptanceScenarios.java",
+        "src/acceptanceTest/java/pl/fairydeck/authorization/acceptance/CardAuthorizationSteps.java",
+        "src/acceptanceTest/resources/pl/fairydeck/authorization/acceptance/card_authorization.feature",
+        "src/integrationTest/java/pl/fairydeck/authorization/CardAuthorizationApplicationTest.java",
+        "src/integrationTest/java/pl/fairydeck/authorization/adapter/out/cache/RedisCardCacheTest.java",
+        "src/integrationTest/java/pl/fairydeck/authorization/adapter/out/events/OutboxTest.java",
+        "src/integrationTest/java/pl/fairydeck/authorization/adapter/out/persistence/AuthorizationRepositoryTest.java",
+        "src/integrationTest/java/pl/fairydeck/authorization/adapter/out/persistence/CardRepositoryTest.java",
+        "src/integrationTest/java/pl/fairydeck/authorization/adapter/out/persistence/LedgerRepositoryTest.java",
+        "src/integrationTest/java/pl/fairydeck/authorization/application/ConcurrentAuthorizationsTest.java",
+        "src/main/java/pl/fairydeck/authorization/CardAuthorizationApplication.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/ApiExceptionHandler.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/AuthorizationController.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/AuthorizationRequest.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/AuthorizationResponse.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/BalanceResponse.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/CardController.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/CardResponse.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/in/rest/IssueCardRequest.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/cache/CardCacheConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/cache/CardCacheProperties.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/cache/RedisCardCache.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/EventPublisher.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/JdbcOutbox.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/LoggingEventPublisher.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/OutboxEvent.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/OutboxProperties.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/events/OutboxRelay.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/Columns.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/JdbcAuthorizationRepository.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/JdbcCardRepository.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/persistence/JdbcLedgerRepository.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/risk/HttpRiskScorer.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/risk/RiskScoringConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/adapter/out/risk/RiskScoringProperties.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationBooking.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationLifecycle.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationNotFoundException.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizationProperties.java",
+        "src/main/java/pl/fairydeck/authorization/application/AuthorizePurchase.java",
+        "src/main/java/pl/fairydeck/authorization/application/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/application/CardLookup.java",
+        "src/main/java/pl/fairydeck/authorization/application/CardNotFoundException.java",
+        "src/main/java/pl/fairydeck/authorization/application/CardQueries.java",
+        "src/main/java/pl/fairydeck/authorization/application/IdempotencyKeyReusedException.java",
+        "src/main/java/pl/fairydeck/authorization/application/IssueCard.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/AuthorizationRepository.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/CardCache.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/CardRepository.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/DuplicateIdempotencyKeyException.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/LedgerRepository.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/Outbox.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/RiskScorer.java",
+        "src/main/java/pl/fairydeck/authorization/application/port/out/TransactionFilter.java",
+        "src/main/java/pl/fairydeck/authorization/domain/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/Authorization.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/AuthorizationEvent.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/AuthorizationPolicy.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/AuthorizationStatus.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/DeclineReason.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/Purchase.java",
+        "src/main/java/pl/fairydeck/authorization/domain/authorization/RiskAssessment.java",
+        "src/main/java/pl/fairydeck/authorization/domain/card/Card.java",
+        "src/main/java/pl/fairydeck/authorization/domain/card/CardStatus.java",
+        "src/main/java/pl/fairydeck/authorization/domain/ledger/Balance.java",
+        "src/main/java/pl/fairydeck/authorization/domain/ledger/LedgerEntry.java",
+        "src/main/java/pl/fairydeck/authorization/domain/ledger/LedgerEntryType.java",
+        "src/main/java/pl/fairydeck/authorization/domain/money/CurrencyMismatchException.java",
+        "src/main/java/pl/fairydeck/authorization/domain/money/Money.java",
+        "src/main/java/pl/fairydeck/authorization/technical/CLAUDE.md",
+        "src/main/java/pl/fairydeck/authorization/technical/httpclient/CorrelationIdHeader.java",
+        "src/main/java/pl/fairydeck/authorization/technical/httpclient/OutboundHttp.java",
+        "src/main/java/pl/fairydeck/authorization/technical/httpclient/OutboundHttpConfiguration.java",
+        "src/main/java/pl/fairydeck/authorization/technical/logbook/CorrelationId.java",
+        "src/main/java/pl/fairydeck/authorization/technical/logbook/RequestLoggingFilter.java",
+        "src/main/resources/application.yaml",
+        "src/main/resources/db/migration/V1__cards_authorizations_ledger.sql",
+        "src/main/resources/db/migration/V2__outbox_events.sql",
+        "src/test/java/pl/fairydeck/authorization/adapter/in/rest/AuthorizationControllerTest.java",
+        "src/test/java/pl/fairydeck/authorization/adapter/in/rest/CardControllerTest.java",
+        "src/test/java/pl/fairydeck/authorization/adapter/out/cache/RedisCardCacheOutageTest.java",
+        "src/test/java/pl/fairydeck/authorization/adapter/out/risk/HttpRiskScorerTest.java",
+        "src/test/java/pl/fairydeck/authorization/application/AuthorizationLifecycleTest.java",
+        "src/test/java/pl/fairydeck/authorization/application/AuthorizePurchaseTest.java",
+        "src/test/java/pl/fairydeck/authorization/application/CardLookupTest.java",
+        "src/test/java/pl/fairydeck/authorization/application/CardQueriesTest.java",
+        "src/test/java/pl/fairydeck/authorization/application/IssueCardTest.java",
+        "src/test/java/pl/fairydeck/authorization/architecture/ArchitectureTest.java",
+        "src/test/java/pl/fairydeck/authorization/domain/authorization/AuthorizationPolicyTest.java",
+        "src/test/java/pl/fairydeck/authorization/domain/authorization/AuthorizationTest.java",
+        "src/test/java/pl/fairydeck/authorization/domain/authorization/PurchaseTest.java",
+        "src/test/java/pl/fairydeck/authorization/domain/card/CardTest.java",
+        "src/test/java/pl/fairydeck/authorization/domain/ledger/BalanceTest.java",
+        "src/test/java/pl/fairydeck/authorization/domain/ledger/LedgerEntryTest.java",
+        "src/test/java/pl/fairydeck/authorization/domain/money/MoneyTest.java",
+        "src/test/java/pl/fairydeck/authorization/technical/httpclient/OutboundHttpTest.java",
+        "src/test/java/pl/fairydeck/authorization/technical/logbook/RequestLoggingFilterTest.java",
+        "src/testFixtures/java/pl/fairydeck/authorization/IntegrationTest.java",
+        "src/testFixtures/java/pl/fairydeck/authorization/TestcontainersConfiguration.java",
+        "src/testFixtures/java/pl/fairydeck/authorization/application/port/out/InMemoryAuthorizationRepository.java",
+        "src/testFixtures/java/pl/fairydeck/authorization/application/port/out/InMemoryCardCache.java",
+        "src/testFixtures/java/pl/fairydeck/authorization/application/port/out/InMemoryCardRepository.java",
+        "src/testFixtures/java/pl/fairydeck/authorization/application/port/out/InMemoryLedgerRepository.java",
+        "src/testFixtures/java/pl/fairydeck/authorization/application/port/out/InMemoryOutbox.java",
+        "src/testFixtures/java/pl/fairydeck/authorization/application/port/out/StubRiskScorer.java"
+      ],
+      "input_fingerprint": "71a66297627b16ccac87d938cfac1bfa76d6b5e36ff2de905610c43640b2e38e",
+      "output_sha256": "db8b889450ca33dcddd9978addf98e7f907b387487e22350e4ab4f9ed07b4d04",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "context/README.md",
+      "ownership": "managed-block",
+      "inputs": [],
+      "input_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_sha256": "cecd730a70ec04d7f90591c47261211ec96f73fe0efda4bebcd5519837306d3f",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "CLAUDE.md",
+      "ownership": "managed-block (router only)",
+      "inputs": [],
+      "input_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_sha256": "4ffad876b5894c0b655586991be530ded389d2388b0ae11b17420be02fe84992",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "AGENTS.md",
+      "ownership": "managed-block (router only)",
+      "inputs": [],
+      "input_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_sha256": "950bbaf6d6aa5add05b89a0bb78291f5481dd8263b993027e81779a09ad0b8a7",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/domain/CLAUDE.md",
+      "ownership": "managed-block (router only)",
+      "inputs": [],
+      "input_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_sha256": "69f9218324100e01db99908be4b163fb669e4ca40f68a17527000566f81a84b3",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/application/CLAUDE.md",
+      "ownership": "managed-block (router only)",
+      "inputs": [],
+      "input_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_sha256": "79f81f9c4b63356c5bb202405732e2a60fd016230b7532dcbea6a772a3e0b431",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/adapter/CLAUDE.md",
+      "ownership": "managed-block (router only)",
+      "inputs": [],
+      "input_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_sha256": "7c34cab922230d14de6888f8d1215563af17fdf777da6dac93f6983e97d165ea",
+      "generated_at": "2026-09-07T14:57:44Z"
+    },
+    {
+      "path": "src/main/java/pl/fairydeck/authorization/technical/CLAUDE.md",
+      "ownership": "managed-block (router only)",
+      "inputs": [],
+      "input_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_sha256": "fbcf01cc574c2d52a512070667f29e8c5618a3292d7ff8d73e220bdd8e401c0c",
+      "generated_at": "2026-09-07T14:57:44Z"
+    }
+  ],
+  "verdicts": {
+    "inventory": "complete",
+    "coverage": "complete",
+    "technology_and_documentation": "complete",
+    "architecture_and_dependencies": "complete",
+    "git": "complete",
+    "agent_discovery": "partial",
+    "scaffold": "not-applicable",
+    "tests": "complete",
+    "ci": "complete",
+    "deploy_smoke": "not-applicable",
+    "e2e": "complete",
+    "freshness": "complete",
+    "risks": "partial"
+  },
+  "verdict_details": {
+    "agent_discovery": {
+      "reason": "Claude Code import and Codex router written; no fresh-session smoke was run and the codex CLI is not installed",
+      "missing_evidence": [
+        "fresh Claude Code session /context output",
+        "fresh Codex session instruction sources"
+      ],
+      "impact": "routers are unverified in a fresh session",
+      "next_action": "open a fresh session in the repository root and confirm context/map/INDEX.md is loaded",
+      "fallback": "routers are small, sentinel-delimited and idempotent",
+      "owner": "repository author"
+    },
+    "scaffold": {
+      "reason": "brownfield project"
+    },
+    "deploy_smoke": {
+      "reason": "no deployment target defined; local bootRun smoke recorded in delivery-and-verification.md"
+    },
+    "risks": {
+      "reason": "named unknowns remain (production topology, broker, real risk engine contract); the documentation/history contradiction was resolved in the same commit",
+      "missing_evidence": [
+        "production topology"
+      ],
+      "impact": "out-of-scope items stay provisional",
+      "next_action": "decide when productizing",
+      "fallback": "risks stay visible in INDEX.md",
+      "owner": "repository author"
+    },
+    "git": {
+      "reason": "complete local history and a PR query with zero results; one-day single-author window limits hotspot significance (caveat recorded)"
+    },
+    "tests": {
+      "reason": "all three suites executed with --rerun-tasks at HEAD: 102 + 20 + 9 tests, 0 failures"
+    },
+    "ci": {
+      "reason": "GitHub Actions run for HEAD succeeded (gh run list)"
+    },
+    "e2e": {
+      "reason": "acceptance suite over HTTP passed at HEAD"
+    }
+  },
+  "contradictions": [],
+  "open_questions": [],
+  "uncovered_paths": [],
+  "next_actions": [
+    "Smoke-test discoverability in a fresh Claude Code session",
+    "Refresh this map after structural changes"
+  ]
+}

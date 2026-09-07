@@ -1,0 +1,78 @@
+%% Module dependencies, observed from imports at b4bef16; enforced by ArchitectureTest.
+%% Solid = observed static dependency, dashed = runtime/external, dotted = unknown seam.
+flowchart LR
+  subgraph IN["adapter.in.rest"]
+    AC["AuthorizationController"]
+    CC["CardController"]
+    EH["ApiExceptionHandler"]
+  end
+  subgraph APP["application"]
+    AP["AuthorizePurchase"]
+    AB["AuthorizationBooking"]
+    AL["AuthorizationLifecycle"]
+    CL["CardLookup"]
+    CQ["CardQueries"]
+    IC["IssueCard"]
+    subgraph PORTS["port.out"]
+      P1["CardRepository"]
+      P2["LedgerRepository"]
+      P3["AuthorizationRepository"]
+      P4["CardCache"]
+      P5["RiskScorer"]
+      P6["Outbox"]
+    end
+  end
+  subgraph DOM["domain"]
+    D1["Money"]
+    D2["Card"]
+    D3["LedgerEntry / Balance"]
+    D4["Authorization / AuthorizationPolicy"]
+  end
+  subgraph OUT["adapter.out"]
+    O1["persistence: Jdbc*Repository"]
+    O2["cache: RedisCardCache"]
+    O3["risk: HttpRiskScorer"]
+    O4["events: JdbcOutbox + OutboxRelay"]
+  end
+  subgraph TECH["technical"]
+    T1["logbook: RequestLoggingFilter, CorrelationId"]
+    T2["httpclient: OutboundHttp customizer"]
+  end
+  PG[("PostgreSQL 17")]
+  RD[("Redis 7")]
+  RE["Risk engine (HTTP)"]
+  BR["Message broker"]
+  AC --> AP
+  AC --> AL
+  CC --> IC
+  CC --> CQ
+  AP --> CL
+  AP --> AB
+  AP --> P5
+  AP --> P3
+  AB --> P2
+  AB --> P3
+  AB --> P6
+  AL --> P2
+  AL --> P3
+  AL --> P6
+  CL --> P4
+  CL --> P1
+  CQ --> CL
+  CQ --> P2
+  CQ --> P3
+  IC --> P1
+  APP --> DOM
+  O1 -.-> P1
+  O1 -.-> P2
+  O1 -.-> P3
+  O2 -.-> P4
+  O3 -.-> P5
+  O4 -.-> P6
+  O1 -.-> PG
+  O4 -.-> PG
+  O2 -.-> RD
+  O3 -.-> RE
+  O4 -..-> BR
+  T2 --> T1
+  O3 -.-> T2

@@ -4,6 +4,12 @@ Java 25, Spring Boot 4.1, Gradle 9. Single module, hexagonal packages, boundarie
 [README.md](README.md) for what the service does and [DECISIONS.md](DECISIONS.md) before changing anything the
 decisions cover. Each layer has its own short `CLAUDE.md` under `src/main/java/pl/fairydeck/authorization/`.
 
+<!-- BEGIN project-context-initializer:router -->
+## Generated project context
+
+@context/map/INDEX.md
+<!-- END project-context-initializer:router -->
+
 ## Working rules
 
 - Test first, and watch the test fail before writing production code. A new type may fail to compile in the

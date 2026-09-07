@@ -186,6 +186,7 @@ transition) is a `409`, not-found exceptions are `404`. Framework failures use S
 
 ## 16. The history is part of the deliverable
 
-`test:` commits are meant to leave the build red; the following `feat:` commit makes it green. No commit was
-amended or squashed. Where a new type is introduced the red build is a compile failure of the test source set,
+`test:` commits are meant to leave the build red; the following `feat:` commit makes it green. The delivery
+history was never amended or squashed; the final documentation commit was amended once, before review, to
+adjust its wording. Where a new type is introduced the red build is a compile failure of the test source set,
 which is what test-first looks like in a statically typed language.

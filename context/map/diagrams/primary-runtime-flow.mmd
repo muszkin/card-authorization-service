@@ -1,0 +1,37 @@
+%% POST /v1/authorizations, observed at b4bef16 (AuthorizePurchase, AuthorizationBooking).
+sequenceDiagram
+  autonumber
+  participant M as Merchant
+  participant C as AuthorizationController
+  participant U as AuthorizePurchase
+  participant L as CardLookup
+  participant R as Redis
+  participant P as PostgreSQL
+  participant S as Risk engine
+  participant B as AuthorizationBooking (tx, READ COMMITTED)
+  M->>C: POST /v1/authorizations + Idempotency-Key
+  C->>U: authorize(Purchase)
+  U->>P: findByIdempotencyKey
+  alt key known
+    U-->>C: stored authorization (replay)
+  else new request
+    U->>L: find(cardId)
+    L->>R: GET card:{id}
+    alt miss
+      L->>P: SELECT card
+      L->>R: SET card:{id} TTL
+    end
+    U->>S: POST /v1/scores (150 ms read timeout)
+    S-->>U: score | Unavailable
+    U->>B: book(purchase, card, risk)
+    B->>P: pg_advisory_xact_lock(hashtext(cardId))
+    B->>P: SELECT ledger_entries WHERE card_id
+    B->>B: Balance.derive, AuthorizationPolicy.authorize
+    B->>P: INSERT authorization (unique idempotency_key)
+    B->>P: INSERT ledger_entries HOLD (if approved)
+    B->>P: INSERT outbox_events
+    B-->>U: Authorization
+  end
+  U-->>C: Authorization
+  C-->>M: 201 + Location
+  Note over P: OutboxRelay later: FOR UPDATE SKIP LOCKED -> publish -> published_at

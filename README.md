@@ -97,6 +97,8 @@ lock under READ COMMITTED instead of SERIALIZABLE, JdbcClient instead of JPA, fa
 is silent.
 
 How AI was used to build this, and what it proposed that was turned down, is in [AI_USAGE.md](AI_USAGE.md).
+Generated agent context (a repository map and per-directory contexts) lives under `context/` and `.agents/`;
+start at [context/map/INDEX.md](context/map/INDEX.md).
 
 ## Known limitations, and what I would do next
 
