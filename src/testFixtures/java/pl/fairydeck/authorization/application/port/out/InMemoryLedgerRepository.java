@@ -10,6 +10,11 @@ public final class InMemoryLedgerRepository implements LedgerRepository {
     private final List<LedgerEntry> entries = new ArrayList<>();
 
     @Override
+    public void lock(UUID cardId) {
+        // single-threaded fake: nothing to serialize
+    }
+
+    @Override
     public void append(LedgerEntry entry) {
         entries.add(entry);
     }

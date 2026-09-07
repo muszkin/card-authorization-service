@@ -6,13 +6,16 @@ import java.util.List;
 import java.util.UUID;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 import pl.fairydeck.authorization.application.port.out.LedgerRepository;
 import pl.fairydeck.authorization.domain.ledger.LedgerEntry;
 import pl.fairydeck.authorization.domain.ledger.LedgerEntryType;
 
 /**
  * Only ever inserts. The table carries a trigger that rejects UPDATE and DELETE, so append-only is a property
- * of the schema rather than a convention of this class.
+ * of the schema rather than a convention of this class. Per-card serialization uses a transaction-scoped
+ * advisory lock instead of locking the card row: the card itself is served from the cache and never updated
+ * here, so there is no row to lock and nothing to escalate.
  */
 @Repository
 class JdbcLedgerRepository implements LedgerRepository {
@@ -23,6 +26,17 @@ class JdbcLedgerRepository implements LedgerRepository {
 
     JdbcLedgerRepository(JdbcClient jdbc) {
         this.jdbc = jdbc;
+    }
+
+    @Override
+    public void lock(UUID cardId) {
+        if (!TransactionSynchronizationManager.isActualTransactionActive()) {
+            throw new IllegalStateException("A card ledger lock only makes sense inside a transaction");
+        }
+        jdbc.sql("SELECT pg_advisory_xact_lock(hashtext(:cardId))")
+                .param("cardId", cardId.toString())
+                .query()
+                .singleValue();
     }
 
     @Override
