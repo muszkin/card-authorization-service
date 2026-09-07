@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import pl.fairydeck.authorization.application.AuthorizationNotFoundException;
 import pl.fairydeck.authorization.application.CardNotFoundException;
 import pl.fairydeck.authorization.application.IdempotencyKeyReusedException;
 
@@ -14,9 +15,14 @@ import pl.fairydeck.authorization.application.IdempotencyKeyReusedException;
 @RestControllerAdvice
 class ApiExceptionHandler {
 
-    @ExceptionHandler(CardNotFoundException.class)
-    ProblemDetail cardNotFound(CardNotFoundException e) {
+    @ExceptionHandler({CardNotFoundException.class, AuthorizationNotFoundException.class})
+    ProblemDetail notFound(RuntimeException e) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    ProblemDetail transitionNotAllowed(IllegalStateException e) {
+        return ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, e.getMessage());
     }
 
     @ExceptionHandler(IdempotencyKeyReusedException.class)

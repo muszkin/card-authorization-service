@@ -2,6 +2,7 @@ package pl.fairydeck.authorization.domain.authorization;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
@@ -9,6 +10,10 @@ import pl.fairydeck.authorization.domain.ledger.LedgerEntry;
 import pl.fairydeck.authorization.domain.ledger.LedgerEntryType;
 import pl.fairydeck.authorization.domain.money.Money;
 
+/**
+ * The lifecycle of one purchase decision. An approved authorization holds money on the card until it is
+ * captured, reversed or expires; every transition hands back the ledger entries that record it.
+ */
 public final class Authorization {
 
     private final UUID id;
@@ -16,7 +21,7 @@ public final class Authorization {
     private final Money amount;
     private final String merchant;
     private final String idempotencyKey;
-    private final AuthorizationStatus status;
+    private AuthorizationStatus status;
     private final DeclineReason declineReason;
     private final Instant createdAt;
     private final Instant expiresAt;
@@ -65,13 +70,48 @@ public final class Authorization {
 
     public LedgerEntry hold() {
         requireStatus(AuthorizationStatus.APPROVED, "place a hold");
-        return new LedgerEntry(UUID.randomUUID(), cardId, LedgerEntryType.HOLD, amount, id, createdAt);
+        return entry(LedgerEntryType.HOLD, createdAt);
+    }
+
+    /** Settles the purchase: the hold is released and the same amount is booked as a charge. */
+    public List<LedgerEntry> capture(Instant now) {
+        requireStatus(AuthorizationStatus.APPROVED, "capture");
+        if (!now.isBefore(holdExpiry())) {
+            throw new IllegalStateException("Cannot capture: the hold expired at " + holdExpiry());
+        }
+        status = AuthorizationStatus.CAPTURED;
+        return List.of(entry(LedgerEntryType.HOLD_RELEASE, now), entry(LedgerEntryType.CAPTURE, now));
+    }
+
+    /** Cancels the purchase: the hold is released and the balance is restored. */
+    public List<LedgerEntry> reverse(Instant now) {
+        requireStatus(AuthorizationStatus.APPROVED, "reverse");
+        status = AuthorizationStatus.REVERSED;
+        return List.of(entry(LedgerEntryType.HOLD_RELEASE, now));
+    }
+
+    /** Compensates a hold nobody settled in time: released like a reversal, but recorded as expired. */
+    public List<LedgerEntry> expire(Instant now) {
+        requireStatus(AuthorizationStatus.APPROVED, "expire");
+        if (now.isBefore(holdExpiry())) {
+            throw new IllegalStateException("Cannot expire: the hold is valid until " + holdExpiry());
+        }
+        status = AuthorizationStatus.EXPIRED;
+        return List.of(entry(LedgerEntryType.HOLD_RELEASE, now));
     }
 
     private void requireStatus(AuthorizationStatus expected, String action) {
         if (status != expected) {
             throw new IllegalStateException("Cannot %s on a %s authorization".formatted(action, status));
         }
+    }
+
+    private Instant holdExpiry() {
+        return Objects.requireNonNull(expiresAt, "an approved authorization always has an expiry");
+    }
+
+    private LedgerEntry entry(LedgerEntryType type, Instant at) {
+        return new LedgerEntry(UUID.randomUUID(), cardId, type, amount, id, at);
     }
 
     public UUID id() {

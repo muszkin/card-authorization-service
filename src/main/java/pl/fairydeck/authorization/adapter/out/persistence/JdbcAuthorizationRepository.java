@@ -3,6 +3,8 @@ package pl.fairydeck.authorization.adapter.out.persistence;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.dao.DuplicateKeyException;
@@ -19,6 +21,7 @@ class JdbcAuthorizationRepository implements AuthorizationRepository {
 
     private static final String COLUMNS = "id, card_id, amount_minor, currency, merchant, status, decline_reason, "
             + "idempotency_key, created_at, expires_at";
+    private static final int EXPIRY_SWEEP_BATCH = 100;
 
     private final JdbcClient jdbc;
 
@@ -67,6 +70,17 @@ class JdbcAuthorizationRepository implements AuthorizationRepository {
                 .param("idempotencyKey", idempotencyKey)
                 .query(JdbcAuthorizationRepository::toAuthorization)
                 .optional();
+    }
+
+    @Override
+    public List<Authorization> findExpiredHolds(Instant now) {
+        return jdbc.sql("SELECT " + COLUMNS + " FROM authorizations WHERE status = :status AND expires_at <= :now "
+                        + "ORDER BY expires_at LIMIT :limit")
+                .param("status", AuthorizationStatus.APPROVED.name())
+                .param("now", Columns.timestamp(now))
+                .param("limit", EXPIRY_SWEEP_BATCH)
+                .query(JdbcAuthorizationRepository::toAuthorization)
+                .list();
     }
 
     private static Authorization toAuthorization(ResultSet row, int rowNumber) throws SQLException {
