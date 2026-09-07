@@ -96,6 +96,8 @@ one module with ArchUnit instead of many modules, a derived balance instead of a
 lock under READ COMMITTED instead of SERIALIZABLE, JdbcClient instead of JPA, fail-closed when the risk engine
 is silent.
 
+How AI was used to build this, and what it proposed that was turned down, is in [AI_USAGE.md](AI_USAGE.md).
+
 ## Known limitations, and what I would do next
 
 - Every authorization reads the card's whole ledger. The fix is periodic snapshot entries plus the delta since,
