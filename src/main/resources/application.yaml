@@ -3,3 +3,8 @@ spring:
     name: card-authorization-service
   jpa:
     open-in-view: false
+
+logging:
+  structured:
+    format:
+      console: ecs
