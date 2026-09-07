@@ -1,12 +1,19 @@
 spring:
   application:
     name: card-authorization-service
+  mvc:
+    problemdetails:
+      enabled: true
   http:
     clients:
       imperative:
         factory: http-components
       connect-timeout: 100ms
       read-timeout: 150ms
+
+authorization:
+  max-acceptable-risk-score: 70
+  hold-validity: 7d
 
 cache:
   cards:

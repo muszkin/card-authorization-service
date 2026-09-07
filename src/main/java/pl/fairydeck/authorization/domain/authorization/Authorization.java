@@ -52,6 +52,10 @@ public final class Authorization {
                 purchase.idempotencyKey(), AuthorizationStatus.DECLINED, reason, now, null);
     }
 
+    public boolean isApproved() {
+        return status == AuthorizationStatus.APPROVED;
+    }
+
     public LedgerEntry hold() {
         requireStatus(AuthorizationStatus.APPROVED, "place a hold");
         return new LedgerEntry(UUID.randomUUID(), cardId, LedgerEntryType.HOLD, amount, id, createdAt);
