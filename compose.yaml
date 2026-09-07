@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: authorization
+      POSTGRES_USER: authorization
+      POSTGRES_PASSWORD: authorization
+    ports:
+      - "5432"
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379"
