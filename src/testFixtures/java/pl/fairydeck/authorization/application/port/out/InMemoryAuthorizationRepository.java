@@ -1,6 +1,7 @@
 package pl.fairydeck.authorization.application.port.out;
 
 import java.time.Instant;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,17 @@ public final class InMemoryAuthorizationRepository implements AuthorizationRepos
         return authorizations.values().stream()
                 .filter(authorization -> authorization.status() == AuthorizationStatus.APPROVED)
                 .filter(authorization -> authorization.expiresAt().map(expiry -> !now.isBefore(expiry)).orElse(false))
+                .toList();
+    }
+
+    @Override
+    public List<Authorization> findByCard(UUID cardId, TransactionFilter filter) {
+        return authorizations.values().stream()
+                .filter(authorization -> authorization.cardId().equals(cardId))
+                .filter(authorization -> filter.from() == null || !authorization.createdAt().isBefore(filter.from()))
+                .filter(authorization -> filter.to() == null || authorization.createdAt().isBefore(filter.to()))
+                .filter(authorization -> filter.status() == null || authorization.status() == filter.status())
+                .sorted(Comparator.comparing(Authorization::createdAt).reversed())
                 .toList();
     }
 }
