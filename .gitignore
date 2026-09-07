@@ -7,12 +7,12 @@ build/
 *.iws
 *.iml
 *.ipr
-out/
+/out/
 .vscode/
 .settings
 .project
 .classpath
-bin/
+/bin/
 
 ### OS ###
 .DS_Store
