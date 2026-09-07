@@ -2,6 +2,7 @@ package pl.fairydeck.authorization.domain.authorization;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
+import static org.assertj.core.api.Assertions.tuple;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -44,5 +45,66 @@ class AuthorizationTest {
         Authorization declined = policy.authorize(purchase, card, untouchedLimit, new RiskAssessment.Unavailable(), NOW);
 
         assertThatIllegalStateException().isThrownBy(declined::hold);
+    }
+
+    @Test
+    void capturingConvertsTheHoldIntoASettledCharge() {
+        Authorization approved = approved();
+        Instant captureTime = NOW.plusSeconds(3600);
+
+        List<LedgerEntry> entries = approved.capture(captureTime);
+
+        assertThat(approved.status()).isEqualTo(AuthorizationStatus.CAPTURED);
+        assertThat(entries).extracting(LedgerEntry::type, LedgerEntry::amount, LedgerEntry::createdAt)
+                .containsExactly(
+                        tuple(LedgerEntryType.HOLD_RELEASE, purchase.amount(), captureTime),
+                        tuple(LedgerEntryType.CAPTURE, purchase.amount(), captureTime));
+        assertThat(entries).allSatisfy(entry -> assertThat(entry.authorizationId()).isEqualTo(approved.id()));
+    }
+
+    @Test
+    void reversingReleasesTheHold() {
+        Authorization approved = approved();
+
+        List<LedgerEntry> entries = approved.reverse(NOW.plusSeconds(60));
+
+        assertThat(approved.status()).isEqualTo(AuthorizationStatus.REVERSED);
+        assertThat(entries).extracting(LedgerEntry::type).containsExactly(LedgerEntryType.HOLD_RELEASE);
+    }
+
+    @Test
+    void expiringReleasesTheHoldOnceTheHoldValidityHasPassed() {
+        Authorization approved = approved();
+        Instant expiry = approved.expiresAt().orElseThrow();
+
+        assertThatIllegalStateException().isThrownBy(() -> approved.expire(expiry.minusSeconds(1)));
+
+        List<LedgerEntry> entries = approved.expire(expiry);
+
+        assertThat(approved.status()).isEqualTo(AuthorizationStatus.EXPIRED);
+        assertThat(entries).extracting(LedgerEntry::type).containsExactly(LedgerEntryType.HOLD_RELEASE);
+    }
+
+    @Test
+    void refusesToCaptureAnExpiredHold() {
+        Authorization approved = approved();
+
+        assertThatIllegalStateException()
+                .isThrownBy(() -> approved.capture(approved.expiresAt().orElseThrow()))
+                .withMessageContaining("expired");
+        assertThat(approved.status()).isEqualTo(AuthorizationStatus.APPROVED);
+    }
+
+    @Test
+    void allowsEachAuthorizationToBeSettledOnlyOnce() {
+        Authorization captured = approved();
+        captured.capture(NOW.plusSeconds(60));
+
+        assertThatIllegalStateException().isThrownBy(() -> captured.capture(NOW.plusSeconds(120)));
+        assertThatIllegalStateException().isThrownBy(() -> captured.reverse(NOW.plusSeconds(120)));
+    }
+
+    private Authorization approved() {
+        return policy.authorize(purchase, card, untouchedLimit, new RiskAssessment.Scored(10), NOW);
     }
 }

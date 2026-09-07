@@ -1,10 +1,13 @@
 package pl.fairydeck.authorization.application.port.out;
 
+import java.time.Instant;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import pl.fairydeck.authorization.domain.authorization.Authorization;
+import pl.fairydeck.authorization.domain.authorization.AuthorizationStatus;
 
 public final class InMemoryAuthorizationRepository implements AuthorizationRepository {
 
@@ -31,5 +34,13 @@ public final class InMemoryAuthorizationRepository implements AuthorizationRepos
         return authorizations.values().stream()
                 .filter(authorization -> authorization.idempotencyKey().equals(idempotencyKey))
                 .findFirst();
+    }
+
+    @Override
+    public List<Authorization> findExpiredHolds(Instant now) {
+        return authorizations.values().stream()
+                .filter(authorization -> authorization.status() == AuthorizationStatus.APPROVED)
+                .filter(authorization -> authorization.expiresAt().map(expiry -> !now.isBefore(expiry)).orElse(false))
+                .toList();
     }
 }

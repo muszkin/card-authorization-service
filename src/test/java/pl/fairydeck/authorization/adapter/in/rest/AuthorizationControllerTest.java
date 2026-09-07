@@ -17,6 +17,8 @@ import org.springframework.test.context.TestConstructor;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.assertj.MockMvcTester;
 import org.springframework.test.web.servlet.assertj.MvcTestResult;
+import pl.fairydeck.authorization.application.AuthorizationLifecycle;
+import pl.fairydeck.authorization.application.AuthorizationNotFoundException;
 import pl.fairydeck.authorization.application.AuthorizePurchase;
 import pl.fairydeck.authorization.application.CardNotFoundException;
 import pl.fairydeck.authorization.application.IdempotencyKeyReusedException;
@@ -27,7 +29,7 @@ import pl.fairydeck.authorization.domain.authorization.Purchase;
 import pl.fairydeck.authorization.domain.money.Money;
 
 @WebMvcTest(AuthorizationController.class)
-@MockitoBean(types = AuthorizePurchase.class)
+@MockitoBean(types = {AuthorizePurchase.class, AuthorizationLifecycle.class})
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 class AuthorizationControllerTest {
 
@@ -38,10 +40,13 @@ class AuthorizationControllerTest {
 
     private final MockMvcTester mvc;
     private final AuthorizePurchase authorizePurchase;
+    private final AuthorizationLifecycle lifecycle;
 
-    AuthorizationControllerTest(MockMvcTester mvc, AuthorizePurchase authorizePurchase) {
+    AuthorizationControllerTest(MockMvcTester mvc, AuthorizePurchase authorizePurchase,
+            AuthorizationLifecycle lifecycle) {
         this.mvc = mvc;
         this.authorizePurchase = authorizePurchase;
+        this.lifecycle = lifecycle;
     }
 
     @Test
@@ -135,6 +140,52 @@ class AuthorizationControllerTest {
         MvcTestResult result = post(request("12.34", "GBP"), IDEMPOTENCY_KEY);
 
         assertThat(result).hasStatus(HttpStatus.CONFLICT)
+                .hasContentTypeCompatibleWith(MediaType.APPLICATION_PROBLEM_JSON);
+    }
+
+    @Test
+    void capturesAnAuthorization() {
+        Authorization captured = authorization(AuthorizationStatus.CAPTURED, null, NOW.plusSeconds(3600));
+        given(lifecycle.capture(captured.id())).willReturn(captured);
+
+        MvcTestResult result = mvc.post().uri("/v1/authorizations/{id}/capture", captured.id()).exchange();
+
+        assertThat(result).hasStatus(HttpStatus.OK).bodyJson()
+                .isLenientlyEqualTo("""
+                        { "id": "%s", "status": "CAPTURED" }
+                        """.formatted(captured.id()));
+    }
+
+    @Test
+    void reversesAnAuthorization() {
+        Authorization reversed = authorization(AuthorizationStatus.REVERSED, null, NOW.plusSeconds(3600));
+        given(lifecycle.reverse(reversed.id())).willReturn(reversed);
+
+        MvcTestResult result = mvc.post().uri("/v1/authorizations/{id}/reverse", reversed.id()).exchange();
+
+        assertThat(result).hasStatus(HttpStatus.OK).bodyJson().extractingPath("$.status").isEqualTo("REVERSED");
+    }
+
+    @Test
+    void answersConflictWhenTheTransitionIsNotAllowed() {
+        UUID id = UUID.randomUUID();
+        given(lifecycle.capture(id)).willThrow(new IllegalStateException("Cannot capture on a CAPTURED authorization"));
+
+        MvcTestResult result = mvc.post().uri("/v1/authorizations/{id}/capture", id).exchange();
+
+        assertThat(result).hasStatus(HttpStatus.CONFLICT)
+                .hasContentTypeCompatibleWith(MediaType.APPLICATION_PROBLEM_JSON)
+                .bodyJson().extractingPath("$.detail").asString().contains("CAPTURED");
+    }
+
+    @Test
+    void answersNotFoundForAnUnknownAuthorization() {
+        UUID id = UUID.randomUUID();
+        given(lifecycle.reverse(id)).willThrow(new AuthorizationNotFoundException(id));
+
+        MvcTestResult result = mvc.post().uri("/v1/authorizations/{id}/reverse", id).exchange();
+
+        assertThat(result).hasStatus(HttpStatus.NOT_FOUND)
                 .hasContentTypeCompatibleWith(MediaType.APPLICATION_PROBLEM_JSON);
     }
 

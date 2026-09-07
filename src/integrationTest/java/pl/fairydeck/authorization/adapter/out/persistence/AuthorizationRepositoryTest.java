@@ -80,6 +80,21 @@ class AuthorizationRepositoryTest {
                 .hasMessageContaining("key-used-twice");
     }
 
+    @Test
+    void findsApprovedAuthorizationsWhoseHoldValidityHasPassed() {
+        Authorization expired = new Authorization(UUID.randomUUID(), card.id(), Money.of("30.00", GBP), "Coffee Corner",
+                "key-expired", AuthorizationStatus.APPROVED, null, NOW.minusSeconds(7200), NOW.minusSeconds(3600));
+        Authorization stillValid = approvedWithKey("key-valid");
+        Authorization capturedLongAgo = new Authorization(UUID.randomUUID(), card.id(), Money.of("30.00", GBP),
+                "Coffee Corner", "key-captured", AuthorizationStatus.CAPTURED, null, NOW.minusSeconds(7200),
+                NOW.minusSeconds(3600));
+        authorizations.save(expired);
+        authorizations.save(stillValid);
+        authorizations.save(capturedLongAgo);
+
+        assertThat(authorizations.findExpiredHolds(NOW)).extracting(Authorization::id).containsExactly(expired.id());
+    }
+
     private Authorization approvedWithKey(String idempotencyKey) {
         return new Authorization(UUID.randomUUID(), card.id(), Money.of("30.00", GBP), "Coffee Corner", idempotencyKey,
                 AuthorizationStatus.APPROVED, null, NOW, NOW.plusSeconds(3600));
