@@ -43,6 +43,7 @@ testing {
         getByName<JvmTestSuite>("test") {
             useJUnitJupiter()
             dependencies {
+                implementation(testFixtures(project()))
                 implementation("org.springframework.boot:spring-boot-starter-test")
                 implementation("com.tngtech.archunit:archunit-junit5:1.5.0")
                 implementation("org.wiremock:wiremock-standalone:3.13.2")
