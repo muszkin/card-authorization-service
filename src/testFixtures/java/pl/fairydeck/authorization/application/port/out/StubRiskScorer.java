@@ -11,14 +11,21 @@ public final class StubRiskScorer implements RiskScorer {
 
     private final List<Purchase> asked = new ArrayList<>();
     private RiskAssessment answer = NO_RISK;
+    private Runnable whileAssessing = () -> { };
 
     public void willAnswer(RiskAssessment assessment) {
         this.answer = assessment;
     }
 
+    /** Runs while the risk engine is "thinking", to interleave other work with the scoring call. */
+    public void whileAssessing(Runnable sideEffect) {
+        this.whileAssessing = sideEffect;
+    }
+
     @Override
     public RiskAssessment assess(Purchase purchase) {
         asked.add(purchase);
+        whileAssessing.run();
         return answer;
     }
 

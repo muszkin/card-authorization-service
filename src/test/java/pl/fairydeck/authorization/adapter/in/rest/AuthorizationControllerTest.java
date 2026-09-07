@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.assertj.MockMvcTester;
 import org.springframework.test.web.servlet.assertj.MvcTestResult;
 import pl.fairydeck.authorization.application.AuthorizePurchase;
 import pl.fairydeck.authorization.application.CardNotFoundException;
+import pl.fairydeck.authorization.application.IdempotencyKeyReusedException;
 import pl.fairydeck.authorization.domain.authorization.Authorization;
 import pl.fairydeck.authorization.domain.authorization.AuthorizationStatus;
 import pl.fairydeck.authorization.domain.authorization.DeclineReason;
@@ -124,6 +125,16 @@ class AuthorizationControllerTest {
         MvcTestResult result = post(request("12.34", "GBP"), IDEMPOTENCY_KEY);
 
         assertThat(result).hasStatus(HttpStatus.NOT_FOUND)
+                .hasContentTypeCompatibleWith(MediaType.APPLICATION_PROBLEM_JSON);
+    }
+
+    @Test
+    void answersConflictWhenTheIdempotencyKeyWasUsedForAnotherPurchase() {
+        given(authorizePurchase.authorize(any())).willThrow(new IdempotencyKeyReusedException(IDEMPOTENCY_KEY));
+
+        MvcTestResult result = post(request("12.34", "GBP"), IDEMPOTENCY_KEY);
+
+        assertThat(result).hasStatus(HttpStatus.CONFLICT)
                 .hasContentTypeCompatibleWith(MediaType.APPLICATION_PROBLEM_JSON);
     }
 

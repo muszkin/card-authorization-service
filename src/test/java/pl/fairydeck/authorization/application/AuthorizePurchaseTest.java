@@ -8,6 +8,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.util.Currency;
+import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import pl.fairydeck.authorization.application.port.out.InMemoryAuthorizationRepository;
@@ -23,6 +24,7 @@ import pl.fairydeck.authorization.domain.authorization.Purchase;
 import pl.fairydeck.authorization.domain.authorization.RiskAssessment;
 import pl.fairydeck.authorization.domain.card.Card;
 import pl.fairydeck.authorization.domain.card.CardStatus;
+import pl.fairydeck.authorization.domain.ledger.Balance;
 import pl.fairydeck.authorization.domain.ledger.LedgerEntry;
 import pl.fairydeck.authorization.domain.ledger.LedgerEntryType;
 import pl.fairydeck.authorization.domain.money.Money;
@@ -40,7 +42,7 @@ class AuthorizePurchaseTest {
     private final AuthorizationBooking booking =
             new AuthorizationBooking(ledger, authorizations, policy, Clock.fixed(NOW, ZoneOffset.UTC));
     private final AuthorizePurchase authorizePurchase =
-            new AuthorizePurchase(new CardLookup(new InMemoryCardCache(), cards), riskScorer, booking);
+            new AuthorizePurchase(new CardLookup(new InMemoryCardCache(), cards), riskScorer, booking, authorizations);
 
     private final Card card = new Card(UUID.randomUUID(), UUID.randomUUID(), CardStatus.ACTIVE, gbp("100.00"));
 
@@ -95,6 +97,45 @@ class AuthorizePurchaseTest {
                 .isInstanceOf(CardNotFoundException.class)
                 .hasMessageContaining(card.id().toString());
         assertThat(riskScorer.asked()).isEmpty();
+    }
+
+    @Test
+    void replaysTheStoredDecisionWhenTheSameRequestIsRetried() {
+        cards.save(card);
+        Authorization first = authorizePurchase.authorize(purchase("30.00"));
+
+        Authorization retry = authorizePurchase.authorize(purchase("30.00"));
+
+        assertThat(retry.id()).isEqualTo(first.id());
+        assertThat(ledger.entriesFor(card.id())).hasSize(1);
+        assertThat(riskScorer.asked()).hasSize(1);
+    }
+
+    @Test
+    void refusesToReuseAnIdempotencyKeyForADifferentPurchase() {
+        cards.save(card);
+        authorizePurchase.authorize(purchase("30.00"));
+
+        assertThatThrownBy(() -> authorizePurchase.authorize(purchase("40.00")))
+                .isInstanceOf(IdempotencyKeyReusedException.class)
+                .hasMessageContaining("idempotency-key");
+        assertThat(ledger.entriesFor(card.id())).hasSize(1);
+    }
+
+    @Test
+    void recoversWhenAnIdenticalRetryIsBookedWhileTheRiskEngineIsStillThinking() {
+        cards.save(card);
+        Authorization bookedByTheRetry = policy.authorize(purchase("30.00"), card,
+                Balance.derive(card.creditLimit(), List.of()), new RiskAssessment.Scored(0), NOW);
+        riskScorer.whileAssessing(() -> {
+            authorizations.save(bookedByTheRetry);
+            ledger.append(bookedByTheRetry.hold());
+        });
+
+        Authorization result = authorizePurchase.authorize(purchase("30.00"));
+
+        assertThat(result.id()).isEqualTo(bookedByTheRetry.id());
+        assertThat(ledger.entriesFor(card.id())).hasSize(1);
     }
 
     private Purchase purchase(String amount) {

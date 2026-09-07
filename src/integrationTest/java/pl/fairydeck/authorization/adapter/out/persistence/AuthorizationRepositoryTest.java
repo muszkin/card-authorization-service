@@ -1,6 +1,7 @@
 package pl.fairydeck.authorization.adapter.out.persistence;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.time.Instant;
 import java.util.Currency;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.fairydeck.authorization.IntegrationTest;
 import pl.fairydeck.authorization.application.port.out.AuthorizationRepository;
 import pl.fairydeck.authorization.application.port.out.CardRepository;
+import pl.fairydeck.authorization.application.port.out.DuplicateIdempotencyKeyException;
 import pl.fairydeck.authorization.domain.authorization.Authorization;
 import pl.fairydeck.authorization.domain.authorization.AuthorizationStatus;
 import pl.fairydeck.authorization.domain.authorization.DeclineReason;
@@ -67,5 +69,19 @@ class AuthorizationRepositoryTest {
 
         assertThat(authorizations.findByIdempotencyKey("key-lookup")).get().usingRecursiveComparison().isEqualTo(approved);
         assertThat(authorizations.findByIdempotencyKey("unknown-key")).isEmpty();
+    }
+
+    @Test
+    void refusesASecondAuthorizationWithTheSameIdempotencyKey() {
+        authorizations.save(approvedWithKey("key-used-twice"));
+
+        assertThatThrownBy(() -> authorizations.save(approvedWithKey("key-used-twice")))
+                .isInstanceOf(DuplicateIdempotencyKeyException.class)
+                .hasMessageContaining("key-used-twice");
+    }
+
+    private Authorization approvedWithKey(String idempotencyKey) {
+        return new Authorization(UUID.randomUUID(), card.id(), Money.of("30.00", GBP), "Coffee Corner", idempotencyKey,
+                AuthorizationStatus.APPROVED, null, NOW, NOW.plusSeconds(3600));
     }
 }

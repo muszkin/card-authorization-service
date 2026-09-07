@@ -12,6 +12,12 @@ public final class InMemoryAuthorizationRepository implements AuthorizationRepos
 
     @Override
     public void save(Authorization authorization) {
+        boolean keyTakenByAnother = authorizations.values().stream()
+                .anyMatch(other -> other.idempotencyKey().equals(authorization.idempotencyKey())
+                        && !other.id().equals(authorization.id()));
+        if (keyTakenByAnother) {
+            throw new DuplicateIdempotencyKeyException(authorization.idempotencyKey());
+        }
         authorizations.put(authorization.id(), authorization);
     }
 
