@@ -10,6 +10,10 @@ spring:
       connect-timeout: 100ms
       read-timeout: 150ms
 
+risk:
+  scoring:
+    base-url: http://localhost:8081
+
 logging:
   structured:
     format:
