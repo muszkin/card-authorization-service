@@ -3,6 +3,12 @@ spring:
     name: card-authorization-service
   jpa:
     open-in-view: false
+  http:
+    clients:
+      imperative:
+        factory: http-components
+      connect-timeout: 100ms
+      read-timeout: 150ms
 
 logging:
   structured:

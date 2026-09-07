@@ -25,6 +25,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-flyway")
     implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springframework.boot:spring-boot-starter-restclient")
+    implementation("org.apache.httpcomponents.client5:httpclient5")
     implementation("org.flywaydb:flyway-database-postgresql")
     runtimeOnly("org.postgresql:postgresql")
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")
@@ -43,6 +45,7 @@ testing {
             dependencies {
                 implementation("org.springframework.boot:spring-boot-starter-test")
                 implementation("com.tngtech.archunit:archunit-junit5:1.5.0")
+                implementation("org.wiremock:wiremock-standalone:3.13.2")
             }
             targets {
                 all {
