@@ -42,6 +42,7 @@ testing {
             useJUnitJupiter()
             dependencies {
                 implementation("org.springframework.boot:spring-boot-starter-test")
+                implementation("com.tngtech.archunit:archunit-junit5:1.5.0")
             }
             targets {
                 all {
