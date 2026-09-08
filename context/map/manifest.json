@@ -4,33 +4,33 @@
   "generator_version": "skill bundle sha256:a26f4ab1f8949c90",
   "manifest_digest": {
     "algorithm": "sha256-rfc8785-with-empty-digest",
-    "value": "ae4b0021ba624099db0c9032fc450959ad9679bc1e0ad3ba83c93ecb75fc2752"
+    "value": "16dddd7e0de000359c971c4fdea40e1ad40f009d13fd7749a39867d6f7ca40ae"
   },
-  "operation": "initialize",
+  "operation": "refresh",
   "project_classification": "brownfield",
   "scope_kind": "repository",
   "phase": "complete",
-  "generated_at": "2026-09-07T14:57:44Z",
+  "generated_at": "2026-09-08T07:41:14Z",
   "repository_root": ".",
   "scope": [
     "."
   ],
   "source_snapshot": {
     "basis": "HEAD+worktree",
-    "revision": "b4bef1631aa5cfb1efc1655b06e36f38c788f40a",
-    "branch": "main",
+    "revision": "b0e9abca8593fdb020a383837cb03433dd318691",
+    "branch": "feat/idempotent-settlement-retries",
     "worktree_status": [],
     "untracked_nonignored_paths": [],
     "comparability": "comparable",
     "non_comparable_reasons": [],
     "dirty_tracked_fingerprints": [],
-    "inventory_fingerprint": "71a66297627b16ccac87d938cfac1bfa76d6b5e36ff2de905610c43640b2e38e",
-    "fingerprint_method": "sha256 over sorted lines \"<git blob id>\\t<path>\\n\" of `git ls-files -s` (clean tree: blob ids equal worktree bytes); generated context files are excluded from the inventory fingerprint"
+    "inventory_fingerprint": "18fc963a43f27cca52982ae803676a8206ce5c138dda43bcb74f80e02aa278e3",
+    "fingerprint_method": "sha256 over sorted lines \"<git blob id>\\t<path>\\n\" of `git ls-files -s` (clean tree), excluding generated context (context/**, **/.agents/**)"
   },
   "git_history": {
     "available": true,
     "shallow": false,
-    "commit_window": "36 commits, authored 2026-09-07T11:21:08Z..2026-09-07T12:21:21Z, HEAD amended and force-pushed later the same day",
+    "commit_window": "42 commits on feat/idempotent-settlement-retries (main@37e3d11 + test/feat slice commits + reconciliation docs commit); authored 2026-09-07T11:21:08Z..2026-09-08T07:41:14Z; the first PR of the repository follows",
     "pr_provider": "github via gh (read-only, authenticated)",
     "pr_window": "gh pr list --state all --limit 20 -> 0 pull requests"
   },
@@ -69,6 +69,108 @@
       "reason": "agent tooling and skill bundle"
     },
     {
+      "path": ".claude/skills",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": ".claude/skills/implementation-orchestrator",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": ".claude/skills/implementation-orchestrator/references",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": ".claude/skills/implementation-orchestrator/schemas",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": ".claude/skills/implementation-orchestrator/scripts",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": ".claude/skills/implementation-planning",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": ".claude/skills/implementation-planning/references",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": ".claude/skills/incoming-change-review",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": ".claude/skills/incoming-change-review/references",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": ".claude/skills/project-context-initializer",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": ".claude/skills/project-context-initializer/references",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": ".claude/skills/research-spike",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": ".claude/skills/research-spike/examples",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": ".claude/skills/research-spike/references",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": ".claude/skills/systematic-debugging",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": ".claude/skills/systematic-debugging/examples",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": ".claude/skills/systematic-debugging/references",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
       "path": ".claude/skills/task-closeout",
       "coverage": "rolled-up",
       "context": ".agents/project-context.md",
@@ -99,6 +201,42 @@
       "reason": "generated context map"
     },
     {
+      "path": "context/implementation-runs",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/integration",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/slices",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/slices/S1",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/slices/S1/evidence",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
       "path": "context/map",
       "coverage": "rolled-up",
       "context": ".agents/project-context.md",
@@ -109,6 +247,12 @@
       "coverage": "rolled-up",
       "context": ".agents/project-context.md",
       "reason": "generated context map"
+    },
+    {
+      "path": "context/plans",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
     },
     {
       "path": "gradle/wrapper",
@@ -417,10 +561,10 @@
       ],
       "artifact_type": "canonical-evidence",
       "authority": "canonical",
-      "source_revision": "b4bef1631aa5cfb1efc1655b06e36f38c788f40a",
+      "source_revision": "b0e9abca8593fdb020a383837cb03433dd318691",
       "generated_at": null,
       "freshness": "current",
-      "content_sha256": "aed41383477bee05386eeeaf99c9458e0d60b40ef12fedbe129da87f345732a8",
+      "content_sha256": "2ea240c24106a42f1664460ae5d3a4402f8203174c73f58dcb6c199420e2b980",
       "approval_status": "approved",
       "conflicts": [],
       "referenced_by": [
@@ -442,7 +586,7 @@
       ],
       "artifact_type": "canonical-evidence",
       "authority": "canonical",
-      "source_revision": "b4bef1631aa5cfb1efc1655b06e36f38c788f40a",
+      "source_revision": "b0e9abca8593fdb020a383837cb03433dd318691",
       "generated_at": null,
       "freshness": "current",
       "content_sha256": "3bde7e6d725207ddefd28c7ebd0df2e2cb2498d6f08c8d8cb05a51b9e9ab4072",
@@ -465,10 +609,10 @@
       ],
       "artifact_type": "canonical-evidence",
       "authority": "canonical",
-      "source_revision": "b4bef1631aa5cfb1efc1655b06e36f38c788f40a",
+      "source_revision": "b0e9abca8593fdb020a383837cb03433dd318691",
       "generated_at": null,
       "freshness": "current",
-      "content_sha256": "f4f45712e388b45f24fe5dabf8f00e29cff31638274f96d81d07b056e189bb87",
+      "content_sha256": "4760cc213f5cb3d504674c50c68f1ef3a159ee1369b30dab044da30441d26fcb",
       "approval_status": "approved",
       "conflicts": [],
       "referenced_by": [
@@ -489,7 +633,7 @@
       ],
       "artifact_type": "generated-synthesis",
       "authority": "advisory",
-      "source_revision": "b4bef1631aa5cfb1efc1655b06e36f38c788f40a",
+      "source_revision": "b0e9abca8593fdb020a383837cb03433dd318691",
       "generated_at": null,
       "freshness": "current",
       "content_sha256": "ff48c05646a5e1cc0538ecf863cd3d879a9b9d253a93b198574fc6b931439b80",
@@ -502,6 +646,53 @@
       "consumers": [
         "task-closeout",
         "review"
+      ]
+    },
+    {
+      "path": "context/plans/2026-09-08-idempotent-settlement-retries.md",
+      "generator_or_owner": "implementation-planning",
+      "purpose": "approved plan for idempotent settlement retries (operator override D5 recorded)",
+      "scope": [
+        "."
+      ],
+      "artifact_type": "proposal",
+      "authority": "supporting",
+      "source_revision": "b0e9abca8593fdb020a383837cb03433dd318691",
+      "generated_at": "2026-09-08T07:41:14Z",
+      "freshness": "current",
+      "content_sha256": "ac3912ffe26bd6b816c2bb73b9d452177d071a6fe498f71d5fadfbd6c7bd5d50",
+      "approval_status": "approved",
+      "conflicts": [],
+      "referenced_by": [
+        "context/map/INDEX.md"
+      ],
+      "consumers": [
+        "implementation-orchestrator",
+        "review",
+        "task-closeout"
+      ]
+    },
+    {
+      "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/RUN.md",
+      "generator_or_owner": "implementation-orchestrator",
+      "purpose": "run router for 20260908T072415Z-idempotent-settlement-retries: contract, gates, review, E2E evidence, integration history; delivery records are appended after the merge",
+      "scope": [
+        "."
+      ],
+      "artifact_type": "historical-record",
+      "authority": "advisory",
+      "source_revision": "b0e9abca8593fdb020a383837cb03433dd318691",
+      "generated_at": "2026-09-08T07:41:14Z",
+      "freshness": "current",
+      "content_sha256": "1caf42fc2ea0cfc537d7de52ec91da000a6d04fa19299c62019470c91266cbe3",
+      "approval_status": "not-applicable",
+      "conflicts": [],
+      "referenced_by": [
+        "context/map/INDEX.md"
+      ],
+      "consumers": [
+        "review",
+        "task-closeout"
       ]
     }
   ],
@@ -901,8 +1092,8 @@
         "src/main/java/pl/fairydeck/authorization/application/port/out/TransactionFilter.java"
       ],
       "input_fingerprint": "5e7ef08a77b3a15dfc9129df463248f6286fb6e53f982b9344867004968a1b92",
-      "output_sha256": "0ec3bafae93d1c8c46576ae09d025d870487b8bc3e0f8a7141ce6285cc1d1e04",
-      "generated_at": "2026-09-07T14:57:44Z"
+      "output_sha256": "77790a48009f0a80c7791e9bf2261415cd8b943813e6826df3173dae7e114e1a",
+      "generated_at": "2026-09-08T07:41:14Z"
     },
     {
       "path": "src/main/java/pl/fairydeck/authorization/adapter/.agents/project-context.md",
@@ -1102,8 +1293,8 @@
         "src/testFixtures/java/pl/fairydeck/authorization/application/port/out/StubRiskScorer.java"
       ],
       "input_fingerprint": "71a66297627b16ccac87d938cfac1bfa76d6b5e36ff2de905610c43640b2e38e",
-      "output_sha256": "db8b889450ca33dcddd9978addf98e7f907b387487e22350e4ab4f9ed07b4d04",
-      "generated_at": "2026-09-07T14:57:44Z"
+      "output_sha256": "6644016fa1ed003f235f484330d295e44d305d7b1c933ebfd189b5abbaf01e61",
+      "generated_at": "2026-09-08T07:41:14Z"
     },
     {
       "path": "context/README.md",
@@ -1222,6 +1413,7 @@
   "open_questions": [],
   "uncovered_paths": [],
   "next_actions": [
+    "Append delivery records (final gates, PR, CI, merge) to the run ledger after the merge",
     "Smoke-test discoverability in a fresh Claude Code session",
     "Refresh this map after structural changes"
   ]
