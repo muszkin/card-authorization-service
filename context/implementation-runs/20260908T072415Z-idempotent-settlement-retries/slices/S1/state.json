@@ -1,0 +1,38 @@
+{
+  "slice": "S1",
+  "owner": "worker-S1",
+  "state": "STATIC_GREEN",
+  "revision": 3,
+  "branch": "feat/idempotent-settlement-retries-s1",
+  "worktree": "/home/muszkin/work/zilch/worktrees/s1",
+  "parent_sha": "37e3d118c1116bb2e28ae754a26156f7c44100eb",
+  "head_sha": "ddd71fada0e301552715ec135e4e3366dd328068",
+  "packet": "slices/S1/packet.md",
+  "dependencies": [],
+  "owned_paths": [
+    "src/main/java/pl/fairydeck/authorization/application/AuthorizationLifecycle.java",
+    "src/test/java/pl/fairydeck/authorization/application/AuthorizationLifecycleTest.java",
+    "src/acceptanceTest/resources/pl/fairydeck/authorization/acceptance/card_authorization.feature",
+    "src/acceptanceTest/java/pl/fairydeck/authorization/acceptance/CardAuthorizationSteps.java"
+  ],
+  "forbidden_paths": [
+    "src/main/java/pl/fairydeck/authorization/domain/**",
+    "src/main/resources/db/**",
+    "build.gradle.kts",
+    "context/**",
+    "DECISIONS.md",
+    "README.md"
+  ],
+  "lease": "L1",
+  "profile": "standard",
+  "gates": {
+    "baseline": "PASS",
+    "acceptance_red": "PASS",
+    "focused": "PASS",
+    "static": "PASS",
+    "sonar": "NOT_APPLICABLE",
+    "review": "NOT_RUN",
+    "e2e": "NOT_RUN"
+  },
+  "updated_at": "2026-09-08T07:31:04Z"
+}

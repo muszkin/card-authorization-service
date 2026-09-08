@@ -190,3 +190,24 @@ transition) is a `409`, not-found exceptions are `404`. Framework failures use S
 history was never amended or squashed; the final documentation commit was amended once, before review, to
 adjust its wording. Where a new type is introduced the red build is a compile failure of the test source set,
 which is what test-first looks like in a statically typed language.
+
+## 17. Settlement retries replay instead of conflicting
+
+**Decided:** `POST /v1/authorizations/{id}/capture` on an authorization that is already `CAPTURED`, and
+`POST .../reverse` on one that is already `REVERSED` or `EXPIRED`, answer `200` with the current representation
+and book nothing. Conflicting transitions (capture after reversal or expiry, reversal after capture, anything on
+a declined authorization) still answer `409`.
+
+**Why:** a payment switch retries after a lost response, and the second request must be as safe as the first.
+The authorization id is the idempotency key, so no extra header or key store is needed. The decision is taken
+after the per-card ledger lock and the authoritative re-read, so a retry racing the original is serialized and
+replays what the original did. A reversal of an expired hold replays because the outcome the caller asked for,
+the released hold, is already a fact; the status still says how it happened.
+
+**Rejected:** `409` with the current state in the body (right information, wrong ergonomics for a retry); an
+`Idempotency-Key` header on settlements (a second key store for no gain); a domain method that silently no-ops
+(hides a decision inside a transition; the domain keeps refusing impossible moves).
+
+Planned and delivered through the agent workflow kept in this repository: plan
+`context/plans/2026-09-08-idempotent-settlement-retries.md`, run ledger
+`context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/`.
