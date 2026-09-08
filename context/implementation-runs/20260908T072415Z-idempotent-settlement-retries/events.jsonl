@@ -1,0 +1,19 @@
+{"at": "2026-09-08T07:24:15Z", "actor": "orchestrator", "slice": null, "event": "STATE", "to": "INTAKE", "sha": "37e3d118c1116bb2e28ae754a26156f7c44100eb"}
+{"at": "2026-09-08T07:24:15Z", "actor": "orchestrator", "slice": null, "event": "STATE", "to": "AUTHORIZED", "sha": "37e3d118c1116bb2e28ae754a26156f7c44100eb"}
+{"at": "2026-09-08T07:24:15Z", "actor": "orchestrator", "slice": null, "event": "STATE", "to": "CONTEXT_READY", "sha": "37e3d118c1116bb2e28ae754a26156f7c44100eb"}
+{"at": "2026-09-08T07:24:15Z", "actor": "orchestrator", "slice": null, "event": "STATE", "to": "TOPOLOGY_READY", "sha": "37e3d118c1116bb2e28ae754a26156f7c44100eb"}
+{"at": "2026-09-08T07:24:15Z", "actor": "orchestrator", "slice": null, "event": "STATE", "to": "EXECUTION_CONTRACT_SELECTED", "sha": "37e3d118c1116bb2e28ae754a26156f7c44100eb"}
+{"at": "2026-09-08T07:24:15Z", "actor": "orchestrator", "slice": null, "event": "STATE", "to": "BASELINE_RECORDED", "sha": "37e3d118c1116bb2e28ae754a26156f7c44100eb"}
+{"at": "2026-09-08T07:24:15Z", "actor": "orchestrator", "slice": null, "event": "MODEL_RESOLVED", "requested": "sonnet", "resolved": "claude-sonnet-5", "roles": ["worker", "reviewer"], "reason": "current general-purpose coding tier on this host"}
+{"at": "2026-09-08T07:24:15Z", "actor": "orchestrator", "slice": "S1", "event": "WORKTREE_READY", "branch": "feat/idempotent-settlement-retries-s1", "worktree": "/home/muszkin/work/zilch/worktrees/s1", "sha": "37e3d118c1116bb2e28ae754a26156f7c44100eb"}
+{"at": "2026-09-08T07:26:01Z", "actor": "orchestrator", "slice": "S1", "event": "SLICE_DISPATCHED", "from": "WORKTREE_READY", "to": "CONTEXT_LOADED", "packet_sha256": "f5f449ce62442970685ee5f67d9f98d168853db4fa15e7bc39abb0209403625e", "worker_model": "claude-sonnet-5"}
+{"at": "2026-09-08T07:31:04Z", "actor": "orchestrator", "slice": "S1", "event": "STATE", "to": "ACCEPTANCE_RED_PROVEN", "sha": "f0f62f4be99a43b7a388dc1c8689caa342e98c53", "evidence": "evidence/red-unit.txt"}
+{"at": "2026-09-08T07:31:04Z", "actor": "orchestrator", "slice": "S1", "event": "STATE", "to": "IMPLEMENTED", "sha": "ddd71fada0e301552715ec135e4e3366dd328068", "evidence": "slices/S1/worker-report.md"}
+{"at": "2026-09-08T07:31:04Z", "actor": "orchestrator", "slice": "S1", "event": "STATE", "to": "STATIC_GREEN", "sha": "ddd71fada0e301552715ec135e4e3366dd328068", "evidence": "evidence/static.txt"}
+{"at": "2026-09-08T07:31:04Z", "actor": "orchestrator", "slice": "S1", "event": "REVIEW_WORKTREE_READY", "worktree": "/home/muszkin/work/zilch/worktrees/review-s1", "sha": "ddd71fada0e301552715ec135e4e3366dd328068"}
+{"at": "2026-09-08T07:31:56Z", "actor": "orchestrator", "slice": "S1", "event": "REVIEW_DISPATCHED", "sha": "ddd71fada0e301552715ec135e4e3366dd328068", "reviewer_model": "claude-sonnet-5", "worktree": "/home/muszkin/work/zilch/worktrees/review-s1"}
+{"at": "2026-09-08T07:37:36Z", "actor": "orchestrator", "slice": "S1", "event": "REVIEW_GREEN", "sha": "ddd71fada0e301552715ec135e4e3366dd328068", "evidence": "slices/S1/review.md"}
+{"at": "2026-09-08T07:37:46Z", "actor": "orchestrator", "slice": "S1", "event": "E2E_GREEN", "sha": "ddd71fada0e301552715ec135e4e3366dd328068", "evidence": "slices/S1/evidence/e2e.txt"}
+{"at": "2026-09-08T07:37:46Z", "actor": "orchestrator", "slice": "S1", "event": "READY_FOR_INTEGRATION", "sha": "ddd71fada0e301552715ec135e4e3366dd328068", "evidence": "slices/S1/gates.md"}
+{"at": "2026-09-08T07:37:46Z", "actor": "orchestrator", "slice": "S1", "event": "INTEGRATED", "sha": "ddd71fada0e301552715ec135e4e3366dd328068", "evidence": "integration/history.md"}
+{"at": "2026-09-08T07:38:20Z", "actor": "orchestrator", "slice": "S1", "event": "FEATURE_HEAD_GREEN", "sha": "ddd71fada0e301552715ec135e4e3366dd328068", "evidence": "integration/feature-head-build.txt"}

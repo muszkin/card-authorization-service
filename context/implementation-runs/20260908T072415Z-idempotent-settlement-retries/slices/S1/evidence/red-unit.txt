@@ -1,0 +1,25 @@
+$ ./gradlew test --tests 'pl.fairydeck.authorization.application.AuthorizationLifecycleTest' --tests 'pl.fairydeck.authorization.domain.authorization.AuthorizationTest'
+
+AuthorizationLifecycleTest > aRetriedCaptureIsAnsweredFromTheCurrentStateWithoutBookingAgain() FAILED
+    java.lang.IllegalStateException at AuthorizationLifecycleTest.java:85
+    message: "Cannot capture on a CAPTURED authorization"
+    at pl.fairydeck.authorization.domain.authorization.Authorization.requireStatus(Authorization.java:105)
+    at pl.fairydeck.authorization.domain.authorization.Authorization.capture(Authorization.java:78)
+
+AuthorizationLifecycleTest > reverseOnAnExpiredAuthorizationReturnsItWithoutBookingAgain() FAILED
+    java.lang.IllegalStateException at AuthorizationLifecycleTest.java:111
+    message: "Cannot reverse on a EXPIRED authorization"
+    at pl.fairydeck.authorization.domain.authorization.Authorization.requireStatus(Authorization.java:105)
+    at pl.fairydeck.authorization.domain.authorization.Authorization.reverse(Authorization.java:88)
+
+AuthorizationLifecycleTest > aRetriedReverseIsAnsweredFromTheCurrentStateWithoutBookingAgain() FAILED
+    java.lang.IllegalStateException at AuthorizationLifecycleTest.java:98
+    message: "Cannot reverse on a REVERSED authorization"
+    at pl.fairydeck.authorization.domain.authorization.Authorization.requireStatus(Authorization.java:105)
+    at pl.fairydeck.authorization.domain.authorization.Authorization.reverse(Authorization.java:88)
+
+15 tests completed, 3 failed
+(captureAfterReversalStillThrows -- preserved conflict assertion -- passed, unchanged)
+(all AuthorizationTest domain tests passed, unchanged)
+
+BUILD FAILED

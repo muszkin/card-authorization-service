@@ -6,7 +6,7 @@ Path `src/main/java/pl/fairydeck/authorization/application` | source `b4bef16` |
 **Responsibilities.** Use cases and transaction boundaries: `AuthorizePurchase` (idempotent replay, card
 lookup, risk call outside the transaction, race recovery), `AuthorizationBooking` (`@Transactional(READ_COMMITTED)`:
 ledger lock, balance, policy, authorization + hold + outbox event), `AuthorizationLifecycle` (capture, reverse,
-scheduled `releaseExpiredHolds`), `CardLookup` (cache-aside), `CardQueries` (balance, filtered transactions),
+scheduled `releaseExpiredHolds`; a retried capture or reversal is replayed from the post-lock status), `CardLookup` (cache-aside), `CardQueries` (balance, filtered transactions),
 `IssueCard`, `AuthorizationConfiguration` (`Clock.tickMillis(UTC)`, `AuthorizationPolicy` from
 `AuthorizationProperties`), exceptions `CardNotFoundException`, `AuthorizationNotFoundException`,
 `IdempotencyKeyReusedException`.
@@ -30,7 +30,9 @@ fixtures `src/testFixtures/java/pl/fairydeck/authorization/application/port/out`
 
 **Invariants.** Remote calls never inside a transaction; every balance-changing transaction takes the card
 ledger lock before reading the ledger; the use case re-reads an authorization under the lock before a
-transition; no imports from `adapter`.
+transition; a capture retried on `CAPTURED`, or a reversal retried on `REVERSED` or `EXPIRED`, returns the current
+authorization without new ledger entries or events (DECISIONS §17), every other impossible transition still
+throws; no imports from `adapter`.
 
 **Git signals.** `AuthorizationBooking.java` 3 commits, `AuthorizationRepository.java` 3 commits; port and JDBC
 implementation co-change.

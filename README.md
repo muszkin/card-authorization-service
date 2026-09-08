@@ -39,8 +39,8 @@ Repeat the second call with the same `Idempotency-Key` and you get the same auth
 |---|---|---|
 | `POST` | `/v1/cards` | Issues an active card with a credit limit in one currency |
 | `POST` | `/v1/authorizations` | Decides a purchase; `Idempotency-Key` header is mandatory; `201` for both approvals and declines |
-| `POST` | `/v1/authorizations/{id}/capture` | Settles an approved authorization: releases the hold, books the charge |
-| `POST` | `/v1/authorizations/{id}/reverse` | Cancels an approved authorization and releases the hold |
+| `POST` | `/v1/authorizations/{id}/capture` | Settles an approved authorization: releases the hold, books the charge; repeating it after success returns the same `200` |
+| `POST` | `/v1/authorizations/{id}/reverse` | Cancels an approved authorization and releases the hold; repeating it, or reversing an already expired hold, returns the same `200` |
 | `GET` | `/v1/cards/{id}/balance` | Credit limit, pending, settled and available amounts, derived from the ledger |
 | `GET` | `/v1/cards/{id}/transactions` | The card's authorizations, newest first; filters `from`, `to` (half-open, ISO instants) and `status` |
 
@@ -73,7 +73,7 @@ Where the interesting answers live:
 - **Concurrency and isolation:** `AuthorizationBooking` and `JdbcLedgerRepository.lock`, with the
   `ConcurrentAuthorizationsTest` that overdraws the card without the lock.
 - **Idempotency:** `AuthorizePurchase`, the unique key in `V1__cards_authorizations_ledger.sql` and the racing
-  retry in `AuthorizePurchaseTest`.
+  retry in `AuthorizePurchaseTest`; settlement replays in `AuthorizationLifecycle` (DECISIONS.md §17).
 - **Fail-closed risk:** `AuthorizationPolicy` and `HttpRiskScorerTest`.
 - **Append-only ledger:** the trigger in the first migration and `LedgerRepositoryTest`.
 - **Transactional outbox:** `AuthorizationBooking`, `OutboxRelay` and `OutboxTest`.
