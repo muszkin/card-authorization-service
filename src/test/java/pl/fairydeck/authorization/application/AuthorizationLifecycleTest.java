@@ -78,6 +78,53 @@ class AuthorizationLifecycleTest {
     }
 
     @Test
+    void aRetriedCaptureIsAnsweredFromTheCurrentStateWithoutBookingAgain() {
+        AuthorizationLifecycle lifecycle = lifecycleAt(AUTHORIZED_AT.plusSeconds(3600));
+        lifecycle.capture(approved.id());
+
+        Authorization replayed = lifecycle.capture(approved.id());
+
+        assertThat(replayed.status()).isEqualTo(AuthorizationStatus.CAPTURED);
+        assertThat(ledger.entriesFor(card.id())).extracting(LedgerEntry::type)
+                .containsExactly(LedgerEntryType.HOLD, LedgerEntryType.HOLD_RELEASE, LedgerEntryType.CAPTURE);
+        assertThat(outbox.recorded()).hasSize(1);
+    }
+
+    @Test
+    void aRetriedReverseIsAnsweredFromTheCurrentStateWithoutBookingAgain() {
+        AuthorizationLifecycle lifecycle = lifecycleAt(AUTHORIZED_AT.plusSeconds(60));
+        lifecycle.reverse(approved.id());
+
+        Authorization replayed = lifecycle.reverse(approved.id());
+
+        assertThat(replayed.status()).isEqualTo(AuthorizationStatus.REVERSED);
+        assertThat(ledger.entriesFor(card.id())).extracting(LedgerEntry::type)
+                .containsExactly(LedgerEntryType.HOLD, LedgerEntryType.HOLD_RELEASE);
+        assertThat(outbox.recorded()).hasSize(1);
+    }
+
+    @Test
+    void reverseOnAnExpiredAuthorizationReturnsItWithoutBookingAgain() {
+        Instant afterExpiry = AUTHORIZED_AT.plus(HOLD_VALIDITY);
+        lifecycleAt(afterExpiry).releaseExpiredHolds();
+
+        Authorization replayed = lifecycleAt(afterExpiry.plusSeconds(60)).reverse(approved.id());
+
+        assertThat(replayed.status()).isEqualTo(AuthorizationStatus.EXPIRED);
+        assertThat(ledger.entriesFor(card.id())).extracting(LedgerEntry::type)
+                .containsExactly(LedgerEntryType.HOLD, LedgerEntryType.HOLD_RELEASE);
+        assertThat(outbox.recorded()).hasSize(1);
+    }
+
+    @Test
+    void captureAfterReversalStillThrows() {
+        AuthorizationLifecycle lifecycle = lifecycleAt(AUTHORIZED_AT.plusSeconds(60));
+        lifecycle.reverse(approved.id());
+
+        assertThatThrownBy(() -> lifecycle.capture(approved.id())).isInstanceOf(IllegalStateException.class);
+    }
+
+    @Test
     void reportsAnUnknownAuthorization() {
         UUID unknown = UUID.randomUUID();
         AuthorizationLifecycle lifecycle = lifecycleAt(AUTHORIZED_AT);

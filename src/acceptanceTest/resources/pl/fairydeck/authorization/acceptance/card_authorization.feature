@@ -59,6 +59,15 @@ Feature: Card authorization
     Then the authorization is "REVERSED"
     And the available balance is 100.00 GBP
 
+  Scenario: Retrying a capture after it succeeded changes nothing
+    Given a card with a credit limit of 100.00 GBP
+    And an approved purchase of 30.00 GBP
+    When the purchase is captured
+    And the capture is retried
+    Then the retry returns the same settled authorization
+    And the settled amount is 30.00 GBP
+    And the available balance is 70.00 GBP
+
   Scenario: The card's transactions show every decision, newest first
     Given a card with a credit limit of 100.00 GBP
     When a purchase of 30.00 GBP is made at "Coffee Corner"
