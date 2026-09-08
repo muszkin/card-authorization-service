@@ -36,6 +36,8 @@ public class CardAuthorizationSteps {
     private static final int FAR_BEYOND_THE_TIMEOUT_MS = 2_000;
     private static final String DEFAULT_MERCHANT = "Coffee Corner";
 
+    private static boolean warmedUp;
+
     private final RestClient api;
     private final CardRepository cards;
     private final List<AuthorizationView> answers = new ArrayList<>();
@@ -50,7 +52,22 @@ public class CardAuthorizationSteps {
 
     @Before
     public void forgetPreviousRiskEngineBehaviour() {
+        if (!warmedUp) {
+            warmedUp = true;
+            warmUp();
+        }
         RISK_ENGINE.resetAll();
+    }
+
+    /** A throwaway card and purchase absorb the cold-start latency so the first scenario's risk call does not. */
+    private void warmUp() {
+        theRiskEngineScoresEveryPurchaseAsLowRisk();
+        aCardWithACreditLimitOf(new BigDecimal("100.00"), "GBP");
+        aPurchaseIsMadeAt(new BigDecimal("1.00"), "GBP", DEFAULT_MERCHANT);
+        answers.clear();
+        cardId = null;
+        lastPurchase = null;
+        lastDecisionTime = Duration.ZERO;
     }
 
     @Given("the risk engine scores every purchase as low risk")
