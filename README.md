@@ -19,7 +19,7 @@ You need Docker and a JDK 25 (Gradle finds it through toolchains).
 ./gradlew bootRun    # starts Postgres, Redis and a stubbed risk engine from compose.yaml, then the app on :8080
 ```
 
-Then, in another terminal:
+Then, in another terminal (the first line uses `jq` to pick the card id; paste it by hand if you prefer):
 
 ```bash
 CARD=$(curl -s -X POST localhost:8080/v1/cards -H 'Content-Type: application/json' \
