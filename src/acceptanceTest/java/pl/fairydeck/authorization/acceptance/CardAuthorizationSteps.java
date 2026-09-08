@@ -130,6 +130,11 @@ public class CardAuthorizationSteps {
         transition("reverse");
     }
 
+    @When("the capture is retried")
+    public void theCaptureIsRetried() {
+        transition("capture");
+    }
+
     @Then("the purchase is approved")
     public void thePurchaseIsApproved() {
         assertThat(lastAnswer().status()).isEqualTo("APPROVED");
@@ -155,6 +160,14 @@ public class CardAuthorizationSteps {
     public void bothAnswersReferToTheSameAuthorization() {
         assertThat(answers).hasSize(2);
         assertThat(answers.get(1).id()).isEqualTo(answers.get(0).id());
+    }
+
+    @Then("the retry returns the same settled authorization")
+    public void theRetryReturnsTheSameSettledAuthorization() {
+        AuthorizationView retry = answers.get(answers.size() - 1);
+        AuthorizationView original = answers.get(answers.size() - 2);
+        assertThat(retry.id()).isEqualTo(original.id());
+        assertThat(retry.status()).isEqualTo("CAPTURED");
     }
 
     @Then("exactly {int} of them are approved")
