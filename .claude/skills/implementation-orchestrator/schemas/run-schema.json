@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:implementation-orchestrator:run-schema:v1",
+  "title": "Implementation orchestrator run state",
+  "description": "Minimum portable contract for context/implementation-runs/<run-id>/run.json. Additional properties are allowed so a host may record more, but every property named here keeps this meaning. Never store secrets or credentials in this file.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "state",
+    "plan",
+    "context",
+    "execution_contract",
+    "feature",
+    "slices",
+    "deferred_obligations",
+    "updated_at"
+  ],
+  "properties": {
+    "schema_version": { "type": "integer", "enum": [2] },
+    "run_id": { "type": "string" },
+    "state": {
+      "type": "string",
+      "enum": [
+        "INTAKE",
+        "AUTHORIZED",
+        "CONTEXT_READY",
+        "TOPOLOGY_READY",
+        "EXECUTION_CONTRACT_SELECTED",
+        "BASELINE_RECORDED",
+        "SLICES_RUNNING",
+        "FEATURE_LOCAL_GREEN",
+        "FEATURE_READY_FOR_PR",
+        "INTEGRATION_PR_GREEN",
+        "INTEGRATION_MERGED",
+        "STAGING_DEPLOYED",
+        "STAGING_REVISION_VERIFIED",
+        "STAGING_GREEN",
+        "PRODUCTION_PR_OPEN",
+        "PRODUCTION_DEPLOYED",
+        "PRODUCTION_GREEN",
+        "TARGET_REACHED"
+      ]
+    },
+    "plan": {
+      "type": "object",
+      "required": ["path", "sha256", "approved_base_sha"],
+      "properties": {
+        "path": { "type": "string" },
+        "sha256": { "type": "string" },
+        "approved_base_sha": { "type": "string" }
+      }
+    },
+    "context": {
+      "type": "object",
+      "required": ["index_path", "manifest_path", "source_revision"],
+      "properties": {
+        "index_path": { "type": "string" },
+        "manifest_path": { "type": "string" },
+        "manifest_digest": { "type": ["string", "null"] },
+        "source_revision": { "type": "string" },
+        "inventory_fingerprint": { "type": ["string", "null"] },
+        "generated_at": { "type": ["string", "null"] }
+      }
+    },
+    "execution_contract": {
+      "type": "object",
+      "required": [
+        "profile",
+        "orchestration",
+        "terminal_outcome",
+        "selection_source",
+        "automatic_profile_escalation",
+        "model_policy"
+      ],
+      "properties": {
+        "profile": {
+          "type": "string",
+          "enum": ["quick-dev", "quick-bug-fix", "standard", "bug"]
+        },
+        "orchestration": {
+          "type": "string",
+          "enum": ["fire-and-forget", "supervised"]
+        },
+        "terminal_outcome": {
+          "type": "string",
+          "enum": [
+            "local-green",
+            "ready-pr",
+            "integration-merged",
+            "staging-green",
+            "production-pr-ready",
+            "production-green"
+          ]
+        },
+        "selection_source": {
+          "type": "string",
+          "enum": ["operator-confirmed", "operator-overridden", "restated-from-planning"]
+        },
+        "confirmed_at": { "type": ["string", "null"] },
+        "automatic_profile_escalation": { "type": "boolean" },
+        "model_policy": {
+          "type": "object",
+          "required": ["policy", "worker_requested", "worker_resolved"],
+          "properties": {
+            "policy": { "type": "string" },
+            "worker_requested": { "type": "string" },
+            "worker_resolved": { "type": ["string", "null"] },
+            "worker_reasoning": { "type": ["string", "null"] },
+            "reviewer_requested": { "type": ["string", "null"] },
+            "reviewer_resolved": { "type": ["string", "null"] },
+            "reviewer_reasoning": { "type": ["string", "null"] }
+          }
+        },
+        "profile_history": { "type": "array" }
+      }
+    },
+    "authorization_path": { "type": ["string", "null"] },
+    "topology_path": { "type": ["string", "null"] },
+    "feature": {
+      "type": "object",
+      "required": ["branch", "worktree", "head_sha"],
+      "properties": {
+        "branch": { "type": "string" },
+        "worktree": { "type": "string" },
+        "head_sha": { "type": ["string", "null"] }
+      }
+    },
+    "slices": { "type": "object" },
+    "deferred_obligations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["gate", "status", "required_at", "must_pass_on"],
+        "properties": {
+          "gate": { "type": "string" },
+          "scope": { "type": ["string", "null"] },
+          "status": {
+            "type": "string",
+            "enum": ["DEFERRED_TO_FINAL", "DEFERRED_TO_CI"]
+          },
+          "required_at": { "type": "string" },
+          "required_check": { "type": ["string", "null"] },
+          "must_pass_on": {
+            "type": "string",
+            "enum": ["assembled_feature_sha", "current_pr_head_sha"]
+          }
+        }
+      }
+    },
+    "integration_pr": { "type": ["object", "null"] },
+    "staging": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "NOT_RUN",
+            "RUNNING",
+            "PASS",
+            "FAIL",
+            "NOT_APPLICABLE",
+            "DEFERRED_TO_FINAL",
+            "DEFERRED_TO_CI",
+            "BLOCKED_EXTERNAL",
+            "STALE"
+          ]
+        },
+        "expected_source_sha": { "type": ["string", "null"] },
+        "expected_artifact_digest": { "type": ["string", "null"] },
+        "observed_source_sha": { "type": ["string", "null"] },
+        "observed_artifact_digest": { "type": ["string", "null"] }
+      }
+    },
+    "production_pr": { "type": ["object", "null"] },
+    "production": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "NOT_RUN",
+            "RUNNING",
+            "PASS",
+            "FAIL",
+            "NOT_APPLICABLE",
+            "DEFERRED_TO_FINAL",
+            "DEFERRED_TO_CI",
+            "BLOCKED_EXTERNAL",
+            "STALE"
+          ]
+        },
+        "expected_artifact_digest": { "type": ["string", "null"] },
+        "observed_artifact_digest": { "type": ["string", "null"] },
+        "verification_path": { "type": ["string", "null"] },
+        "observation_window": { "type": ["string", "null"] },
+        "rollback_status": {
+          "type": "string",
+          "enum": ["NOT_NEEDED", "TRIGGERED", "COMPLETED", "FAILED"]
+        }
+      }
+    },
+    "updated_at": { "type": "string" }
+  }
+}
