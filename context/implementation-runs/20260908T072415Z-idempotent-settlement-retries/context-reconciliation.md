@@ -6,3 +6,10 @@
 | run ledger | implementation-orchestrator | `context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/` | (mutable until TARGET_REACHED) | `37e3d118c1116bb2e28ae754a26156f7c44100eb` | n/a | task-closeout, project-context-initializer refresh |
 
 To federate at closeout: add both to `context/map/INDEX.md` and `manifest.json` related artifacts; refresh the application scoped context (new invariant: settlement replay after the lock).
+
+## Closeout federation (2026-09-08T08:15:51Z)
+
+- Delivery records added: `delivery/integration-pr.md`, `delivery/ci.md`; final build evidence `integration/final-build-2.txt`.
+- Map refreshed on `main@4b89d49062ecff9e743f458afe4cc50b15585bea`: INDEX source line and freshness footer, artifact hashes recomputed after every edit (closes re-review NF-1 and NF-2).
+- Decision record: `DECISIONS.md` §17 (already merged). Instruction rule added to `CLAUDE.md`: non-trivial changes go through the planning -> orchestration -> closeout workflow with artifacts under `context/`.
+- Lessons kept outside the repository (agent memory): compute manifest hashes after the last edit of the run; a committed ledger snapshot must be self-consistent; acceptance suites with tight outbound timeouts need a warm-up.

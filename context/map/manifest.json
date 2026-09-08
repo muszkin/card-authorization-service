@@ -4,37 +4,110 @@
   "generator_version": "skill bundle sha256:a26f4ab1f8949c90",
   "manifest_digest": {
     "algorithm": "sha256-rfc8785-with-empty-digest",
-    "value": "e7264ee0d511a2bb30bfbfd83c54767adc94f87af27cef5c2c9c37b0399d0f2d"
+    "value": "10111d340ba9f5a0f3532f3ab94b4b2b98b63f7527ea8f1b0d1ece9c36d41f96"
   },
   "operation": "refresh",
   "project_classification": "brownfield",
   "scope_kind": "repository",
   "phase": "complete",
-  "generated_at": "2026-09-08T08:01:09Z",
+  "generated_at": "2026-09-08T08:15:51Z",
   "repository_root": ".",
   "scope": [
     "."
   ],
   "source_snapshot": {
     "basis": "HEAD+worktree",
-    "revision": "80528ab665a5ce44294b69bd90adb60a0051be58",
-    "branch": "feat/idempotent-settlement-retries",
+    "revision": "4b89d49062ecff9e743f458afe4cc50b15585bea",
+    "branch": "main",
     "worktree_status": [
-      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/** (ledger refresh staged for the reconciliation commit)"
+      "AI_USAGE.md",
+      "CLAUDE.md",
+      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/RUN.md",
+      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/context-reconciliation.md",
+      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/delivery/ci.md",
+      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/delivery/integration-pr.md",
+      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/events.jsonl",
+      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/integration/combined-gates.md",
+      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/integration/combined-review.md",
+      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/integration/final-build-2.txt",
+      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/orchestrator-lease.json",
+      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/resources.md",
+      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/run.json",
+      "context/map/INDEX.md"
     ],
-    "untracked_nonignored_paths": [],
+    "untracked_nonignored_paths": [
+      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/delivery/ci.md",
+      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/delivery/integration-pr.md",
+      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/integration/final-build-2.txt"
+    ],
     "comparability": "comparable",
     "non_comparable_reasons": [],
-    "dirty_tracked_fingerprints": [],
+    "dirty_tracked_fingerprints": [
+      {
+        "path": "AI_USAGE.md",
+        "method": "sha256-current-worktree-bytes",
+        "value": "07d01ba12ad32d6b0da512991d10fa087160e4308682b624820c9d0d418f3bc3"
+      },
+      {
+        "path": "CLAUDE.md",
+        "method": "sha256-current-worktree-bytes",
+        "value": "bb1c970dec6b9313832a3dcaffc0ec937aff674a71ff04b67bd92b21717ed481"
+      },
+      {
+        "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/RUN.md",
+        "method": "sha256-current-worktree-bytes",
+        "value": "90bbd21b15a0164571827b6d6d6ba409da4123b185092b4bfd24795b76281186"
+      },
+      {
+        "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/context-reconciliation.md",
+        "method": "sha256-current-worktree-bytes",
+        "value": "fdc841e43c70e11f4598f874a204f4c8289df708d00c7f099a1c9c0543099056"
+      },
+      {
+        "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/events.jsonl",
+        "method": "sha256-current-worktree-bytes",
+        "value": "e50ab4c5e6bc01b540b1b883533f71d079a3cef2792ec2b4c9971b9b2830fded"
+      },
+      {
+        "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/integration/combined-gates.md",
+        "method": "sha256-current-worktree-bytes",
+        "value": "f1b23c206e1c689f6ab567a13f4ab3635c07012240c9c76bdf8c1197c44c723b"
+      },
+      {
+        "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/integration/combined-review.md",
+        "method": "sha256-current-worktree-bytes",
+        "value": "3afe61c26914614f70bb61b1a61663dfcb0e99ccc9006e579d515ea2cc38bc67"
+      },
+      {
+        "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/orchestrator-lease.json",
+        "method": "sha256-current-worktree-bytes",
+        "value": "420c6e0c5897faa1b5895a9124247a92fa241ec2d5d498a9036db9c0770d758b"
+      },
+      {
+        "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/resources.md",
+        "method": "sha256-current-worktree-bytes",
+        "value": "eb57437adfac1408759f3276e4c155f0c421a5f184df2c2fad2238a0f41f5ee0"
+      },
+      {
+        "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/run.json",
+        "method": "sha256-current-worktree-bytes",
+        "value": "9ca5b802e87554eb8eef8505d763aa5e7f223d1b30c42a7d0ee1f3418d766a26"
+      },
+      {
+        "path": "context/map/INDEX.md",
+        "method": "sha256-current-worktree-bytes",
+        "value": "53c843d76410cc6f48003571c78dfdaa83aee53ca125f781d40e381ca64b723d"
+      }
+    ],
     "inventory_fingerprint": "915cd83746c1d50e794cf50bf8d671000d3f00d1d2a30db1e2dcedf2d4bfda0d",
     "fingerprint_method": "sha256 over sorted lines \"<git blob id>\\t<path>\\n\" of `git ls-files -s` (clean tree), excluding generated context (context/**, **/.agents/**)"
   },
   "git_history": {
     "available": true,
     "shallow": false,
-    "commit_window": "44 commits on feat/idempotent-settlement-retries (main@37e3d11 + slice, docs and repair commits); authored 2026-09-07T11:21:08Z..2026-09-08T08:01:09Z",
+    "commit_window": "45 commits on main; authored 2026-09-07T11:21:08Z..2026-09-08T08:15:51Z; PR #1 rebase-merged 2026-09-08T08:13:05Z",
     "pr_provider": "github via gh (read-only, authenticated)",
-    "pr_window": "gh pr list --state all --limit 20 -> 0 pull requests"
+    "pr_window": "gh pr list --state all: 1 pull request (#1, merged by rebase)"
   },
   "exclusions": [
     {
@@ -213,6 +286,12 @@
       "coverage": "rolled-up",
       "context": ".agents/project-context.md",
       "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/delivery",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "implementation-run delivery records (implementation-orchestrator output)"
     },
     {
       "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/integration",
@@ -575,7 +654,7 @@
       ],
       "artifact_type": "canonical-evidence",
       "authority": "canonical",
-      "source_revision": "80528ab665a5ce44294b69bd90adb60a0051be58",
+      "source_revision": "4b89d49062ecff9e743f458afe4cc50b15585bea",
       "generated_at": null,
       "freshness": "current",
       "content_sha256": "2ea240c24106a42f1664460ae5d3a4402f8203174c73f58dcb6c199420e2b980",
@@ -600,10 +679,10 @@
       ],
       "artifact_type": "canonical-evidence",
       "authority": "canonical",
-      "source_revision": "80528ab665a5ce44294b69bd90adb60a0051be58",
+      "source_revision": "4b89d49062ecff9e743f458afe4cc50b15585bea",
       "generated_at": null,
       "freshness": "current",
-      "content_sha256": "3bde7e6d725207ddefd28c7ebd0df2e2cb2498d6f08c8d8cb05a51b9e9ab4072",
+      "content_sha256": "07d01ba12ad32d6b0da512991d10fa087160e4308682b624820c9d0d418f3bc3",
       "approval_status": "approved",
       "conflicts": [],
       "referenced_by": [
@@ -623,7 +702,7 @@
       ],
       "artifact_type": "canonical-evidence",
       "authority": "canonical",
-      "source_revision": "80528ab665a5ce44294b69bd90adb60a0051be58",
+      "source_revision": "4b89d49062ecff9e743f458afe4cc50b15585bea",
       "generated_at": null,
       "freshness": "current",
       "content_sha256": "4760cc213f5cb3d504674c50c68f1ef3a159ee1369b30dab044da30441d26fcb",
@@ -647,7 +726,7 @@
       ],
       "artifact_type": "generated-synthesis",
       "authority": "advisory",
-      "source_revision": "80528ab665a5ce44294b69bd90adb60a0051be58",
+      "source_revision": "4b89d49062ecff9e743f458afe4cc50b15585bea",
       "generated_at": null,
       "freshness": "current",
       "content_sha256": "ff48c05646a5e1cc0538ecf863cd3d879a9b9d253a93b198574fc6b931439b80",
@@ -671,7 +750,7 @@
       ],
       "artifact_type": "proposal",
       "authority": "supporting",
-      "source_revision": "80528ab665a5ce44294b69bd90adb60a0051be58",
+      "source_revision": "4b89d49062ecff9e743f458afe4cc50b15585bea",
       "generated_at": "2026-09-08T07:41:14Z",
       "freshness": "current",
       "content_sha256": "ac3912ffe26bd6b816c2bb73b9d452177d071a6fe498f71d5fadfbd6c7bd5d50",
@@ -695,10 +774,10 @@
       ],
       "artifact_type": "historical-record",
       "authority": "advisory",
-      "source_revision": "80528ab665a5ce44294b69bd90adb60a0051be58",
+      "source_revision": "4b89d49062ecff9e743f458afe4cc50b15585bea",
       "generated_at": "2026-09-08T07:41:14Z",
       "freshness": "current",
-      "content_sha256": "7f88a64123a2b287e18337b91958ecee21ef9b77637fbb3cdea07137c09cae14",
+      "content_sha256": "90bbd21b15a0164571827b6d6d6ba409da4123b185092b4bfd24795b76281186",
       "approval_status": "not-applicable",
       "conflicts": [],
       "referenced_by": [
@@ -1307,8 +1386,8 @@
         "src/testFixtures/java/pl/fairydeck/authorization/application/port/out/StubRiskScorer.java"
       ],
       "input_fingerprint": "71a66297627b16ccac87d938cfac1bfa76d6b5e36ff2de905610c43640b2e38e",
-      "output_sha256": "6644016fa1ed003f235f484330d295e44d305d7b1c933ebfd189b5abbaf01e61",
-      "generated_at": "2026-09-08T07:41:14Z"
+      "output_sha256": "53c843d76410cc6f48003571c78dfdaa83aee53ca125f781d40e381ca64b723d",
+      "generated_at": "2026-09-08T08:15:51Z"
     },
     {
       "path": "context/README.md",
@@ -1323,8 +1402,8 @@
       "ownership": "managed-block (router only)",
       "inputs": [],
       "input_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "output_sha256": "4ffad876b5894c0b655586991be530ded389d2388b0ae11b17420be02fe84992",
-      "generated_at": "2026-09-07T14:57:44Z"
+      "output_sha256": "bb1c970dec6b9313832a3dcaffc0ec937aff674a71ff04b67bd92b21717ed481",
+      "generated_at": "2026-09-08T08:15:51Z"
     },
     {
       "path": "AGENTS.md",
@@ -1427,7 +1506,6 @@
   "open_questions": [],
   "uncovered_paths": [],
   "next_actions": [
-    "Append delivery records (final gates, PR, CI, merge) to the run ledger after the merge",
     "Smoke-test discoverability in a fresh Claude Code session",
     "Refresh this map after structural changes"
   ]

@@ -1,0 +1,4 @@
+
+BUILD SUCCESSFUL in 27s
+14 actionable tasks: 14 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html

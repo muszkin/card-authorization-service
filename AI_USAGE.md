@@ -81,3 +81,10 @@ on anyone, human or agent, remembering it.
   finished. The run's coverage, snapshot fingerprints and per-lane verdicts are in `context/map/manifest.json`;
   it also surfaced the one contradiction between the documentation and the history (DECISIONS.md §16), which
   was fixed in the same commit.
+- The idempotent settlement retries change (DECISIONS.md §17) was delivered end to end by that workflow:
+  `implementation-planning` produced the plan under `context/plans/` (with one operator override recorded),
+  `implementation-orchestrator` ran a worker and independent reviewers in isolated worktrees with SHA-bound
+  gates, and `task-closeout` federated the results. The run caught two things worth knowing: a pre-existing
+  cold-start flake in the acceptance suite, fixed by a repair packet instead of a rerun, and a self-contradictory
+  committed run ledger, caught by the independent combined review and fixed before the merge. The whole trail is
+  in `context/implementation-runs/`.

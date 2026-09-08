@@ -317,3 +317,147 @@ dimension (see Repair candidate verdict, PASS, above). Recommended path: land on
 that (a) corrects `gates.md`/`run.json`/`state.json`/`RUN.md` to the true final state and (b) commits the
 `final-gate-failure-001.md` and `slices/R1/*` evidence, then re-review only that commit's effect on the ledger
 (CF-1/CF-2) — the product-code surface needs no further review.
+
+---
+
+## Re-review of 316edc2 (findings resolution)
+
+**Reviewer:** reviewer-final-2 (independent, read-only; did not implement or write any prior review section)
+**Checkout:** `/home/muszkin/work/zilch/worktrees/review-final2`, detached at `316edc28ae2b194ef898c543926845379cc0a1cf`; verified `git rev-parse HEAD` matches and `git status --porcelain` is empty before any command below.
+
+```
+cd /home/muszkin/work/zilch/worktrees/review-final2
+git rev-parse HEAD                                                     -> 316edc28ae2b194ef898c543926845379cc0a1cf
+git status --porcelain                                                 -> (empty)
+git diff 80528ab665a5ce44294b69bd90adb60a0051be58..316edc28ae2b194ef898c543926845379cc0a1cf --stat   -> 20 files, +1405/-23
+git log --oneline 37e3d118c1116bb2e28ae754a26156f7c44100eb..316edc28ae2b194ef898c543926845379cc0a1cf --reverse
+  -> f0f62f4 (test, slice) -> ddd71fa (feat, slice) -> b0e9abc (docs) -> 3ddbb48 (docs) -> 80528ab (test, repair) -> 316edc2 (docs)
+./gradlew test --tests 'pl.fairydeck.authorization.application.AuthorizationLifecycleTest'   -> BUILD SUCCESSFUL
+./gradlew compileAcceptanceTestJava                                                            -> BUILD SUCCESSFUL
+node .claude/skills/implementation-orchestrator/scripts/validate-run.mjs context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/run.json
+  -> "satisfies the run ledger contract" (exit 0)
+python3 (inline): manifest_digest recompute (value:="", json.dumps(sort_keys=True, separators=(',',':'), ensure_ascii=False), sha256 of UTF-8 bytes)
+  -> computed e7264ee0d511a2bb30bfbfd83c54767adc94f87af27cef5c2c9c37b0399d0f2d == stored value (match)
+python3 (inline): walked all 24 `artifacts[].output_sha256` + 6 `related_artifacts[].content_sha256` entries (30 total,
+  matches `grep -c` of both keys) against `sha256sum` of the referenced file's current bytes
+  -> 29/30 match; 1 mismatch: context/map/INDEX.md (see NF-1 below)
+grep -inE "password|secret|api[_-]?key|token|BEGIN|jdbc:.*://[^ ]*:[^ ]*@|Authorization: Bearer|aws_access|private_key" over the full 316edc2 diff
+  -> only self-referential mentions of "the secret scan" itself; no actual secrets
+grep -inE "muszkin@|@gmail|/home/[a-z]+" over the full 316edc2 diff
+  -> only the local OS username in Spring Boot startup log lines already embedded in the acceptance-test XML/log evidence, and
+     worktree paths; no email address, no credential
+```
+
+### Disposition of the prior findings
+
+**CF-1 (MEDIUM — S1 gates.md/run.json/RUN.md self-contradicted) — RESOLVED.**
+- `slices/S1/gates.md` now reads `independent review | PASS (3 LOW, non-blocking: ...)` and
+  `real-surface E2E (...) | PASS 10/10 incl. "Retrying a capture after it succeeded changes nothing"`
+  (`git diff 80528ab..316edc2 -- .../slices/S1/gates.md`), matching `slices/S1/review.md`'s own verdict
+  (`## Verdict` / `**PASS**`, "No CRITICAL, HIGH, or MEDIUM findings.") and `events.jsonl` lines 15-16
+  (`REVIEW_GREEN` at `07:37:36Z`, `E2E_GREEN` at `07:37:46Z`, both `evidence`-linked to the same files).
+- `run.json`'s `slices.S1.gates` block now reads `"review": "PASS", "e2e": "PASS"` (was `NOT_RUN`/`NOT_RUN`),
+  `slices.S1.state` is `"INTEGRATED"`, and a full `R1` entry was added with its own gates, all `PASS`/`NOT_APPLICABLE`.
+- `RUN.md`'s state line and the S1 table row were rewritten to say "S1 and R1 integrated (feature head `80528ab`)"
+  / drop the stale "review PASS, E2E PASS, integrated" duplicate row and stale "dispatch worker-S1" next action.
+- `node validate-run.mjs` confirms `run.json` still satisfies the schema after these edits.
+- Evidence: `git diff 80528ab..316edc2 -- context/implementation-runs/.../RUN.md context/implementation-runs/.../slices/S1/gates.md context/implementation-runs/.../run.json` (all three now internally consistent and consistent with each other).
+
+**CF-2 (MEDIUM — repair justification not committed) — RESOLVED.**
+- `git ls-tree -r 316edc2 -- context/implementation-runs/` (implicit in the stat diff) now includes
+  `integration/final-gate-failure-001.md`, `slices/R1/packet.md`, `slices/R1/worker-report.md`, `slices/R1/gates.md`,
+  and `slices/R1/evidence/{acceptance-results-1.xml,acceptance-results-2.xml,e2e-run-1.txt,e2e-run-2.txt,static.txt}`
+  — all present and readable in the `316edc2` tree, all cross-checked above.
+- `final-gate-failure-001.md` names the exact failing scenario, the root-cause hypothesis (cold-JVM risk-call
+  timeout), the classification (`flaky-or-environmental`), and the route (repair packet R1); `slices/R1/packet.md`
+  states the required outcome and constraints; `slices/R1/worker-report.md` documents the fix, the identity guards,
+  and the latency evidence (385/387 ms warm-up absorbing the cold start, then single-digit-to-teens ms real
+  requests) that independently reproduces the packet's own diagnosis; `slices/R1/gates.md` records `PASS` for
+  every gate including `independent review`, cross-referencing `integration/combined-review.md`'s "Repair
+  candidate" section, which is present in the same commit and reaches `Verdict: PASS` (1 LOW, non-blocking, RC-1).
+- `integration/combined-review.md` (this same file) also carries the full `FAIL` verdict on the "Combined feature
+  37e3d11..80528ab" section unmodified from the original review, i.e., the honest FAIL is preserved in the ledger,
+  not memory-holed. That is the correct behavior, not a defect.
+- `integration/combined-gates.md` (new) records attempt 1 as `FAIL` (2 MEDIUM, ledger self-contradiction and
+  missing repair evidence) and attempt 2 as `NOT_RUN at commit time; result is appended to this file after the
+  run`, on both the "full build" and "independent re-review" rows — this is stated plainly enough that a reader
+  cannot mistake it for a passed gate; it correctly acknowledges the mechanical fact that a commit cannot contain
+  the result of a gate run against a state that only exists after that same commit is made.
+- Verdict: both CF-1 and CF-2 are resolved by `316edc2`, with evidence, not by assertion.
+
+### New findings (this re-review)
+
+**NF-1 — MEDIUM — `context/map/manifest.json:1177-1312` (the `artifacts[]` entry for `context/map/INDEX.md`) — stale `output_sha256`/`input_fingerprint`/`generated_at` for the very file `316edc2` edited**
+- Criterion: manifest self-consistency, per `.claude/skills/project-context-initializer/references/artifact-contract.md`
+  ("Compute `manifest_digest.value` by ... hashing ... Recompute and compare it before treating a previous manifest
+  as initializer-owned and unchanged" — the same integrity principle applies per-artifact to `output_sha256`, which
+  exists specifically so a consumer can tell whether a managed file's on-disk bytes still match what the manifest
+  last recorded).
+- Failure scenario: `316edc2` edits `context/map/INDEX.md`'s "Source:" line (`git diff 80528ab..316edc2 --
+  context/map/INDEX.md`: `Source: 80528ab...` replacing `Source: b0e9abc...`, timestamp `08:01:09Z` replacing
+  `07:41:14Z`) in the same commit that edits `context/map/manifest.json`'s top-level `manifest_digest`,
+  `generated_at`, `source_snapshot`, and several `related_artifacts[].content_sha256` values (e.g. `RUN.md`'s entry
+  correctly moved from `1caf42fc...` to `7f88a64123a2...`, verified to match `sha256sum RUN.md`). But the
+  `artifacts[]` entry whose `"path"` is `"context/map/INDEX.md"` itself was **not** refreshed: its
+  `output_sha256` (`6644016fa1ed003f235f484330d295e44d305d7b1c933ebfd189b5abbaf01e61`) does not match
+  `sha256sum context/map/INDEX.md` computed against the file as committed in `316edc2`
+  (`ec0a5084e21508ac2f8d1b931e34a88f1e5feb28df9c47107e8e173ba0748bef`), and its `generated_at`
+  (`2026-09-08T07:41:14Z`) still predates the `08:01:09Z` edit. A future initializer run (or any tool that trusts
+  `output_sha256` to decide whether `INDEX.md` is `owned-unchanged`) would compute a hash mismatch against the
+  manifest's own record for the file the manifest itself claims to own.
+- Evidence: `sed -n '1177,1312p' context/map/manifest.json` (the full entry, `input_fingerprint`
+  `71a66297...`, `output_sha256` `6644016f...`, `generated_at` `2026-09-08T07:41:14Z`); `sha256sum
+  context/map/INDEX.md` -> `ec0a5084...`; `git diff 80528ab..316edc2 -- context/map/INDEX.md` (the one-line
+  "Source:" edit); confirmed via an exhaustive walk of all 24 `artifacts[].output_sha256` and 6
+  `related_artifacts[].content_sha256` entries (30 total, matching `grep -c` of both key names) that this is the
+  **only** mismatch — every other managed artifact and related-artifact hash in the manifest matches its file's
+  current bytes.
+- Required outcome: regenerate the `context/map/INDEX.md` artifact entry (`output_sha256`, `input_fingerprint` if
+  its listed inputs changed, `generated_at`) in the same commit that edits `INDEX.md`'s content, so the manifest's
+  own per-artifact integrity record stays accurate for the file it manages.
+- Blocks: **no**. This is judged non-material for three reasons: (1) the top-level `manifest_digest` — the only
+  cryptographic check this run's own contract treats as authoritative — was recomputed correctly and matches
+  exactly (verified above), so the manifest was not silently corrupted or tampered with after being written, only
+  one internal bookkeeping field inside it is one refresh cycle behind; (2) unlike CF-1, this does not misstate
+  whether any required gate (review, E2E, static, build) ran — it is confined to the advisory, generated
+  project-context map (`context/map/**`), never to the canonical run ledger (`gates.md`, `run.json`, `events.jsonl`,
+  `review.md`), which was independently re-verified fully consistent and schema-valid above; (3) the artifact
+  contract's own failure mode for a hash mismatch is to classify the file `owned-modified` and trigger a rescan on
+  the next refresh — a safe, self-correcting outcome, not a silent misrepresentation a human reviewer could be
+  fooled by. Net effect if left unfixed: one unnecessary rescan of `INDEX.md` on the next map refresh; no
+  incorrect information is served to any reader in the meantime, since `INDEX.md`'s own text is accurate.
+
+**NF-2 — LOW, non-blocking — pre-existing, out-of-scope footer inconsistency in `context/map/INDEX.md` ("Freshness rule: this map describes `b4bef16`")**
+- Noted for completeness, not newly introduced by `316edc2`: `git diff 80528ab..316edc2 -- context/map/INDEX.md`
+  shows only the "Source:" line changed; the trailing "Freshness rule: this map describes `b4bef16`..." sentence
+  (and the identical `` `b4bef16` `` stamps in `project-overview.md`, `technology.md`, `risks-and-unknowns.md`,
+  etc.) predates this commit and predates the previous (FAIL) combined review, which did not flag it either. It
+  appears to be the original-initialization stamp for the bulk central artifacts (which the manifest's own
+  per-artifact `generated_at`/`freshness` fields separately track as "current"), distinct from the incrementally
+  refreshed "Source:" pointer at the top of `INDEX.md`. Not part of the `316edc2` delta under review; flagged only
+  so it is on record, not re-litigated as if this commit introduced it.
+- Blocks: no.
+
+No CRITICAL or HIGH findings. No product code, test code, build files, `application.yaml`, or timeouts were
+touched by `316edc2` (`git diff 80528ab..316edc2 --stat` lists only `context/implementation-runs/**` and
+`context/map/{INDEX.md,manifest.json}`). No secrets, credentials, or personal data (beyond the expected local
+worktree paths and the local OS username already present in pre-existing test-log evidence) were found in the
+newly committed content.
+
+### Verdict: PASS
+
+Rubric rule applied: "`PASS` — no unresolved material findings for the inspected SHA." Both prior MEDIUM findings
+(CF-1, CF-2) are resolved with evidence at `316edc2`: the S1 ledger (`gates.md`, `run.json`, `RUN.md`) is now
+internally consistent and consistent with `review.md`/`events.jsonl`, and the repair's own justification and
+evidence (`final-gate-failure-001.md`, `slices/R1/*`) are committed to the branch. `combined-gates.md` states
+attempt 1 FAIL and attempt 2 "NOT_RUN at commit time" plainly, with no attempt to backdate a result the commit
+cannot contain. `context/map/manifest.json`'s governing integrity check (`manifest_digest`) recomputes correctly,
+and 29 of its 30 per-artifact/related-artifact hashes match; the one mismatch (NF-1, `context/map/INDEX.md`'s own
+`output_sha256`) is a new, real, but non-material defect — confined to advisory generated-docs bookkeeping, with a
+self-correcting failure mode, and it does not touch the canonical run ledger this review's mandate is about. Per
+the rubric, this is a MEDIUM finding that is not material to the delivered feature (product code, tests,
+DECISIONS §17, README, and the run ledger's gate-accuracy claims are all sound), so it does not block. `./gradlew
+test --tests 'pl.fairydeck.authorization.application.AuthorizationLifecycleTest'` and `./gradlew
+compileAcceptanceTestJava` both pass in this checkout. `acceptanceTest` was intentionally not run per the task's
+instruction. Recommended path: fix NF-1 (regenerate the one stale `INDEX.md` artifact-entry hash) whenever the map
+is next refreshed; no further re-review of this class of issue is required before merge.

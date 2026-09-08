@@ -2,7 +2,7 @@
 # card-authorization-service — project context index
 
 - Scope: repository (`.`), single Gradle module. Operation: `initialize`. Classification: `brownfield`.
-- Source: `80528ab665a5ce44294b69bd90adb60a0051be58` on `feat/idempotent-settlement-retries` plus the staged run-ledger refresh. Initialized 2026-09-07T14:57:44Z, refreshed 2026-09-08T08:01:09Z.
+- Source: `4b89d49062ecff9e743f458afe4cc50b15585bea` on `main` plus the closeout files staged in the same commit. Initialized 2026-09-07T14:57:44Z, refreshed 2026-09-08T08:15:51Z.
 - Coverage: complete (every tracked directory accounted for; generated planning and run artifacts roll up into the root context). Freshness: complete for this snapshot; regenerate
   after any change to instructions, build files, migrations or package layout.
 
@@ -57,6 +57,6 @@ fingerprints, per-lane verdicts and next actions. Use it for rolled-up and exclu
 None. The one found during initialization (DECISIONS.md §16 versus the amended final commit) is resolved in the
 commit that adds this map; see risks-and-unknowns.md item 1.
 
-Freshness rule: this map describes `b4bef16`. If `git status` is not clean or HEAD differs, treat every claim as
+Freshness rule: this map describes `4b89d49` (main). If `git status` is not clean or HEAD differs, treat every claim as
 possibly stale and refresh.
 <!-- END project-context-initializer:artifact -->

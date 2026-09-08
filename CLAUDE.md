@@ -27,6 +27,10 @@ decisions cover. Each layer has its own short `CLAUDE.md` under `src/main/java/p
 - Keep it small. If a change is not needed by a test or the brief, write it down in `DECISIONS.md` as rejected
   instead of adding it.
 - No secrets in code, configuration or history. Local credentials live only in `compose.yaml`.
+- Non-trivial changes go through the skills in `.claude/skills`: `implementation-planning` writes the plan to
+  `context/plans/`, `implementation-orchestrator` executes it with worker and reviewer subagents in separate
+  worktrees and keeps the ledger under `context/implementation-runs/`, `task-closeout` records what was learned.
+  A mechanical edit with obvious verification does not need the ceremony.
 
 ## Commands
 
