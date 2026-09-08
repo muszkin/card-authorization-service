@@ -2,7 +2,7 @@
 # card-authorization-service — project context index
 
 - Scope: repository (`.`), single Gradle module. Operation: `initialize`. Classification: `brownfield`.
-- Source: `b0e9abca8593fdb020a383837cb03433dd318691` on `feat/idempotent-settlement-retries`, clean worktree. Initialized 2026-09-07T14:57:44Z, refreshed 2026-09-08T07:41:14Z.
+- Source: `80528ab665a5ce44294b69bd90adb60a0051be58` on `feat/idempotent-settlement-retries` plus the staged run-ledger refresh. Initialized 2026-09-07T14:57:44Z, refreshed 2026-09-08T08:01:09Z.
 - Coverage: complete (every tracked directory accounted for; generated planning and run artifacts roll up into the root context). Freshness: complete for this snapshot; regenerate
   after any change to instructions, build files, migrations or package layout.
 

@@ -38,11 +38,11 @@
   "feature": {
     "branch": "feat/idempotent-settlement-retries",
     "worktree": "/home/muszkin/work/zilch/worktrees/feature",
-    "head_sha": "37e3d118c1116bb2e28ae754a26156f7c44100eb"
+    "head_sha": "80528ab665a5ce44294b69bd90adb60a0051be58"
   },
   "slices": {
     "S1": {
-      "state": "STATIC_GREEN",
+      "state": "INTEGRATED",
       "owner": "worker-S1",
       "branch": "feat/idempotent-settlement-retries-s1",
       "worktree": "/home/muszkin/work/zilch/worktrees/s1",
@@ -55,13 +55,32 @@
         "focused": "PASS",
         "static": "PASS",
         "sonar": "NOT_APPLICABLE",
-        "review": "NOT_RUN",
-        "e2e": "NOT_RUN"
+        "review": "PASS",
+        "e2e": "PASS"
       },
       "candidate_commits": [
         "f0f62f4be99a43b7a388dc1c8689caa342e98c53",
         "ddd71fada0e301552715ec135e4e3366dd328068"
       ]
+    },
+    "R1": {
+      "state": "INTEGRATED",
+      "owner": "repair-worker-R1",
+      "branch": "feat/idempotent-settlement-retries-r1",
+      "worktree": "/home/muszkin/work/zilch/worktrees/r1",
+      "parent_sha": "3ddbb487e14a749b538a3536207c492f96ac9f65",
+      "head_sha": "80528ab665a5ce44294b69bd90adb60a0051be58",
+      "packet": "slices/R1/packet.md",
+      "kind": "repair",
+      "repairs": "final-e2e flaky-or-environmental at 3ddbb487e14a749b538a3536207c492f96ac9f65",
+      "gates": {
+        "reproduction": "PASS",
+        "focused": "PASS",
+        "static": "PASS",
+        "sonar": "NOT_APPLICABLE",
+        "review": "PASS",
+        "e2e": "PASS"
+      }
     }
   },
   "deferred_obligations": [],
@@ -82,5 +101,5 @@
     "observation_window": null,
     "rollback_status": "NOT_NEEDED"
   },
-  "updated_at": "2026-09-08T07:31:04Z"
+  "updated_at": "2026-09-08T08:01:09Z"
 }

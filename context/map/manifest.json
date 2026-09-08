@@ -4,33 +4,35 @@
   "generator_version": "skill bundle sha256:a26f4ab1f8949c90",
   "manifest_digest": {
     "algorithm": "sha256-rfc8785-with-empty-digest",
-    "value": "16dddd7e0de000359c971c4fdea40e1ad40f009d13fd7749a39867d6f7ca40ae"
+    "value": "e7264ee0d511a2bb30bfbfd83c54767adc94f87af27cef5c2c9c37b0399d0f2d"
   },
   "operation": "refresh",
   "project_classification": "brownfield",
   "scope_kind": "repository",
   "phase": "complete",
-  "generated_at": "2026-09-08T07:41:14Z",
+  "generated_at": "2026-09-08T08:01:09Z",
   "repository_root": ".",
   "scope": [
     "."
   ],
   "source_snapshot": {
     "basis": "HEAD+worktree",
-    "revision": "b0e9abca8593fdb020a383837cb03433dd318691",
+    "revision": "80528ab665a5ce44294b69bd90adb60a0051be58",
     "branch": "feat/idempotent-settlement-retries",
-    "worktree_status": [],
+    "worktree_status": [
+      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/** (ledger refresh staged for the reconciliation commit)"
+    ],
     "untracked_nonignored_paths": [],
     "comparability": "comparable",
     "non_comparable_reasons": [],
     "dirty_tracked_fingerprints": [],
-    "inventory_fingerprint": "18fc963a43f27cca52982ae803676a8206ce5c138dda43bcb74f80e02aa278e3",
+    "inventory_fingerprint": "915cd83746c1d50e794cf50bf8d671000d3f00d1d2a30db1e2dcedf2d4bfda0d",
     "fingerprint_method": "sha256 over sorted lines \"<git blob id>\\t<path>\\n\" of `git ls-files -s` (clean tree), excluding generated context (context/**, **/.agents/**)"
   },
   "git_history": {
     "available": true,
     "shallow": false,
-    "commit_window": "42 commits on feat/idempotent-settlement-retries (main@37e3d11 + test/feat slice commits + reconciliation docs commit); authored 2026-09-07T11:21:08Z..2026-09-08T07:41:14Z; the first PR of the repository follows",
+    "commit_window": "44 commits on feat/idempotent-settlement-retries (main@37e3d11 + slice, docs and repair commits); authored 2026-09-07T11:21:08Z..2026-09-08T08:01:09Z",
     "pr_provider": "github via gh (read-only, authenticated)",
     "pr_window": "gh pr list --state all --limit 20 -> 0 pull requests"
   },
@@ -223,6 +225,18 @@
       "coverage": "rolled-up",
       "context": ".agents/project-context.md",
       "reason": "planning and implementation-run artifacts (implementation-planning / implementation-orchestrator output)"
+    },
+    {
+      "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/slices/R1",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "implementation-run artifacts (implementation-orchestrator output)"
+    },
+    {
+      "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/slices/R1/evidence",
+      "coverage": "rolled-up",
+      "context": ".agents/project-context.md",
+      "reason": "implementation-run artifacts (implementation-orchestrator output)"
     },
     {
       "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/slices/S1",
@@ -561,7 +575,7 @@
       ],
       "artifact_type": "canonical-evidence",
       "authority": "canonical",
-      "source_revision": "b0e9abca8593fdb020a383837cb03433dd318691",
+      "source_revision": "80528ab665a5ce44294b69bd90adb60a0051be58",
       "generated_at": null,
       "freshness": "current",
       "content_sha256": "2ea240c24106a42f1664460ae5d3a4402f8203174c73f58dcb6c199420e2b980",
@@ -586,7 +600,7 @@
       ],
       "artifact_type": "canonical-evidence",
       "authority": "canonical",
-      "source_revision": "b0e9abca8593fdb020a383837cb03433dd318691",
+      "source_revision": "80528ab665a5ce44294b69bd90adb60a0051be58",
       "generated_at": null,
       "freshness": "current",
       "content_sha256": "3bde7e6d725207ddefd28c7ebd0df2e2cb2498d6f08c8d8cb05a51b9e9ab4072",
@@ -609,7 +623,7 @@
       ],
       "artifact_type": "canonical-evidence",
       "authority": "canonical",
-      "source_revision": "b0e9abca8593fdb020a383837cb03433dd318691",
+      "source_revision": "80528ab665a5ce44294b69bd90adb60a0051be58",
       "generated_at": null,
       "freshness": "current",
       "content_sha256": "4760cc213f5cb3d504674c50c68f1ef3a159ee1369b30dab044da30441d26fcb",
@@ -633,7 +647,7 @@
       ],
       "artifact_type": "generated-synthesis",
       "authority": "advisory",
-      "source_revision": "b0e9abca8593fdb020a383837cb03433dd318691",
+      "source_revision": "80528ab665a5ce44294b69bd90adb60a0051be58",
       "generated_at": null,
       "freshness": "current",
       "content_sha256": "ff48c05646a5e1cc0538ecf863cd3d879a9b9d253a93b198574fc6b931439b80",
@@ -657,7 +671,7 @@
       ],
       "artifact_type": "proposal",
       "authority": "supporting",
-      "source_revision": "b0e9abca8593fdb020a383837cb03433dd318691",
+      "source_revision": "80528ab665a5ce44294b69bd90adb60a0051be58",
       "generated_at": "2026-09-08T07:41:14Z",
       "freshness": "current",
       "content_sha256": "ac3912ffe26bd6b816c2bb73b9d452177d071a6fe498f71d5fadfbd6c7bd5d50",
@@ -681,10 +695,10 @@
       ],
       "artifact_type": "historical-record",
       "authority": "advisory",
-      "source_revision": "b0e9abca8593fdb020a383837cb03433dd318691",
+      "source_revision": "80528ab665a5ce44294b69bd90adb60a0051be58",
       "generated_at": "2026-09-08T07:41:14Z",
       "freshness": "current",
-      "content_sha256": "1caf42fc2ea0cfc537d7de52ec91da000a6d04fa19299c62019470c91266cbe3",
+      "content_sha256": "7f88a64123a2b287e18337b91958ecee21ef9b77637fbb3cdea07137c09cae14",
       "approval_status": "not-applicable",
       "conflicts": [],
       "referenced_by": [

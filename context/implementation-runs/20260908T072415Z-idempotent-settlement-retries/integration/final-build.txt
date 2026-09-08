@@ -1,0 +1,4 @@
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 31s
+14 actionable tasks: 14 executed

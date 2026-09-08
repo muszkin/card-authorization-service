@@ -8,5 +8,5 @@
 | static (`-Xlint:all,-serial -Werror` compile of all source sets + ArchitectureTest) | PASS | ddd71fada0e301552715ec135e4e3366dd328068 | `evidence/static.txt` |
 | dependency / secret scan | PASS | ddd71fada0e301552715ec135e4e3366dd328068 | no dependency added (`build.gradle.kts` untouched); diff inspected by orchestrator: no secrets, no machine paths |
 | Sonar | NOT_APPLICABLE | — | not configured in build or CI |
-| independent review | NOT_RUN | ddd71fada0e301552715ec135e4e3366dd328068 | reviewer-S1, detached checkout `/home/muszkin/work/zilch/worktrees/review-s1` |
-| real-surface E2E (`./gradlew acceptanceTest`) | NOT_RUN | ddd71fada0e301552715ec135e4e3366dd328068 | after review |
+| independent review | PASS (3 LOW, non-blocking: line length x2, no application-level mirror test for reverse-after-CAPTURED) | ddd71fada0e301552715ec135e4e3366dd328068 | reviewer-S1 on a detached checkout; `slices/S1/review.md` |
+| real-surface E2E (`./gradlew acceptanceTest --rerun-tasks`) | PASS 10/10 incl. "Retrying a capture after it succeeded changes nothing" | ddd71fada0e301552715ec135e4e3366dd328068 | `evidence/e2e.txt`, `evidence/acceptance-results.xml` |
