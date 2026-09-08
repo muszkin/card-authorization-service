@@ -2,8 +2,8 @@
 # card-authorization-service — project context index
 
 - Scope: repository (`.`), single Gradle module. Operation: `initialize`. Classification: `brownfield`.
-- Source: `b4bef1631aa5cfb1efc1655b06e36f38c788f40a` on `main`, clean worktree, no untracked non-ignored files. Generated 2026-09-07T14:57:44Z.
-- Coverage: complete (45 tracked directories accounted for). Freshness: complete for this snapshot; regenerate
+- Source: `b0e9abca8593fdb020a383837cb03433dd318691` on `feat/idempotent-settlement-retries`, clean worktree. Initialized 2026-09-07T14:57:44Z, refreshed 2026-09-08T07:41:14Z.
+- Coverage: complete (every tracked directory accounted for; generated planning and run artifacts roll up into the root context). Freshness: complete for this snapshot; regenerate
   after any change to instructions, build files, migrations or package layout.
 
 Current user instructions, the code, its tests, runtime behaviour and the canonical documents (`README.md`,
@@ -40,6 +40,12 @@ diagrams: [module-dependencies.mmd](diagrams/module-dependencies.mmd), [primary-
 
 Canonical project documents: [README.md](../../README.md), [DECISIONS.md](../../DECISIONS.md),
 [AI_USAGE.md](../../AI_USAGE.md), [CLAUDE.md](../../CLAUDE.md).
+
+## Related artifacts
+
+- Plan: [2026-09-08 idempotent settlement retries](../plans/2026-09-08-idempotent-settlement-retries.md) (approved).
+- Implementation run: [RUN.md](../implementation-runs/20260908T072415Z-idempotent-settlement-retries/RUN.md) (gates, independent review, E2E evidence, integration history).
+- Decision record: [DECISIONS.md §17](../../DECISIONS.md).
 
 ## Manifest
 
