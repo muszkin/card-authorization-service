@@ -21,7 +21,12 @@ public record Money(long minorUnits, Currency currency) {
             throw new IllegalArgumentException(
                     "Amount %s has more fraction digits than %s allows".formatted(amount, currency));
         }
-        return new Money(decimal.movePointRight(exponent).longValueExact(), currency);
+        try {
+            return new Money(decimal.movePointRight(exponent).longValueExact(), currency);
+        } catch (ArithmeticException e) {
+            throw new IllegalArgumentException(
+                    "Amount %s is outside the supported range for %s".formatted(amount, currency), e);
+        }
     }
 
     public static Money ofMinorUnits(long minorUnits, Currency currency) {
