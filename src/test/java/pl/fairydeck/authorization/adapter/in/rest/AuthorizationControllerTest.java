@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 import java.time.Instant;
 import java.util.Currency;
@@ -121,6 +122,16 @@ class AuthorizationControllerTest {
 
         assertThat(result).hasStatus(HttpStatus.BAD_REQUEST)
                 .bodyJson().extractingPath("$.detail").asString().contains("GBP");
+    }
+
+    @Test
+    void rejectsAnAmountWhoseMinorUnitsOverflowWithoutAuthorizingIt() {
+        MvcTestResult result = post(request("92233720368547758.08", "GBP"), IDEMPOTENCY_KEY);
+
+        assertThat(result).hasStatus(HttpStatus.BAD_REQUEST)
+                .hasContentTypeCompatibleWith(MediaType.APPLICATION_PROBLEM_JSON)
+                .bodyJson().extractingPath("$.detail").asString().contains("outside the supported range");
+        verifyNoInteractions(authorizePurchase);
     }
 
     @Test
