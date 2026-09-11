@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 import java.time.Instant;
 import java.util.Currency;
@@ -72,6 +73,18 @@ class CardControllerTest {
 
         assertThat(result).hasStatus(HttpStatus.BAD_REQUEST)
                 .hasContentTypeCompatibleWith(MediaType.APPLICATION_PROBLEM_JSON);
+    }
+
+    @Test
+    void rejectsACreditLimitWhoseMinorUnitsOverflowWithoutIssuingIt() {
+        MvcTestResult result = mvc.post().uri("/v1/cards").contentType(MediaType.APPLICATION_JSON).content("""
+                { "cardholderId": "%s", "creditLimit": 92233720368547758.08, "currency": "GBP" }
+                """.formatted(CARDHOLDER_ID)).exchange();
+
+        assertThat(result).hasStatus(HttpStatus.BAD_REQUEST)
+                .hasContentTypeCompatibleWith(MediaType.APPLICATION_PROBLEM_JSON)
+                .bodyJson().extractingPath("$.detail").asString().contains("outside the supported range");
+        verifyNoInteractions(issueCard);
     }
 
     @Test

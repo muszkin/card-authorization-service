@@ -1,0 +1,37 @@
+Starting a Gradle Daemon (subsequent builds will be faster)
+> Task :clean UP-TO-DATE
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :resolveMainClassName
+> Task :bootJar
+> Task :jar
+> Task :assemble
+> Task :compileTestFixturesJava
+> Task :processTestFixturesResources NO-SOURCE
+> Task :testFixturesClasses
+> Task :testFixturesJar
+> Task :compileTestJava
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+> Task :test
+> Task :compileIntegrationTestJava
+> Task :processIntegrationTestResources NO-SOURCE
+> Task :integrationTestClasses
+{"@timestamp":"2026-09-11T08:47:44.291323353Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":585954,"thread":{"name":"SpringApplicationShutdownHook"}},"service":{"name":"card-authorization-service","node":{}},"message":"HikariPool-1 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-09-11T08:47:44.293294671Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":585954,"thread":{"name":"SpringApplicationShutdownHook"}},"service":{"name":"card-authorization-service","node":{}},"message":"HikariPool-1 - Shutdown completed.","ecs":{"version":"8.11"}}
+> Task :integrationTest
+> Task :compileAcceptanceTestJava
+> Task :processAcceptanceTestResources
+> Task :acceptanceTestClasses
+{"@timestamp":"2026-09-11T08:47:53.079858459Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":587070,"thread":{"name":"SpringApplicationShutdownHook"}},"service":{"name":"card-authorization-service","node":{}},"message":"Commencing graceful shutdown. Waiting for active requests to complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-09-11T08:47:53.082325085Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":587070,"thread":{"name":"tomcat-shutdown"}},"service":{"name":"card-authorization-service","node":{}},"message":"Graceful shutdown complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-09-11T08:47:53.089287255Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":587070,"thread":{"name":"SpringApplicationShutdownHook"}},"service":{"name":"card-authorization-service","node":{}},"message":"HikariPool-1 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-09-11T08:47:53.090644241Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":587070,"thread":{"name":"SpringApplicationShutdownHook"}},"service":{"name":"card-authorization-service","node":{}},"message":"HikariPool-1 - Shutdown completed.","ecs":{"version":"8.11"}}
+> Task :acceptanceTest
+> Task :check
+> Task :build
+
+BUILD SUCCESSFUL in 35s
+15 actionable tasks: 14 executed, 1 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html

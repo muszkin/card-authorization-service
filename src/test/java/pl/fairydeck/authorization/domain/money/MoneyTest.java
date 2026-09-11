@@ -29,6 +29,24 @@ class MoneyTest {
         assertThat(money.minorUnits()).isEqualTo(expectedMinorUnits);
     }
 
+    @ParameterizedTest(name = "{0} is represented exactly as {1} minor units")
+    @CsvSource({
+            "92233720368547758.07, 9223372036854775807",
+            "-92233720368547758.08, -9223372036854775808"
+    })
+    void acceptsAmountsAtTheLongMinorUnitBounds(String amount, long minorUnits) {
+        assertThat(Money.of(amount, GBP)).isEqualTo(Money.ofMinorUnits(minorUnits, GBP));
+    }
+
+    @ParameterizedTest(name = "{0} exceeds the long minor-unit bounds")
+    @CsvSource({"92233720368547758.08", "-92233720368547758.09"})
+    void rejectsAmountsWhoseMinorUnitsOverflowALong(String amount) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Money.of(amount, GBP))
+                .withMessageContaining("outside the supported range")
+                .withCauseInstanceOf(ArithmeticException.class);
+    }
+
     @ParameterizedTest(name = "{0} {1} has too many fraction digits")
     @CsvSource({
             "12.345, GBP",
@@ -67,6 +85,15 @@ class MoneyTest {
         Money difference = Money.of("10.00", GBP).minus(Money.of("2.50", GBP));
 
         assertThat(difference).isEqualTo(Money.of("7.50", GBP));
+    }
+
+    @Test
+    void preservesArithmeticOverflowForInternalAdditionAndSubtraction() {
+        Money maximum = Money.ofMinorUnits(Long.MAX_VALUE, GBP);
+        Money minimum = Money.ofMinorUnits(Long.MIN_VALUE, GBP);
+
+        assertThatThrownBy(() -> maximum.plus(Money.ofMinorUnits(1, GBP))).isInstanceOf(ArithmeticException.class);
+        assertThatThrownBy(() -> minimum.minus(Money.ofMinorUnits(1, GBP))).isInstanceOf(ArithmeticException.class);
     }
 
     @Test

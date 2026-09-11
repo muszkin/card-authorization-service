@@ -18,6 +18,17 @@ Feature: Card authorization
     Then the purchase is declined because of "INSUFFICIENT_FUNDS"
     And the available balance is 100.00 GBP
 
+  Scenario: An oversized monetary request is rejected without changing a card
+    Given a card with a credit limit of 100.00 GBP
+    When an oversized purchase of 92233720368547758.08 GBP is requested
+    Then the request is rejected as invalid input
+    And the available balance is 100.00 GBP
+    And the card's transactions are ""
+    When an oversized credit limit of 92233720368547758.08 GBP is requested
+    Then the request is rejected as invalid input
+    And the available balance is 100.00 GBP
+    And the card's transactions are ""
+
   Scenario: A purchase on a blocked card is declined
     Given a blocked card with a credit limit of 100.00 GBP
     When a purchase of 1.00 GBP is made at "Coffee Corner"
@@ -42,6 +53,13 @@ Feature: Card authorization
     When a purchase of 30.00 GBP is made at "Coffee Corner"
     Then the purchase is declined because of "RISK_UNAVAILABLE"
     And the decision took less than 1000 ms
+    And the available balance is 100.00 GBP
+
+  Scenario: A fractional risk score declines the purchase without a hold
+    Given a card with a credit limit of 100.00 GBP
+    But the risk engine returns a fractional score
+    When a purchase of 30.00 GBP is made at "Coffee Corner"
+    Then the purchase is declined because of "RISK_UNAVAILABLE"
     And the available balance is 100.00 GBP
 
   Scenario: Capturing an authorization converts the hold into a settled charge

@@ -1,0 +1,89 @@
+{
+  "schema_version": 2,
+  "run_id": "20260911-safe-numeric-boundaries",
+  "state": "SLICES_RUNNING",
+  "plan": {
+    "path": "/tmp/zilch-20260911-feature/context/plans/2026-09-11-safe-numeric-boundaries.md",
+    "sha256": "cd73e243f2f7ed299e7c3d456a3d56c3af2fc4a5bce91401dac2630eafaa79ef",
+    "approved_base_sha": "d7537cdb2b25fbf6a6b4ec7bed4dbddd8bf274fb"
+  },
+  "context": {
+    "index_path": "/tmp/zilch-20260911-feature/context/map/INDEX.md",
+    "manifest_path": "/tmp/zilch-20260911-feature/context/map/manifest.json",
+    "source_revision": "d7537cdb2b25fbf6a6b4ec7bed4dbddd8bf274fb"
+  },
+  "execution_contract": {
+    "profile": "bug",
+    "orchestration": "fire-and-forget",
+    "terminal_outcome": "integration-merged",
+    "selection_source": "operator-confirmed",
+    "confirmed_at": "2026-09-11T09:21:08Z",
+    "automatic_profile_escalation": false,
+    "model_policy": {
+      "policy": "daily-coding",
+      "worker_requested": "gpt-5.6-terra",
+      "worker_resolved": "gpt-5.6-terra",
+      "worker_reasoning": "medium",
+      "reviewer_requested": "gpt-5.6-terra",
+      "reviewer_resolved": "gpt-5.6-terra",
+      "reviewer_reasoning": "medium"
+    },
+    "profile_history": []
+  },
+  "authorization_path": "authorization.md",
+  "topology_path": "topology.md",
+  "feature": {
+    "branch": "fix/safe-numeric-boundaries",
+    "worktree": "/tmp/zilch-20260911-feature",
+    "head_sha": "5debbf647734dadcae75960f405ba5602a9bc82b"
+  },
+  "slices": {
+    "S1": {
+      "state": "INTEGRATED",
+      "branch": "fix/safe-numeric-boundaries-s1",
+      "worktree": "/tmp/zilch-20260911-s1",
+      "parent_sha": "73f5ee0d94ff1d13c5e5f22b6d73604aaf133fa3",
+      "packet_sha256": "91e3d8168b49b25cb1612c1ba688402b4062b18d60e79aa6f85989f74c131fae",
+      "resource_lease": "S1",
+      "head_sha": "3587d2fec48a4956d57bd785840f98d930d750a3",
+      "red_sha": "b21f69c5f711565fe656d922d4f0fa08a9a59366",
+      "gates": {
+        "red": "PASS",
+        "focused": "PASS",
+        "static": "PASS",
+        "sonar": "NOT_APPLICABLE",
+        "review": "PASS",
+        "e2e": "PASS",
+        "integration": "PASS"
+      }
+    },
+    "S2": {
+      "state": "INTEGRATED",
+      "branch": "fix/safe-numeric-boundaries-s2",
+      "worktree": "/tmp/zilch-20260911-s2",
+      "parent_sha": "3587d2fec48a4956d57bd785840f98d930d750a3",
+      "packet_sha256": "f7a900a9461e84b4cf5081a5c36eb0ff72d7fd37cfcb7a0ef87d1ae985056f13",
+      "resource_lease": "S2",
+      "head_sha": "5debbf647734dadcae75960f405ba5602a9bc82b",
+      "red_sha": "55841d60a898b4c892aa77b2bea977ef72768f93",
+      "gates": {
+        "red": "PASS",
+        "focused": "PASS",
+        "static": "PASS",
+        "sonar": "NOT_APPLICABLE",
+        "review": "PASS",
+        "e2e": "PASS",
+        "integration": "PASS"
+      }
+    }
+  },
+  "deferred_obligations": [],
+  "integration_pr": null,
+  "staging": {
+    "status": "NOT_APPLICABLE"
+  },
+  "production": {
+    "status": "NOT_APPLICABLE"
+  },
+  "updated_at": "2026-09-11T09:41:59.398288+00:00"
+}

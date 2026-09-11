@@ -1,10 +1,11 @@
 <!-- BEGIN project-context-initializer:context -->
 # domain
 
-Path `src/main/java/pl/fairydeck/authorization/domain` | source `b4bef16` | refreshed 2026-09-07T14:57:44Z | coverage: own
+Path `src/main/java/pl/fairydeck/authorization/domain` | source `5debbf6` (affected scope) | refreshed 2026-09-11T09:42:24Z | coverage: own
 
 **Responsibilities.** Business rules with no framework dependency: `money/Money` (minor units + `Currency`
-exponent, `CurrencyMismatchException`), `card/Card` (+ `CardStatus`, `Card.issue`), `ledger/LedgerEntry`
+exponent, rejects excess precision and wraps an unrepresentable minor-unit conversion as `IllegalArgumentException`,
+`CurrencyMismatchException`), `card/Card` (+ `CardStatus`, `Card.issue`), `ledger/LedgerEntry`
 (append-only fact, positive amount), `ledger/LedgerEntryType` (HOLD, HOLD_RELEASE, CAPTURE, REFUND),
 `ledger/Balance` (`derive(creditLimit, entries)`: pending, settled, available), `authorization/Authorization`
 (states APPROVED, DECLINED, CAPTURED, REVERSED, EXPIRED; `hold()`, `capture(now)`, `reverse(now)`, `expire(now)`,
@@ -19,7 +20,8 @@ unavailable risk declines), `authorization/RiskAssessment` (sealed: `Scored`, `U
 
 **Tests.** `./gradlew test --tests 'pl.fairydeck.authorization.domain.*'` (JUnit 6 + AssertJ, no Spring).
 
-**Invariants.** No Spring/Jakarta imports (ArchUnit `domainIsFreeOfFrameworks`); amounts never `double`;
+**Invariants.** No Spring/Jakarta imports (ArchUnit `domainIsFreeOfFrameworks`); amounts never `double`; parsed input
+must fit signed `long` minor units or fail as `IllegalArgumentException` rather than leaking `ArithmeticException`;
 ledger entries carry direction in their type, not in the sign; a correction is a new entry; `Authorization`
 transitions throw `IllegalStateException` for impossible moves and return the ledger entries that record them.
 

@@ -1,0 +1,32 @@
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :jar
+> Task :compileTestFixturesJava
+> Task :processTestFixturesResources NO-SOURCE
+> Task :testFixturesClasses
+> Task :testFixturesJar
+> Task :compileTestJava
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+
+> Task :test
+
+HttpRiskScorerTest > reportsUnavailabilityWhenTheRiskServiceReturnsANonIntegralScore() FAILED
+    java.lang.AssertionError at HttpRiskScorerTest.java:77
+
+17 tests completed, 1 failed
+
+> Task :test FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file:///tmp/zilch-20260911-s1/build/reports/tests/test/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 7s
+7 actionable tasks: 7 executed

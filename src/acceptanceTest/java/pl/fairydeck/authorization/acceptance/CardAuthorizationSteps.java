@@ -22,6 +22,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestClient;
 import pl.fairydeck.authorization.application.port.out.CardRepository;
@@ -43,6 +45,7 @@ public class CardAuthorizationSteps {
     private final List<AuthorizationView> answers = new ArrayList<>();
     private UUID cardId;
     private PurchaseRequest lastPurchase;
+    private HttpStatusCode lastStatus;
     private Duration lastDecisionTime = Duration.ZERO;
 
     CardAuthorizationSteps(@Value("${local.server.port}") int port, CardRepository cards) {
@@ -67,12 +70,18 @@ public class CardAuthorizationSteps {
         answers.clear();
         cardId = null;
         lastPurchase = null;
+        lastStatus = null;
         lastDecisionTime = Duration.ZERO;
     }
 
     @Given("the risk engine scores every purchase as low risk")
     public void theRiskEngineScoresEveryPurchaseAsLowRisk() {
         RISK_ENGINE.stubFor(post(SCORES).willReturn(okJson(LOW_RISK)));
+    }
+
+    @Given("the risk engine returns a fractional score")
+    public void theRiskEngineReturnsAFractionalScore() {
+        RISK_ENGINE.stubFor(post(SCORES).willReturn(okJson("{\"score\": 70.9}")));
     }
 
     @Given("the risk engine does not answer in time")
@@ -107,6 +116,23 @@ public class CardAuthorizationSteps {
     @When("a purchase of {bigdecimal} {word} is made at {string}")
     public void aPurchaseIsMadeAt(BigDecimal amount, String currency, String merchant) {
         purchase(new PurchaseRequest(cardId, amount, currency, merchant), UUID.randomUUID().toString());
+    }
+
+    @When("an oversized purchase of {bigdecimal} {word} is requested")
+    public void anOversizedPurchaseIsRequested(BigDecimal amount, String currency) {
+        lastStatus = api.post().uri("/v1/authorizations")
+                .header("Idempotency-Key", UUID.randomUUID().toString())
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(new PurchaseRequest(cardId, amount, currency, DEFAULT_MERCHANT))
+                .exchange((request, response) -> response.getStatusCode());
+    }
+
+    @When("an oversized credit limit of {bigdecimal} {word} is requested")
+    public void anOversizedCreditLimitIsRequested(BigDecimal amount, String currency) {
+        lastStatus = api.post().uri("/v1/cards")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(new IssueCardRequest(UUID.randomUUID(), amount, currency))
+                .exchange((request, response) -> response.getStatusCode());
     }
 
     @When("a purchase of {bigdecimal} {word} is made with idempotency key {string}")
@@ -155,6 +181,11 @@ public class CardAuthorizationSteps {
     @Then("the purchase is approved")
     public void thePurchaseIsApproved() {
         assertThat(lastAnswer().status()).isEqualTo("APPROVED");
+    }
+
+    @Then("the request is rejected as invalid input")
+    public void theRequestIsRejectedAsInvalidInput() {
+        assertThat(lastStatus).isEqualTo(HttpStatus.BAD_REQUEST);
     }
 
     @Then("the purchase is declined because of {string}")

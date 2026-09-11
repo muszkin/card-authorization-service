@@ -1,7 +1,7 @@
 <!-- BEGIN project-context-initializer:context -->
 # Repository root context
 
-Path `.` | scope: whole repository | source `b4bef16` | refreshed 2026-09-07T14:57:44Z | coverage: own (root)
+Path `.` | scope: whole repository | source `5debbf6` (affected-scope checkpoint) | refreshed 2026-09-11T09:42:24Z | coverage: own (root)
 
 **Purpose.** Card authorization service; see `context/map/INDEX.md` for the router and `README.md` for the
 product description. This context covers everything not owned by a layer context: build, configuration, CI,
@@ -19,12 +19,14 @@ timeouts, `authorization.*`, `cache.cards.time-to-live`, `outbox.*`, `risk.scori
 `src/main/resources`, the application package root, `src/test/java/.../architecture`,
 `src/integrationTest/java/pl/fairydeck/authorization` (context test), `src/testFixtures/java/pl/fairydeck/authorization`.
 
-**Commands (verified at `b4bef16`).** `./gradlew test` (102), `./gradlew integrationTest` (20, Docker),
-`./gradlew acceptanceTest` (9, Docker), `./gradlew build`, `./gradlew bootRun` (compose; port 8080).
+**Commands.** At the `5debbf6` frozen checkpoint: `./gradlew test` (120), `./gradlew integrationTest` (20, Docker),
+`./gradlew acceptanceTest` (12, Docker). The full assembled build remains external final-audit evidence. `./gradlew bootRun`
+uses compose on port 8080.
 
 **Invariants.** Test first with an observed red build; `test:` commits may be red, the next `feat:` is green;
 no amend/squash/force-push on the delivery history (see risk 1 in `context/map/risks-and-unknowns.md`);
-constructor injection only; `Money` never `double`; nothing in `domain` imports Spring or Jakarta; no secrets
+constructor injection only; `Money` never `double` and turns an unrepresentable parsed amount into an
+`IllegalArgumentException`; nothing in `domain` imports Spring or Jakarta (ArchUnit); compilation uses `-Werror`; no secrets
 anywhere; keep production code small.
 
 **Git signals.** `application.yaml` (9 commits) and `build.gradle.kts` (8) change with almost every feature.
@@ -38,5 +40,6 @@ the §16 contradiction found during initialization is resolved.
 `src/acceptanceTest/.agents/project-context.md`.
 
 **Evidence.** `README.md`, `CLAUDE.md`, `DECISIONS.md`, `AI_USAGE.md`, `build.gradle.kts`, `compose.yaml`,
-`.github/workflows/build.yml`, `src/main/resources/application.yaml`.
+`.github/workflows/build.yml`, `src/main/resources/application.yaml`, `context/plans/2026-09-11-safe-numeric-boundaries.md`,
+`context/implementation-runs/20260911-safe-numeric-boundaries/RUN.md`.
 <!-- END project-context-initializer:context -->

@@ -1,7 +1,7 @@
 <!-- BEGIN project-context-initializer:context -->
 # adapter
 
-Path `src/main/java/pl/fairydeck/authorization/adapter` | source `b4bef16` | refreshed 2026-09-07T14:57:44Z | coverage: own
+Path `src/main/java/pl/fairydeck/authorization/adapter` | source `5debbf6` (affected scope) | refreshed 2026-09-11T09:42:24Z | coverage: own
 
 **Slices (each rolled up here; ArchUnit keeps them independent).**
 - `in/rest`: `AuthorizationController` (`POST /v1/authorizations`, `/{id}/capture`, `/{id}/reverse`),
@@ -13,7 +13,8 @@ Path `src/main/java/pl/fairydeck/authorization/adapter` | source `b4bef16` | ref
   (tables, indexes, append-only trigger), `V2__outbox_events.sql`.
 - `out/cache`: `RedisCardCache` (`card:{uuid}`, TTL from `CardCacheProperties`, outage -> miss),
   `CardCacheConfiguration` (`RedisTemplate<String, Card>` with Jackson 3 record-only serialization).
-- `out/risk`: `HttpRiskScorer` (`POST /v1/scores`, any `RestClientException` -> `Unavailable`),
+- `out/risk`: `HttpRiskScorer` (`POST /v1/scores`; transport/null, fractional and out-of-`int` scores -> `Unavailable`
+  through `intValueExact()`),
   `RiskScoringConfiguration` (`RestClient` from Boot's builder + `RiskScoringProperties.baseUrl`).
 - `out/events`: `JdbcOutbox` (JSONB payload record), `OutboxRelay` (`@Scheduled` + `@Transactional`,
   `FOR UPDATE SKIP LOCKED`, at-least-once), `EventPublisher` seam, `LoggingEventPublisher`, `OutboxProperties`.
@@ -34,6 +35,7 @@ contract) and `src/integrationTest/java/.../adapter/out/**` (repositories, cache
 
 **Invariants.** Slices do not import each other (`ArchitectureTest`); persistence never updates or deletes
 ledger rows (database trigger); adapters translate failures into port-level meaning, they do not decide.
+The REST adapter's existing `IllegalArgumentException` problem-details mapping makes an unrepresentable input amount a 400.
 
 **Git signals.** `JdbcAuthorizationRepository.java` 4 commits, `ApiExceptionHandler.java` 3, co-change with the
 port and the integration spec.

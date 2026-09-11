@@ -1,0 +1,41 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :compileTestFixturesJava UP-TO-DATE
+> Task :processTestFixturesResources NO-SOURCE
+> Task :testFixturesClasses UP-TO-DATE
+> Task :testFixturesJar UP-TO-DATE
+> Task :compileTestJava UP-TO-DATE
+> Task :processTestResources NO-SOURCE
+> Task :testClasses UP-TO-DATE
+
+> Task :test
+
+AuthorizationControllerTest > rejectsAnAmountWhoseMinorUnitsOverflowWithoutAuthorizingIt() FAILED
+    java.lang.AssertionError at AuthorizationControllerTest.java:131
+
+CardControllerTest > rejectsACreditLimitWhoseMinorUnitsOverflowWithoutIssuingIt() FAILED
+    java.lang.AssertionError at CardControllerTest.java:84
+
+MoneyTest > rejectsAmountsWhoseMinorUnitsOverflowALong(String) > "92233720368547758.08" exceeds the long minor-unit bounds FAILED
+    java.lang.AssertionError at MoneyTest.java:45
+
+MoneyTest > rejectsAmountsWhoseMinorUnitsOverflowALong(String) > "-92233720368547758.09" exceeds the long minor-unit bounds FAILED
+    java.lang.AssertionError at MoneyTest.java:45
+
+47 tests completed, 4 failed
+
+> Task :test FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file:///tmp/zilch-20260911-s2/build/reports/tests/test/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 6s
+7 actionable tasks: 1 executed, 6 up-to-date

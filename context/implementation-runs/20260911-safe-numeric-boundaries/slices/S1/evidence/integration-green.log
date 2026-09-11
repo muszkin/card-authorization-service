@@ -1,0 +1,22 @@
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :jar
+> Task :compileTestFixturesJava
+> Task :processTestFixturesResources NO-SOURCE
+> Task :testFixturesClasses
+> Task :testFixturesJar
+> Task :compileTestJava
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+> Task :test
+> Task :compileIntegrationTestJava
+> Task :processIntegrationTestResources NO-SOURCE
+> Task :integrationTestClasses
+{"@timestamp":"2026-09-11T09:28:40.048543488Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":736556,"thread":{"name":"SpringApplicationShutdownHook"}},"service":{"name":"card-authorization-service","node":{}},"message":"HikariPool-1 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-09-11T09:28:40.050065253Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":736556,"thread":{"name":"SpringApplicationShutdownHook"}},"service":{"name":"card-authorization-service","node":{}},"message":"HikariPool-1 - Shutdown completed.","ecs":{"version":"8.11"}}
+> Task :integrationTest
+
+BUILD SUCCESSFUL in 18s
+9 actionable tasks: 9 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html

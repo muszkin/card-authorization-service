@@ -1,0 +1,19 @@
+{
+  "state": "INTEGRATED",
+  "branch": "fix/safe-numeric-boundaries-s1",
+  "worktree": "/tmp/zilch-20260911-s1",
+  "parent_sha": "73f5ee0d94ff1d13c5e5f22b6d73604aaf133fa3",
+  "packet_sha256": "91e3d8168b49b25cb1612c1ba688402b4062b18d60e79aa6f85989f74c131fae",
+  "resource_lease": "S1",
+  "head_sha": "3587d2fec48a4956d57bd785840f98d930d750a3",
+  "red_sha": "b21f69c5f711565fe656d922d4f0fa08a9a59366",
+  "gates": {
+    "red": "PASS",
+    "focused": "PASS",
+    "static": "PASS",
+    "sonar": "NOT_APPLICABLE",
+    "review": "PASS",
+    "e2e": "PASS",
+    "integration": "PASS"
+  }
+}
