@@ -75,6 +75,11 @@ public class CardAuthorizationSteps {
         RISK_ENGINE.stubFor(post(SCORES).willReturn(okJson(LOW_RISK)));
     }
 
+    @Given("the risk engine returns a fractional score")
+    public void theRiskEngineReturnsAFractionalScore() {
+        RISK_ENGINE.stubFor(post(SCORES).willReturn(okJson("{\"score\": 70.9}")));
+    }
+
     @Given("the risk engine does not answer in time")
     public void theRiskEngineDoesNotAnswerInTime() {
         RISK_ENGINE.stubFor(post(SCORES).willReturn(okJson(LOW_RISK).withFixedDelay(FAR_BEYOND_THE_TIMEOUT_MS)));

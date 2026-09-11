@@ -57,6 +57,55 @@ class HttpRiskScorerTest {
     }
 
     @Test
+    void preservesAnIntegralRiskScore() {
+        stubFor(post(SCORES).willReturn(okJson("{\"score\": 70}")));
+
+        assertThat(scorer.assess(purchase)).isEqualTo(new RiskAssessment.Scored(70));
+    }
+
+    @Test
+    void preservesAnIntegralDecimalRiskScore() {
+        stubFor(post(SCORES).willReturn(okJson("{\"score\": 70.0}")));
+
+        assertThat(scorer.assess(purchase)).isEqualTo(new RiskAssessment.Scored(70));
+    }
+
+    @Test
+    void reportsUnavailabilityWhenTheRiskServiceReturnsANonIntegralScore() {
+        stubFor(post(SCORES).willReturn(okJson("{\"score\": 70.9}")));
+
+        assertThat(scorer.assess(purchase)).isInstanceOf(RiskAssessment.Unavailable.class);
+    }
+
+    @Test
+    void reportsUnavailabilityWhenTheRiskServiceOmitsTheScore() {
+        stubFor(post(SCORES).willReturn(okJson("{}")));
+
+        assertThat(scorer.assess(purchase)).isInstanceOf(RiskAssessment.Unavailable.class);
+    }
+
+    @Test
+    void reportsUnavailabilityWhenTheRiskServiceReturnsANullScore() {
+        stubFor(post(SCORES).willReturn(okJson("{\"score\": null}")));
+
+        assertThat(scorer.assess(purchase)).isInstanceOf(RiskAssessment.Unavailable.class);
+    }
+
+    @Test
+    void reportsUnavailabilityWhenTheRiskServiceReturnsMalformedJson() {
+        stubFor(post(SCORES).willReturn(okJson("{\"score\":")));
+
+        assertThat(scorer.assess(purchase)).isInstanceOf(RiskAssessment.Unavailable.class);
+    }
+
+    @Test
+    void reportsUnavailabilityWhenTheRiskServiceReturnsAnOutOfRangeScore() {
+        stubFor(post(SCORES).willReturn(okJson("{\"score\": 2147483648}")));
+
+        assertThat(scorer.assess(purchase)).isInstanceOf(RiskAssessment.Unavailable.class);
+    }
+
+    @Test
     void describesThePurchaseToTheRiskService() {
         stubFor(post(SCORES).willReturn(okJson("{\"score\": 1}")));
 

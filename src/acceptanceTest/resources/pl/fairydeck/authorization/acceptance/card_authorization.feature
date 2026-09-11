@@ -44,6 +44,13 @@ Feature: Card authorization
     And the decision took less than 1000 ms
     And the available balance is 100.00 GBP
 
+  Scenario: A fractional risk score declines the purchase without a hold
+    Given a card with a credit limit of 100.00 GBP
+    But the risk engine returns a fractional score
+    When a purchase of 30.00 GBP is made at "Coffee Corner"
+    Then the purchase is declined because of "RISK_UNAVAILABLE"
+    And the available balance is 100.00 GBP
+
   Scenario: Capturing an authorization converts the hold into a settled charge
     Given a card with a credit limit of 100.00 GBP
     And an approved purchase of 30.00 GBP
