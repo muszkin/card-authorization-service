@@ -1,0 +1,37 @@
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :jar
+> Task :compileTestFixturesJava
+> Task :processTestFixturesResources NO-SOURCE
+> Task :testFixturesClasses
+> Task :testFixturesJar
+> Task :compileAcceptanceTestJava
+> Task :processAcceptanceTestResources
+> Task :acceptanceTestClasses
+
+> Task :acceptanceTest
+
+AcceptanceScenarios > Card authorization > An oversized monetary request is rejected without changing a card FAILED
+    org.opentest4j.AssertionFailedError at CardAuthorizationSteps.java:188
+
+{"@timestamp":"2026-09-11T09:33:01.238622952Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":755423,"thread":{"name":"SpringApplicationShutdownHook"}},"service":{"name":"card-authorization-service","node":{}},"message":"Commencing graceful shutdown. Waiting for active requests to complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-09-11T09:33:01.242456277Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":755423,"thread":{"name":"tomcat-shutdown"}},"service":{"name":"card-authorization-service","node":{}},"message":"Graceful shutdown complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-09-11T09:33:01.253518893Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":755423,"thread":{"name":"SpringApplicationShutdownHook"}},"service":{"name":"card-authorization-service","node":{}},"message":"HikariPool-1 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-09-11T09:33:01.255671112Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":755423,"thread":{"name":"SpringApplicationShutdownHook"}},"service":{"name":"card-authorization-service","node":{}},"message":"HikariPool-1 - Shutdown completed.","ecs":{"version":"8.11"}}
+
+> Task :acceptanceTest FAILED
+
+12 tests completed, 1 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':acceptanceTest'.
+> There were failing tests. See the report at: file:///tmp/zilch-20260911-s2/build/reports/tests/acceptanceTest/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 11s
+8 actionable tasks: 8 executed

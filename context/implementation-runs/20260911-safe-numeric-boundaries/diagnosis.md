@@ -1,7 +1,7 @@
 # Numeric-boundary diagnosis
 
-Base revision: `d7537cdb2b25fbf6a6b4ec7bed4dbddd8bf274fb`  
-Worktree: `diagnostic worktree at d7537cd`  
+Base revision: `d7537cdb2b25fbf6a6b4ec7bed4dbddd8bf274fb`
+Worktree: `diagnostic worktree at d7537cd`
 Baseline: `./gradlew clean build` passed before this investigation (35 s); log: `/tmp/zilch-20260911-baseline.log`.
 
 ## Reported symptom F1: fractional external risk score

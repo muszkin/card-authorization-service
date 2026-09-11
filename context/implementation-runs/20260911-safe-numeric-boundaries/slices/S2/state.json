@@ -1,11 +1,19 @@
 {
-  "id": "S2",
-  "state": "PLANNED",
-  "parent_sha": "d7537cdb2b25fbf6a6b4ec7bed4dbddd8bf274fb",
-  "head_sha": null,
-  "dependencies": [
-    "S1"
-  ],
-  "gates": {},
-  "updated_at": "2026-09-11T09:21:08Z"
+  "state": "INTEGRATED",
+  "branch": "fix/safe-numeric-boundaries-s2",
+  "worktree": "/tmp/zilch-20260911-s2",
+  "parent_sha": "3587d2fec48a4956d57bd785840f98d930d750a3",
+  "packet_sha256": "f7a900a9461e84b4cf5081a5c36eb0ff72d7fd37cfcb7a0ef87d1ae985056f13",
+  "resource_lease": "S2",
+  "head_sha": "5debbf647734dadcae75960f405ba5602a9bc82b",
+  "red_sha": "55841d60a898b4c892aa77b2bea977ef72768f93",
+  "gates": {
+    "red": "PASS",
+    "focused": "PASS",
+    "static": "PASS",
+    "sonar": "NOT_APPLICABLE",
+    "review": "PASS",
+    "e2e": "PASS",
+    "integration": "PASS"
+  }
 }
