@@ -37,7 +37,15 @@ class HttpRiskScorer implements RiskScorer {
                     .body(ScoreRequest.of(purchase))
                     .retrieve()
                     .body(ScoreResponse.class);
-            return response == null ? new RiskAssessment.Unavailable() : new RiskAssessment.Scored(response.score());
+            if (response == null || response.score() == null) {
+                return new RiskAssessment.Unavailable();
+            }
+            try {
+                return new RiskAssessment.Scored(response.score().intValueExact());
+            } catch (ArithmeticException e) {
+                log.warn("Risk scoring returned an inexact score for card {}", purchase.cardId());
+                return new RiskAssessment.Unavailable();
+            }
         } catch (RestClientException e) {
             log.warn("Risk scoring unavailable for card {}: {}", purchase.cardId(), e.getMessage());
             return new RiskAssessment.Unavailable();
@@ -52,6 +60,6 @@ class HttpRiskScorer implements RiskScorer {
         }
     }
 
-    record ScoreResponse(int score) {
+    record ScoreResponse(BigDecimal score) {
     }
 }
