@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "run_id": "20260911-safe-numeric-boundaries",
+  "state": "BASELINE_RECORDED",
+  "plan": {
+    "path": "/tmp/zilch-20260911-feature/context/plans/2026-09-11-safe-numeric-boundaries.md",
+    "sha256": "cd73e243f2f7ed299e7c3d456a3d56c3af2fc4a5bce91401dac2630eafaa79ef",
+    "approved_base_sha": "d7537cdb2b25fbf6a6b4ec7bed4dbddd8bf274fb"
+  },
+  "context": {
+    "index_path": "/tmp/zilch-20260911-feature/context/map/INDEX.md",
+    "manifest_path": "/tmp/zilch-20260911-feature/context/map/manifest.json",
+    "source_revision": "d7537cdb2b25fbf6a6b4ec7bed4dbddd8bf274fb"
+  },
+  "execution_contract": {
+    "profile": "bug",
+    "orchestration": "fire-and-forget",
+    "terminal_outcome": "integration-merged",
+    "selection_source": "operator-confirmed",
+    "confirmed_at": "2026-09-11T09:21:08Z",
+    "automatic_profile_escalation": false,
+    "model_policy": {
+      "policy": "daily-coding",
+      "worker_requested": "gpt-5.6-terra",
+      "worker_resolved": "gpt-5.6-terra",
+      "worker_reasoning": "medium",
+      "reviewer_requested": "gpt-5.6-terra",
+      "reviewer_resolved": "gpt-5.6-terra",
+      "reviewer_reasoning": "medium"
+    },
+    "profile_history": []
+  },
+  "authorization_path": "authorization.md",
+  "topology_path": "topology.md",
+  "feature": {
+    "branch": "fix/safe-numeric-boundaries",
+    "worktree": "/tmp/zilch-20260911-feature",
+    "head_sha": "d7537cdb2b25fbf6a6b4ec7bed4dbddd8bf274fb"
+  },
+  "slices": {
+    "S1": {
+      "state": "PLANNED"
+    },
+    "S2": {
+      "state": "PLANNED"
+    }
+  },
+  "deferred_obligations": [],
+  "integration_pr": null,
+  "staging": {
+    "status": "NOT_APPLICABLE"
+  },
+  "production": {
+    "status": "NOT_APPLICABLE"
+  },
+  "updated_at": "2026-09-11T09:21:08Z"
+}

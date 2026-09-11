@@ -59,4 +59,13 @@ commit that adds this map; see risks-and-unknowns.md item 1.
 
 Freshness rule: this map describes `4b89d49` (main). If `git status` is not clean or HEAD differs, treat every claim as
 possibly stale and refresh.
+## Numeric-boundary repair intake (2026-09-11)
+
+Current repair plan: [safe numeric boundaries](../plans/2026-09-11-safe-numeric-boundaries.md).
+User authorized F1/F2 and AI_USAGE corrections through the full workflow; execution target is integration-merged (explicit operator selection).
+Affected source was re-read at local `2156da5`; remote target `d7537cd` differs only by selecting self-hosted CI.
+The clean baseline at `d7537cd` passed 106 unit/contract/web/architecture tests, 20 integration tests and10 HTTP
+acceptance scenarios. Prior counts and source annotations above remain historical, not current gate evidence.
+Current baseline and diagnosis: [implementation run](../implementation-runs/20260911-safe-numeric-boundaries/RUN.md).
+
 <!-- END project-context-initializer:artifact -->

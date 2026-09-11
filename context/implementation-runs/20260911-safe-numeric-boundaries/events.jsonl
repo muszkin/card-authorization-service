@@ -1,0 +1,3 @@
+{"at": "2026-09-11T09:21:08Z", "actor": "orchestrator", "event": "EXECUTION_CONTRACT_SELECTED", "sha": "d7537cdb2b25fbf6a6b4ec7bed4dbddd8bf274fb", "reason": "User selected PR, green CI and merge to main; bug/fire-and-forget/terra medium"}
+{"at": "2026-09-11T09:21:08Z", "actor": "orchestrator", "event": "BASELINE_RECORDED", "sha": "d7537cdb2b25fbf6a6b4ec7bed4dbddd8bf274fb", "reason": "136 tests pass; see integration/baseline-build.log"}
+{"at": "2026-09-11T09:21:08Z", "actor": "orchestrator", "event": "DIAGNOSIS_CONFIRMED", "sha": "d7537cdb2b25fbf6a6b4ec7bed4dbddd8bf274fb", "reason": "F1 fractional score and F2 both input endpoints reproduced before product edits"}

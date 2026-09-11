@@ -4,41 +4,41 @@
   "generator_version": "skill bundle sha256:a26f4ab1f8949c90",
   "manifest_digest": {
     "algorithm": "sha256-rfc8785-with-empty-digest",
-    "value": "b0a43e1e1cd00f26fc852cd34529a362079e0850bec6e72a41ae1fa445c87e1c"
+    "value": "22120229083c74ff22dbd718b34216f6a5e433f47090899fd9088c169ef8ddb2"
   },
   "operation": "refresh",
   "project_classification": "brownfield",
   "scope_kind": "repository",
   "phase": "complete",
-  "generated_at": "2026-09-08T08:18:08Z",
+  "generated_at": "2026-09-11T08:51:21Z",
   "repository_root": ".",
   "scope": [
     "."
   ],
   "source_snapshot": {
     "basis": "HEAD+worktree",
-    "revision": "e0b143925a1c58dd85696fcf60c721c32e80c110",
-    "branch": "main",
+    "revision": "d7537cdb2b25fbf6a6b4ec7bed4dbddd8bf274fb",
+    "branch": "fix/safe-numeric-boundaries",
     "worktree_status": [
-      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/RUN.md",
+      "context/map/INDEX.md",
       "context/map/manifest.json"
     ],
     "untracked_nonignored_paths": [
-      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/delivery/ci.md",
-      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/delivery/integration-pr.md",
-      "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/integration/final-build-2.txt"
+      "context/plans/2026-09-11-safe-numeric-boundaries.md"
     ],
-    "comparability": "comparable",
-    "non_comparable_reasons": [],
+    "comparability": "non-comparable",
+    "non_comparable_reasons": [
+      "Intake artifacts currently being assembled; refresh before final freeze."
+    ],
     "dirty_tracked_fingerprints": [
       {
-        "path": "context/implementation-runs/20260908T072415Z-idempotent-settlement-retries/RUN.md",
+        "path": "context/map/INDEX.md",
         "method": "sha256-current-worktree-bytes",
-        "value": "12b9c69315c24cf116010b7260a98d2431e54ebfc4c3a8e497eb550b6502bf25"
+        "value": "a876039fea40d3c5c1927f1af92431dcf8c0495cb35bbc40e220694dd2e0d6a5"
       }
     ],
-    "inventory_fingerprint": "915cd83746c1d50e794cf50bf8d671000d3f00d1d2a30db1e2dcedf2d4bfda0d",
-    "fingerprint_method": "sha256 over sorted lines \"<git blob id>\\t<path>\\n\" of `git ls-files -s` (clean tree), excluding generated context (context/**, **/.agents/**)"
+    "inventory_fingerprint": "740068ff93260913e451ad8ca50db8b9e957e50cd2e31a868305bb06e2af7229",
+    "fingerprint_method": "sha256 over sorted sha256(file bytes) TAB path LF for tracked first-party inputs excluding context/** and agent maps; no secret-bearing inputs present in this set"
   },
   "git_history": {
     "available": true,
@@ -725,6 +725,55 @@
         "review",
         "task-closeout"
       ]
+    },
+    {
+      "path": "context/plans/2026-09-11-safe-numeric-boundaries.md",
+      "generator_or_owner": "implementation-planning",
+      "purpose": "Fix F1 inexact risk score and F2 overflowing input; correct AI provenance",
+      "scope": [
+        "src/main/java/pl/fairydeck/authorization/adapter/out/risk",
+        "src/main/java/pl/fairydeck/authorization/domain/money",
+        "src/acceptanceTest",
+        "AI_USAGE.md"
+      ],
+      "artifact_type": "proposal",
+      "authority": "supporting",
+      "source_revision": "d7537cdb2b25fbf6a6b4ec7bed4dbddd8bf274fb",
+      "generated_at": "2026-09-11T08:51:21Z",
+      "freshness": "current",
+      "content_sha256": "cd73e243f2f7ed299e7c3d456a3d56c3af2fc4a5bce91401dac2630eafaa79ef",
+      "approval_status": "approved",
+      "conflicts": [],
+      "referenced_by": [
+        "context/map/INDEX.md"
+      ],
+      "consumers": [
+        "implementation-orchestrator",
+        "incoming-change-review"
+      ]
+    },
+    {
+      "path": "context/implementation-runs/20260911-safe-numeric-boundaries/RUN.md",
+      "generator_or_owner": "implementation-orchestrator",
+      "purpose": "Authorized numeric-boundary repair evidence",
+      "scope": [
+        "."
+      ],
+      "artifact_type": "historical-record",
+      "authority": "supporting",
+      "source_revision": "d7537cdb2b25fbf6a6b4ec7bed4dbddd8bf274fb",
+      "generated_at": "2026-09-11T09:21:08Z",
+      "freshness": "current",
+      "content_sha256": "16a2600abcae4d16bbd3d76a82d8c4f062a64e59d3a0ca106e2e5e76484528c9",
+      "approval_status": "not-applicable",
+      "conflicts": [],
+      "referenced_by": [
+        "context/map/INDEX.md"
+      ],
+      "consumers": [
+        "incoming-change-review",
+        "task-closeout"
+      ]
     }
   ],
   "artifacts": [
@@ -1324,8 +1373,8 @@
         "src/testFixtures/java/pl/fairydeck/authorization/application/port/out/StubRiskScorer.java"
       ],
       "input_fingerprint": "71a66297627b16ccac87d938cfac1bfa76d6b5e36ff2de905610c43640b2e38e",
-      "output_sha256": "53c843d76410cc6f48003571c78dfdaa83aee53ca125f781d40e381ca64b723d",
-      "generated_at": "2026-09-08T08:15:51Z"
+      "output_sha256": "46ca449d96c9e3b5ccb3e7695d8d9e1e13ab2e8412ab75c19bb599532c8a44b0",
+      "generated_at": "2026-09-11T09:21:08Z"
     },
     {
       "path": "context/README.md",
@@ -1396,7 +1445,7 @@
     "ci": "complete",
     "deploy_smoke": "not-applicable",
     "e2e": "complete",
-    "freshness": "complete",
+    "freshness": "partial",
     "risks": "partial"
   },
   "verdict_details": {
@@ -1431,13 +1480,22 @@
       "reason": "complete local history and a PR query with zero results; one-day single-author window limits hotspot significance (caveat recorded)"
     },
     "tests": {
-      "reason": "all three suites executed with --rerun-tasks at HEAD: 102 + 20 + 9 tests, 0 failures"
+      "reason": "Baseline on d7537cd:106+20+10; ./gradlew clean build passed2026-09-11. This is not post-fix evidence."
     },
     "ci": {
       "reason": "GitHub Actions run for HEAD succeeded (gh run list)"
     },
     "e2e": {
       "reason": "acceptance suite over HTTP passed at HEAD"
+    },
+    "freshness": {
+      "reason": "Affected numeric-boundary source revalidated; historical map prose retains explicitly dated earlier snapshots. Final repair refresh pending.",
+      "missing_evidence": [
+        "post-fix source and verification"
+      ],
+      "impact": "do not treat old counts as current gate results",
+      "next_action": "refresh affected contexts on integrated repair candidate",
+      "owner": "orchestrator"
     }
   },
   "contradictions": [],
