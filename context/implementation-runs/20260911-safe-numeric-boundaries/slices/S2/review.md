@@ -2,8 +2,8 @@
 
 Verdict: **PASS**
 
-Reviewed immutable candidate: `5debbf647734dadcae75960f405ba5602a9bc82b`  
-Base / merge-base: `3587d2fec48a4956d57bd785840f98d930d750a3`  
+Reviewed immutable candidate: `5debbf647734dadcae75960f405ba5602a9bc82b`
+Base / merge-base: `3587d2fec48a4956d57bd785840f98d930d750a3`
 Plan: `context/plans/2026-09-11-safe-numeric-boundaries.md` (`cd73e243f2f7ed299e7c3d456a3d56c3af2fc4a5bce91401dac2630eafaa79ef`)
 
 ## Scope and intent
